@@ -31,7 +31,7 @@ struct Card1: View {
                 }
                 .padding(32)
                 
-//                Spacer()
+                Spacer()
                 
 //                Image(systemName: "Mascote1")
 //                    .resizable()
