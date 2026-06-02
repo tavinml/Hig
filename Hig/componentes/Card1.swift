@@ -15,8 +15,8 @@ struct Card1: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 26)
-                .fill(backgroundColor)
+//            RoundedRectangle(cornerRadius: 26)
+//                .fill(backgroundColor)
                 
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
@@ -44,8 +44,10 @@ struct Card1: View {
 
                 
         }
-        .frame(maxWidth: .infinity)
+        .frame(minWidth: 332)
         .frame(maxHeight: 233)
+        .cornerRadius(26)
+        .background(backgroundColor)
     }
 }
 

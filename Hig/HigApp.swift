@@ -21,6 +21,8 @@ struct HigApp: App {
 //            }
 //            .padding()
             ContentView()
+//            
+//            CardDotted(selected: true, height: 62, exerciseNumber: "1")
         }
     }
 }
