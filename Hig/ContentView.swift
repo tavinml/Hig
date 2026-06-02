@@ -9,13 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationSplitView {
+            bar()
+                .navigationSplitViewColumnWidth(
+                    min: 150, ideal: 200 , max: 300)
         }
-        .padding()
+        detail: {
+            VStack {
+                HStack(alignment: .center, spacing: 20 ) {
+                    Card1()
+                    Card1()
+                    
+                }
+            }
+            
+                
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
