@@ -14,12 +14,13 @@ struct CardDotted: View {
     let exerciseNumber: String
     
     var body: some View {
-        ZStack {
             RoundedRectangle(cornerRadius: 26)
-                .stroke(style:  StrokeStyle(lineWidth: 4,
+                .stroke(selected ? Color.green : Color.red,
+                        style:  StrokeStyle(lineWidth: 4,
                                             dash: [4],
                                             dashPhase: 0))
-                .frame(width: .infinity, height: height)
+                .frame(maxWidth: .infinity )
+                .frame(height: height)
 //                .overlay(
 //                    Text(exerciseNumber)
 //                        .frame(width: 30)
@@ -28,15 +29,22 @@ struct CardDotted: View {
 //                )
 //                .frame(width: .infinity, height: height)
 //                .background(Color.blue.opacity(0.5))
+        .overlay(alignment: .topLeading){
+            Circle()
+                .fill(Color.white)
+                .frame(width: 24,height: 24)
+                .overlay(
+                    Circle()
+                        .stroke(Color.black, lineWidth: 2)
+                    )
+                .overlay(
+                    Text(exerciseNumber)
+//                        ./*font(.system(size: 12, weight:bold))*/
+                        .foregroundStyle(Color.black)
+                )
+                .offset(x: -8, y: -8)
         }
-        .overlay(
-//            Text(exerciseNumber)
-//                .frame(width: 30)
-//                .background(Color.red.opacity(0.5))
-//                .offset(x: 0, y: 0)
-            SwiftUIView(execiseNumber: exerciseNumber)
-                .offset(x: -290, y: -21)
-        )
+        
     }
 }
 
