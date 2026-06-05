@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct SwiftUIView: View {
+    
+    let execiseNumber: String
     var body: some View {
         ZStack {
             Circle()
                 .frame(width: 20,height: 19)
+                .overlay(
+                    Text(execiseNumber)
+                        .foregroundStyle(Color.red)
+                )
         }
 //        .frame(minWidth: 50, minHeight: 50)
 
@@ -19,5 +25,5 @@ struct SwiftUIView: View {
 }
 
 #Preview {
-    SwiftUIView()
+    SwiftUIView(execiseNumber: "2")
 }

@@ -30,10 +30,12 @@ struct CardDotted: View {
 //                .background(Color.blue.opacity(0.5))
         }
         .overlay(
-            Text(exerciseNumber)
-                .frame(width: 30)
-                .background(Color.red.opacity(0.5))
-                .offset(x: 0, y: 0)
+//            Text(exerciseNumber)
+//                .frame(width: 30)
+//                .background(Color.red.opacity(0.5))
+//                .offset(x: 0, y: 0)
+            SwiftUIView(execiseNumber: exerciseNumber)
+                .offset(x: -290, y: -21)
         )
     }
 }

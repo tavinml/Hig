@@ -11,18 +11,20 @@ import SwiftUI
 struct HigApp: App {
     var body: some Scene {
         WindowGroup {
-//            HStack {
-//                Card1()
-//                Card1()
-//                Card1()
-//                
-//                Image(systemName: "Mascote1")
-//
-//            }
+            VStack {
+                CardDotted(selected: true, height: 62, exerciseNumber: "1")
+                    .frame(maxWidth: 300, maxHeight: 300)
+                CardDotted(selected: true, height: 100, exerciseNumber: "2")
+                    .frame(maxWidth: 300, maxHeight: 199)
+                CardDotted(selected: true, height: 62, exerciseNumber: "3")
+                    .frame(maxWidth: 300, maxHeight: 300)
+
+            }
 //            .padding()
-            ContentView()
-//            
+//            ContentView()
+////            
 //            CardDotted(selected: true, height: 62, exerciseNumber: "1")
+//                .frame(maxWidth: 300, maxHeight: 300)
         }
     }
 }
