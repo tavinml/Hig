@@ -9,13 +9,14 @@ import SwiftUI
 
 struct CardDotted: View {
     
-    let selected: Bool
+    @State var selected: Bool
+    
     let height: CGFloat
     let exerciseNumber: String
     
     var body: some View {
             RoundedRectangle(cornerRadius: 26)
-                .stroke(selected ? Color.green : Color.red,
+                .stroke(selected ? Color.gray : Color.green,
                         style:  StrokeStyle(lineWidth: 4,
                                             dash: [4],
                                             dashPhase: 0))
@@ -44,6 +45,12 @@ struct CardDotted: View {
                 )
                 .offset(x: -8, y: -8)
         }
+        
+        .contentShape(RoundedRectangle(cornerRadius: 26))
+        .onTapGesture {
+            selected.toggle()
+        }
+        .animation(.default, value: selected)
         
     }
 }
