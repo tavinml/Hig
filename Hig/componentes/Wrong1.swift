@@ -16,15 +16,15 @@ struct Wrong1: View {
         
             .overlay(
                 VStack(spacing:10) {
-                    CardDotted(selected: false, height: 30, exerciseNumber: "1")
+                    CardDotted(selected: false, correct: false, height: 30, exerciseNumber: "1")
                         .padding(.top, 20)
-                    CardDotted(selected: true, height: 35, exerciseNumber: "2")
-                    CardDotted(selected: false, height: 80, exerciseNumber: "3")
-                    CardDotted(selected: true, height: 70, exerciseNumber: "4")
+                    CardDotted(selected: true, correct: false, height: 35, exerciseNumber: "2")
+                    CardDotted(selected: false, correct: false, height: 80, exerciseNumber: "3")
+                    CardDotted(selected: true, correct: false, height: 70, exerciseNumber: "4")
                     
                     Spacer()
                     
-                    CardDotted(selected: true, height: 40, exerciseNumber: "5")
+                    CardDotted(selected: true, correct: true, height: 40, exerciseNumber: "5")
                     
                 }
                     .padding(.horizontal, 6)
