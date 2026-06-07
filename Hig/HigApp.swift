@@ -13,6 +13,8 @@ struct HigApp: App {
         WindowGroup {
 //
             bar()
+                .frame(minWidth: 950, minHeight: 600)
         }
+        .windowResizability(.contentMinSize)
     }
 }

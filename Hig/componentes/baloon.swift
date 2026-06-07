@@ -7,7 +7,7 @@
 
 import SwiftUI
 let titleBaloon: String = "Uma hierarquia bem construída organiza o conteúdo,facilita a leitura e melhora a experiência do usuário. Priorize as informações mais relevantes e deixe as secundárias em segundo plano."
-struct Baloon: View {
+struct baloon: View {
     var body: some View {
         
         
@@ -57,5 +57,5 @@ struct Baloon: View {
     }
 
 #Preview {
-    Baloon()
+    baloon()
 }

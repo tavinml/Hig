@@ -7,49 +7,52 @@
 
 import SwiftUI
 
-struct Card1: View {
+struct card: View {
     
     let lesson: String = "1"
     let title: String = ""
-    let backgroundColor: Color = .cardHierarquia
+    let backgroundColor: Color = .cardLayout
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 26)
-                .fill(backgroundColor)
+//            RoundedRectangle(cornerRadius: 26)
+//                .fill(backgroundColor)
                 
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     Spacer()
                     
                     Text("Lição 1:")
+                        .font(Font.title2)
                         .foregroundStyle(Color.black)
                     
                     Text("Hierarquia")
-                        .font(Font.body.bold())
+                        .font(Font.largeTitle.bold())
                         .foregroundStyle(Color.black)
                 }
-                .padding(32)
+                .padding(.leading, 30)
+                .padding(.bottom, 30)
                 
                 Spacer()
-                
-//                Image(systemName: "Mascote1")
-//                    .resizable()
+
                 Image(.cardMascote)
                     .resizable()
                     .scaledToFit()
-                    .padding(.bottom, 0)
+                    .padding(.bottom, -10)
                                    
             }
 
                 
         }
-        .frame(maxWidth: .infinity)
+        .frame(minWidth: 382)
         .frame(maxHeight: 233)
+        .padding(10)
+        .background(backgroundColor)
+        .cornerRadius(26)
     }
 }
 
 #Preview {
-        Card1()
+        card()
 
 }

@@ -58,19 +58,19 @@ import SwiftUI
                                 }
                             }
                             .listStyle(.sidebar)
-                            .navigationSplitViewColumnWidth(min: 200, ideal: 240, max: 300)
+                            .navigationSplitViewColumnWidth(min: 120, ideal: 140, max: 160)
                             
                     } detail: {
                     switch telaAtiva {
                         
                     case .home:
-                        Card1()
+                        HomeView()
                         
                     case .hierarquia:
-                        Slide()
+                        SlideView()
                         
                     case .setings:
-                        Text("Tela de confg")
+                        PracticeView()
                         
                     case .alinhamento:
                         Text("Tela de alinha")
@@ -85,7 +85,7 @@ import SwiftUI
                         Text("Tela de info")
                         
                     case .liquidGlass:
-                        Baloon()
+                        baloon()
                         
                     case .usabilidade:
                         Text("Tela de Usabilidade")

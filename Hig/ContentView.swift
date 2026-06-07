@@ -9,25 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationSplitView {
-            bar()
-                .navigationSplitViewColumnWidth(
-                    min: 1, ideal: 10 , max: 300)
-        }
-        detail: {
-            VStack {
-                HStack(alignment: .center, spacing: 20 ) {
-                    Card1()
-                    
-                        
-                    Card1()
-                    
-                }
-            }
-            
-                
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        NavigationSplitView {
+//            bar()
+//                .navigationSplitViewColumnWidth(
+//                    min: 1, ideal: 10 , max: 300)
+//        }
+//        detail: {
+//            VStack {
+//                HStack(alignment: .center, spacing: 20 ) {
+//                    card()
+//                    
+//                        
+//                    card()
+//                    
+//                }
+//            }
+//            
+//                
+//        }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

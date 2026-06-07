@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct Slide: View {
+struct SlideView: View {
     var body: some View {
         ZStack(alignment: .center){
             
             
             HStack{
-                Image("Ticia")
+                Image("imageChat")
                     .resizable()
                     .scaledToFit()
                 VStack{
@@ -30,5 +30,5 @@ struct Slide: View {
             }
         }
 #Preview {
-    Slide()
+    SlideView()
 }
