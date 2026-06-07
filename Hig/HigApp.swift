@@ -11,16 +11,8 @@ import SwiftUI
 struct HigApp: App {
     var body: some Scene {
         WindowGroup {
-//            HStack {
-//                Card1()
-//                Card1()
-//                Card1()
-//                
-//                Image(systemName: "Mascote1")
 //
-//            }
-//            .padding()
-            ContentView()
+            bar()
         }
     }
 }

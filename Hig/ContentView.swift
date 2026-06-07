@@ -12,12 +12,14 @@ struct ContentView: View {
         NavigationSplitView {
             bar()
                 .navigationSplitViewColumnWidth(
-                    min: 150, ideal: 200 , max: 300)
+                    min: 1, ideal: 10 , max: 300)
         }
         detail: {
             VStack {
                 HStack(alignment: .center, spacing: 20 ) {
                     Card1()
+                    
+                        
                     Card1()
                     
                 }
