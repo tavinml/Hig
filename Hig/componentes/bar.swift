@@ -2,8 +2,8 @@ import SwiftUI
 
 
             enum TelaSelecionada: Hashable {
-                        case home
-                        case setings
+                        case licoes
+                        case configuracoes
                         case hierarquia
                         case alinhamento
                         case tipografia
@@ -13,18 +13,18 @@ import SwiftUI
                         case usabilidade
                     }
                     struct bar: View {
-            @State private var telaAtiva: TelaSelecionada? = .home
+            @State private var telaAtiva: TelaSelecionada? = .licoes
             var body: some View {
                             NavigationSplitView {
                         
                                     List(selection: $telaAtiva) {
                             
-                                        NavigationLink(value: TelaSelecionada.home) {
-                                Label("Home", systemImage: "house")
+                                        NavigationLink(value: TelaSelecionada.licoes) {
+                                Label("Lições", systemImage: "house")
                                 }
                                 
-                                NavigationLink(value: TelaSelecionada.setings) {
-                                    Label("Settings", systemImage: "gear")
+                                NavigationLink(value: TelaSelecionada.configuracoes) {
+                                    Label("configurações", systemImage: "gear")
                                 }
                                 
                                 Section("Layout e Tipografia") {
@@ -63,13 +63,13 @@ import SwiftUI
                     } detail: {
                     switch telaAtiva {
                         
-                    case .home:
+                    case .licoes:
                         HomeView()
                         
                     case .hierarquia:
                         SlideView()
                         
-                    case .setings:
+                    case .configuracoes:
                         PracticeView()
                         
                     case .alinhamento:
