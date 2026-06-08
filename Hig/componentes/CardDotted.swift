@@ -13,7 +13,7 @@ struct CardDotted: View {
     
     let correct: Bool
     let height: CGFloat
-    let exerciseNumber: String
+    @State var exerciseNumber: String
     
     
     private var currentColor: Color {
@@ -21,6 +21,14 @@ struct CardDotted: View {
             return correct ? Color.green : Color.red
         } else {
             return .cardDotted
+        }
+    }
+    
+    private var icon: String {
+        if correct {
+           return  "checkmark.circle"
+        } else {
+            return "xmark.circle"
         }
     }
     
