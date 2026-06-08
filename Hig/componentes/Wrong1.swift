@@ -23,9 +23,7 @@ struct Wrong1: View {
             
                 .overlay(
                     GeometryReader{ geometry in
-                        
-                    
-                        VStack(spacing: 0 /*geometry.size.height  * (10 / designHeight*/) {
+                        VStack(spacing: 0) {
                             
                             Color.clear.frame(height: 52)
                             
@@ -65,3 +63,6 @@ struct Wrong1: View {
 #Preview {
     Wrong1()
 }
+
+
+/*geometry.size.height  * (10 / designHeight*/
