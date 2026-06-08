@@ -25,7 +25,7 @@ struct CardDotted: View {
     }
     
     var body: some View {
-            RoundedRectangle(cornerRadius: 26)
+            RoundedRectangle(cornerRadius: 10)
             .stroke(currentColor,
                         style:  StrokeStyle(lineWidth: 4,
                                             dash: [4],
