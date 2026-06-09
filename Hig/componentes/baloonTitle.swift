@@ -8,14 +8,14 @@ struct baloonTitle: View {
         ZStack(alignment: .bottomLeading) {
 
             Rectangle()
-                .fill(Color.cardLayout)
+                .fill(Color.colorLayout)
                 .frame(width: windowWidth > 1200 ? 40 : 30,
                        height: windowWidth > 1200 ? 40 : 30)
             
             Text(title)
                 .font(.system(size: windowWidth > 1200 ? 20 : 15))
                 .padding(windowWidth > 1200 ? 24 : 18)
-                .background(Color.cardLayout)
+                .background(Color.colorLayout)
                 .cornerRadius(windowWidth > 1200 ? 24 : 18)
         }
         .foregroundStyle(Color.black)
