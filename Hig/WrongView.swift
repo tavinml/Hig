@@ -56,11 +56,11 @@ struct WrongView: View {
 //                .scaledToFit()
             
 
-            ForEach(areas.indices, id: \.self) { index in
-                let area = areas[index]
+            ForEach(areas.enumerated(), id: \.offset) { index, area in
                 Button {
                     
                 } label: {
+//                    CardDotted(selected: false, correct: false, height: area.height, exerciseNumber: "\(index + 1)")
                     
                     ZStack(alignment: .topLeading) {
                         RoundedRectangle(cornerRadius: 10)
@@ -68,15 +68,31 @@ struct WrongView: View {
                                     style:  StrokeStyle(lineWidth: 4,
                                                         dash: [4],
                                                         dashPhase: 0))
-//                            .overlay(
-//                                
-//                            )
+                            .overlay(alignment: .topLeading){
+                                
+                                Circle()
+                                    .fill(.cardDotted)
+                                    .frame(width: 24,
+                                           height: 24)
+                                
+                                    .overlay(
+                                        Circle()
+                                            .stroke(.cardDotted,
+                                                    lineWidth: 2)
+                                    )
+                                    .overlay(
+                                        Text("1")
+                                        //                        ./*font(.system(size: 12, weight:bold))*/
+                                            .foregroundStyle(Color.white)
+                                    )
+                                    .offset(x: -8, y: -8)
+                            }
                         
                             .frame(width: area.width,
                                    height: area.height)
                         
-                            .shadow(color: .black,
-                                    radius: 10)
+//                            .shadow(color: .black,
+//                                    radius: 10)
                     }
                     
                 }
