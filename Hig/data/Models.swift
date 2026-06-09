@@ -59,6 +59,14 @@ struct Content{
     var imageMascot: String
 }
 
+struct TappableArea: CKCodable {
+    let x: Double
+    let y: Double
+    let width: Double
+    let height: Double
+}
+
+
 import SwiftUI
 
 struct TestView: View {

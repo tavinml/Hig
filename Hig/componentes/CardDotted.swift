@@ -26,50 +26,47 @@ struct CardDotted: View {
     
     private var icon: String {
         if correct {
-           return  "checkmark.circle"
+            return  "checkmark.circle"
         } else {
             return "xmark.circle"
         }
     }
     
     var body: some View {
-            RoundedRectangle(cornerRadius: 10)
+        RoundedRectangle(cornerRadius: 10)
             .stroke(currentColor,
-                        style:  StrokeStyle(lineWidth: 4,
-                                            dash: [4],
-                                            dashPhase: 0))
-           
-                .frame(maxWidth: .infinity )
-                .frame(height: height)
-//                .overlay(
-//                    Text(exerciseNumber)
-//                        .frame(width: 30)
-//                        .background(Color.red.opacity(0.5))
-//                        .position(x: 0, y: 30)
-//                )
-//                .frame(width: .infinity, height: height)
-//                .background(Color.blue.opacity(0.5))
-        .overlay(alignment: .topLeading){
-            Circle()
-                .fill(currentColor)
-                .frame(width: 24,height: 24)
-                .overlay(
-                    Circle()
-                        .stroke(currentColor, lineWidth: 2)
-                    )
-                .overlay(
-                    Text(exerciseNumber)
-//                        ./*font(.system(size: 12, weight:bold))*/
-                        .foregroundStyle(Color.white)
-                )
-                .offset(x: -8, y: -8)
-        }
+                    style:  StrokeStyle(lineWidth: 4,
+                                        dash: [4],
+                                        dashPhase: 0))
         
-        .contentShape(RoundedRectangle(cornerRadius: 26))
-        .onTapGesture {
-            selected.toggle()
-        }
-        .animation(.default, value: selected)
+            .frame(maxWidth: .infinity )
+            .frame(height: height)
+        
+            .overlay(alignment: .topLeading){
+                
+                Circle()
+                    .fill(currentColor)
+                    .frame(width: 24,
+                           height: 24)
+                
+                    .overlay(
+                        Circle()
+                            .stroke(currentColor,
+                                    lineWidth: 2)
+                    )
+                    .overlay(
+                        Text(exerciseNumber)
+                        //                        ./*font(.system(size: 12, weight:bold))*/
+                            .foregroundStyle(Color.white)
+                    )
+                    .offset(x: -8, y: -8)
+            }
+        
+            .contentShape(RoundedRectangle(cornerRadius: 26))
+            .onTapGesture {
+                selected.toggle()
+            }
+            .animation(.default, value: selected)
         
     }
 }
@@ -80,5 +77,5 @@ struct CardDotted: View {
         CardDotted(selected: false, correct : false, height: 62, exerciseNumber: "1")
         CardDotted( selected: true, correct : false, height: 80, exerciseNumber: "2")
     }
-//    .frame(width: 300,height: 400)
+    //    .frame(width: 300,height: 400)
 }
