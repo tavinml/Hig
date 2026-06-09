@@ -12,7 +12,7 @@ struct PracticeView: View {
 
         GeometryReader { geometry in
             HStack {
-                mocapComponent()
+                Wrong1()
                     .frame(width: geometry.size.width * 0.6)
                 chatComponent()
                     .frame(width: geometry.size.width * 0.4)

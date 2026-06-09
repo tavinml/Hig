@@ -11,9 +11,10 @@ import SwiftUI
 struct HigApp: App {
     var body: some Scene {
         WindowGroup {
-//
+
             bar()
                 .frame(minWidth: 950, minHeight: 600)
+//            Wrong1()
         }
         .windowResizability(.contentMinSize)
     }
