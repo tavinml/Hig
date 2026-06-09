@@ -85,7 +85,7 @@ import SwiftUI
                         Text("Tela de info")
                         
                     case .liquidGlass:
-                        baloon()
+                        Text("Tela de Liquid Glass")
                         
                     case .usabilidade:
                         Text("Tela de Usabilidade")
