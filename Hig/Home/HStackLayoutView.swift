@@ -6,33 +6,34 @@
 //
 
 import SwiftUI
+import Nuvem
 
 struct HStackLayoutView: View {
+    @State var lessons: [Lessons.Observable] = []
+    
     var body: some View {
         NavigationStack {
                 VStack(alignment: .leading) {
                     GeometryReader { geo in
                         ScrollView(.vertical) {
                             ViewThatFits {
-                                if geo.size.width > 1140 {
+                                if geo.size.width > 1240 {
                                     VStack(alignment: .leading) {
                                         Text("Layout e Tipografia")
                                             .font(.largeTitle)
                                             .bold()
                                             .padding(.leading, 15)
                                         HStack {
-                                            card()
-                                                .frame(maxWidth: 382)
-                                                .frame(maxHeight: 233)
-                                                .padding(15)
-                                            card()
-                                                .frame(maxWidth: 382)
-                                                .frame(maxHeight: 233)
-                                                .padding(15)
-                                            card()
-                                                .frame(maxWidth: 382)
-                                                .frame(maxHeight: 233)
-                                                .padding(15)
+                                            ForEach(lessons){ lesson in
+                                                if(lesson.moduleType == "layout"){
+                                                    card(lesson: lesson)
+                                                        .frame(minWidth: 382)
+                                                        .frame(maxHeight: 233)
+                                                        .padding(15)
+
+                                                }
+                                            }
+
                                         }
                                 
                                         Text("Cores")
@@ -40,14 +41,15 @@ struct HStackLayoutView: View {
                                             .bold()
                                             .padding(.leading, 15)
                                         HStack {
-                                            card()
-                                                .frame(maxWidth: 382)
-                                                .frame(maxHeight: 233)
-                                                .padding(15)
-                                            card()
-                                                .frame(maxWidth: 382)
-                                                .frame(maxHeight: 233)
-                                                .padding(15)
+                                            ForEach(lessons){ lesson in
+                                                if(lesson.moduleType == "colors"){
+                                                    card(lesson: lesson)
+                                                        .frame(minWidth: 382)
+                                                        .frame(maxHeight: 233)
+                                                        .padding(15)
+
+                                                }
+                                            }
                                         }
                                      
                                         Text("Materiais")
@@ -55,14 +57,15 @@ struct HStackLayoutView: View {
                                             .bold()
                                             .padding(.leading, 15)
                                         HStack {
-                                            card()
-                                                .frame(maxWidth: 382)
-                                                .frame(maxHeight: 233)
-                                                .padding(15)
-                                            card()
-                                                .frame(maxWidth: 382)
-                                                .frame(maxHeight: 233)
-                                                .padding(15)
+                                            ForEach(lessons){ lesson in
+                                                if(lesson.moduleType == "materials"){
+                                                    card(lesson: lesson)
+                                                        .frame(minWidth: 382)
+                                                        .frame(maxHeight: 233)
+                                                        .padding(15)
+
+                                                }
+                                            }
                                         }
                                         
                                     }
@@ -70,6 +73,15 @@ struct HStackLayoutView: View {
                                 }
                             }
                         }
+                    }
+                }
+                .task {
+                    do {
+                        self.lessons = try await Lessons.query(on: .default)
+                            .all()
+                            .map(\.observable)
+                    } catch {
+                        print(error)
                     }
                 }
         }

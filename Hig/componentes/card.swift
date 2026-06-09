@@ -6,45 +6,48 @@
 //
 
 import SwiftUI
+import Nuvem
 
 struct card: View {
+    @Bindable var lesson: Lessons.Observable
     
-    let lesson: String = "1"
+    let num: String = "1"
     let title: String = ""
-    let backgroundColor: Color = .cardLayout
+    let imageName: String = ""
+    var backgroundColor: Color {
+        Module(rawValue: lesson.moduleType)?.colorValue ?? .clear
+    }
     
     var body: some View {
-        ZStack {
-//            RoundedRectangle(cornerRadius: 26)
-//                .fill(backgroundColor)
                 
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
-                    Spacer()
+                    Spacer(minLength: 20)
                     
-                    Text("Lição 1:")
-                        .font(Font.title2)
+                    Text("Lição \(lesson.number):")
+                        .font(.title2)
                         .foregroundStyle(Color.black)
                     
-                    Text("Hierarquia")
-                        .font(Font.largeTitle.bold())
+                    Text(lesson.titleLesson)
+                        .font(.largeTitle.bold())
                         .foregroundStyle(Color.black)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.leading, 30)
-                .padding(.bottom, 30)
+                .padding(.bottom, 40)
                 
                 Spacer()
-
-                Image(.cardMascote)
+                
+//                Image(systemName: "Mascote1")
+//                    .resizable()
+                Image(lesson.image)
                     .resizable()
                     .scaledToFit()
                     .padding(.bottom, -10)
-                                   
+                    .frame(maxWidth: 250)
+                                
             }
-
-                
-        }
-        .frame(minWidth: 382)
+        .frame(minWidth: 382, idealWidth: 382)
         .frame(maxHeight: 233)
         .padding(10)
         .background(backgroundColor)
@@ -52,7 +55,23 @@ struct card: View {
     }
 }
 
+
+struct card_Preview: View {
+    var body: some View {
+        card(
+            lesson: Lessons(
+                number: 1,
+                image: "cardHierarchy",
+                moduleType: "layout",
+                challenge: ["challenge"],
+                content: ["content"],
+                titleLesson: "Hierarquia"
+            ).observable
+        )
+    }
+}
+
 #Preview {
-        card()
+    card_Preview()
 
 }
