@@ -26,11 +26,11 @@ struct chatComponent: View {
                                 .font(.title2)
                                 .frame(maxWidth: 330, maxHeight: 70, alignment: .leading)
                                 .padding(.horizontal, 20)
-                                .background(.cardLayout)
+                                .background(.colorLayout)
                                 .cornerRadius(38)
                             
                         }
-                        .foregroundColor(.cardLayout)
+                        .foregroundColor(.colorLayout)
                         .padding(.vertical, 20)
                         ZStack(alignment: .bottomLeading) {
                             Rectangle()

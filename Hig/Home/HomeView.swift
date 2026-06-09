@@ -12,7 +12,7 @@ struct HomeView: View {
         ViewThatFits(in: .horizontal) {
             
             HStackLayoutView()
-                .frame(minWidth: 1140)
+                .frame(minWidth: 1240)
             
             MediumLayoutView()
                 .frame(minWidth: 800)
