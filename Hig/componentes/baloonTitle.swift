@@ -2,7 +2,7 @@ import SwiftUI
 
 struct baloonTitle: View {
     let title: String = "Você sabe o que é hierarquia?"
-    let windowWidth: CGFloat // Recebe a largura vindo da SlideView
+    let windowWidth: CGFloat 
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
