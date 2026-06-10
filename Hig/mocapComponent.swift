@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WrongView: View {
+struct mocapComponent: View {
     
     let correctIndex: Int
     let imageChallenge: String
@@ -126,5 +126,5 @@ struct WrongView: View {
     
 }
 #Preview {
-    WrongView(correctIndex: 4, imageChallenge: "Wrong1", correctsIndex: [])
+    mocapComponent(correctIndex: 4, imageChallenge: "Wrong1", correctsIndex: [])
 }
