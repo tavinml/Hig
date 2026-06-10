@@ -10,6 +10,9 @@ import SwiftUI
 struct WrongView: View {
     
     let correctIndex: Int
+    let imageChallenge: String
+    
+    @State var correctsIndex:[Int]
     
     
     @State private var selectedIndex: Int? = nil
@@ -57,7 +60,7 @@ struct WrongView: View {
     var body: some View {
         
         ZStack(alignment: .topLeading) {
-            Image("Wrong1")
+            Image(imageChallenge)
 //                .resizable()
 //                .scaledToFit()
             
@@ -72,6 +75,7 @@ struct WrongView: View {
                                width: area.width,
                                exerciseNumber: "\(index + 1)")
                         .frame(width: area.width)
+                        
                     
 //                    ZStack(alignment: .topLeading) {
 //                        RoundedRectangle(cornerRadius: 10)
@@ -108,6 +112,13 @@ struct WrongView: View {
                     
                 }
                 .offset(x: area.x, y: area.y)
+//                .onTapGesture {
+//                    if selectedIndex == index {
+//                        selectedIndex = nil
+//                    } else {
+//                        selectedIndex = index
+//                    }
+//                }
             }
         }
 //                .frame(width: 300, height: 100)
@@ -115,5 +126,5 @@ struct WrongView: View {
     
 }
 #Preview {
-    WrongView(correctIndex: 4)
+    WrongView(correctIndex: 4, imageChallenge: "Wrong1", correctsIndex: [])
 }

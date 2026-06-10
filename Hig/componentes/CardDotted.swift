@@ -43,6 +43,14 @@ struct CardDotted: View {
             .frame(maxWidth: .infinity )
             .frame(height: height)
         
+//        if selected {
+//            ZStack {
+//                Image(systemName: icon)
+//                    .font(.system(size: 20, weight: .bold))
+//                    .foregroundColor(currentColor)
+//            }
+//        }
+        
             .overlay(alignment: .topLeading){
                 
                 Circle()
@@ -66,6 +74,7 @@ struct CardDotted: View {
             .contentShape(RoundedRectangle(cornerRadius: 26))
             .onTapGesture {
                 selected.toggle()
+                
             }
             .animation(.default, value: selected)
         

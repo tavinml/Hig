@@ -45,6 +45,8 @@ struct Challenge{
     var titleCorrect: String
     @CKField("titleWrong")
     var titleWrong: String
+//    @CKField("areas")
+//    var area: Areas
 }
 
 @CKModel
@@ -58,6 +60,10 @@ struct Content{
     @CKField("imageMascot")
     var imageMascot: String
 }
+
+//struct Areas: CKCodable {
+//    let values: [TappableArea]
+//}
 
 struct TappableArea: CKCodable {
     let x: Double
