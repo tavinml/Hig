@@ -28,7 +28,7 @@ struct SlideView: View {
                 .padding(40)
                 VStack{
                     Spacer()
-                    slider(windowWidth: windowWidth)
+                    sliderComponent(windowWidth: windowWidth)
                 }
                 .padding(16)
             }
