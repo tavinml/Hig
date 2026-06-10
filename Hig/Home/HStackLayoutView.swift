@@ -10,7 +10,7 @@ import Nuvem
 
 struct HStackLayoutView: View {
     @State var lessons: [Lessons.Observable] = []
-    
+
     var body: some View {
         NavigationStack {
                 VStack(alignment: .leading) {
@@ -30,7 +30,7 @@ struct HStackLayoutView: View {
                                                         .frame(minWidth: 382)
                                                         .frame(maxHeight: 233)
                                                         .padding(15)
-
+                                                        
                                                 }
                                             }
 
@@ -63,7 +63,6 @@ struct HStackLayoutView: View {
                                                         .frame(minWidth: 382)
                                                         .frame(maxHeight: 233)
                                                         .padding(15)
-
                                                 }
                                             }
                                         }
@@ -85,7 +84,11 @@ struct HStackLayoutView: View {
                     }
                 }
         }
-    }
+//        .navigationDestination(isPresented: $isPresented) {
+//            SlideView()
+//    }
+    
+        }
 }
 
 #Preview {

@@ -23,6 +23,18 @@ struct Content{
     var imageMascot: NSImage
 }
 
+struct Areas: CKCodable {
+    let values: [TappableArea]
+}
+
+struct TappableArea: Codable {
+    let x: Double
+    let y: Double
+    let width: Double
+    let height: Double
+}
+
+
 import SwiftUI
 
 struct TestView: View {

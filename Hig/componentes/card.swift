@@ -18,8 +18,13 @@ struct card: View {
         Module(rawValue: lesson.moduleType)?.colorValue ?? .clear
     }
     
+//    let isPresented: Bool
+    
     var body: some View {
                 
+        Button(){
+            
+        } label: {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     Spacer(minLength: 20)
@@ -52,26 +57,32 @@ struct card: View {
         .padding(10)
         .background(backgroundColor)
         .cornerRadius(26)
+        }
+        .buttonStyle(.borderless)
+        
     }
 }
 
-//
-//struct card_Preview: View {
-//    var body: some View {
-//        card(
-//            lesson: Lessons(
-//                number: 1,
-//                image: "cardHierarchy",
-//                moduleType: "layout",
-//                challenge: ["challenge"],
-//                content: ["content"],
-//                titleLesson: "Hierarquia"
-//            ).observable
-//        )
-//    }
-//}
-//
-//#Preview {
-//    card_Preview()
-//
-//}
+
+struct card_Preview: View {
+    var body: some View {
+        card(
+            lesson: Lessons(
+                number: 1,
+                image: "cardHierarchy",
+                moduleType: "layout",
+                challenges: [],
+                contents: [],
+                titleLesson: "Hierarquia"
+            ).observable/*, isPresented: false*/
+        )
+    }
+}
+
+#Preview {
+    card_Preview()
+
+}
+
+
+

@@ -4,7 +4,7 @@ import SwiftUI
                     struct bar: View {
             @State private var telaAtiva: TelaSelecionada? = .licoes
             var body: some View {
-                            NavigationSplitView {
+                NavigationSplitView {
                         
                                     List(selection: $telaAtiva) {
                             
