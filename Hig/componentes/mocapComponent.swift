@@ -128,3 +128,6 @@ struct mocapComponent: View {
 #Preview {
     mocapComponent(correctIndex: 4, imageChallenge: "Wrong1", correctsIndex: [])
 }
+
+
+/*geometry.size.height  * (10 / designHeight*/

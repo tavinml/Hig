@@ -71,8 +71,8 @@ struct card_Preview: View {
                 number: 1,
                 image: "cardHierarchy",
                 moduleType: "layout",
-                challenge: ["challenge"],
-                content: ["content"],
+                challenges: [],
+                contents: [],
                 titleLesson: "Hierarquia"
             ).observable/*, isPresented: false*/
         )
