@@ -30,7 +30,6 @@ struct HStackLayoutView: View {
                                                         .frame(minWidth: 382)
                                                         .frame(maxHeight: 233)
                                                         .padding(15)
-
                                                 }
                                             }
 
@@ -63,7 +62,6 @@ struct HStackLayoutView: View {
                                                         .frame(minWidth: 382)
                                                         .frame(maxHeight: 233)
                                                         .padding(15)
-
                                                 }
                                             }
                                         }

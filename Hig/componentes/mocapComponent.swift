@@ -69,7 +69,7 @@ struct mocapComponent: View {
                 Button {
                     
                 } label: {
-                    CardDotted(selected: selectedIndex == index,
+                    cardDotted(selected: selectedIndex == index,
                                correct: index == correctIndex,
                                height: area.height,
                                width: area.width,
