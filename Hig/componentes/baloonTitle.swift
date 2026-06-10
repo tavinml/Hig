@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct baloonTitle: View {
+    var content: Content
     let title: String = "Você sabe o que é hierarquia?"
     let windowWidth: CGFloat 
     
@@ -12,7 +13,7 @@ struct baloonTitle: View {
                 .frame(width: windowWidth > 1200 ? 40 : 30,
                        height: windowWidth > 1200 ? 40 : 30)
             
-            Text(title)
+            Text(content.title)
                 .font(.system(size: windowWidth > 1200 ? 20 : 15))
                 .padding(windowWidth > 1200 ? 24 : 18)
                 .background(Color.colorLayout)

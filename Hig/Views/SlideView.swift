@@ -6,36 +6,44 @@
 //
 
 import SwiftUI
+import Nuvem
 
 struct SlideView: View {
+    @State var lessons: [Lessons.Observable] = []
+    
     var body: some View {
-        GeometryReader { geometry in
-            let windowWidth = geometry.size.width
-            ZStack{
-                HStack(alignment: .center, spacing: windowWidth * 0.05){
-                    Image("imageChat")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: windowWidth * 0.35)
-                        VStack(alignment: .leading, spacing: windowWidth * 0.02){
-                        baloonTitle(windowWidth: windowWidth)
-                        baloon(windowWidth: windowWidth)
-                        
+        VStack {
+            ForEach(lessons, id: \.titleLesson) { lesson in
+                if let contents = lesson.contents {
+                    ForEach(contents) { content in
+                        slideComponent(content: content)
+                        Button(){
+                            
+                        } label:{
+                            HStack {
+                                Text("Acessar")
+                                Image(systemName: "chevron.right")
+                            }
+                        }
                     }
-                    .frame(width: windowWidth * 0.45, alignment: .leading)
-                }
-                .frame(maxWidth: 1600)
-                .padding(40)
-                VStack{
-                    Spacer()
-                    sliderComponent(windowWidth: windowWidth)
-                }
-                .padding(16)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    Text("TEM NADA")
                 }
             }
         }
+        .task {
+            do {
+                self.lessons = try await Lessons.query(on: .default)
+                    .with(\.$contents)
+                    .all()
+                    .map(\.observable)
+            } catch {
+                print(error)
+            }
+        }
+    }
+}
 #Preview {
     SlideView()
+        .frame(width: 300, height: 300)
 }
