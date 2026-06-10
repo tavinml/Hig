@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct WrongView: View {
+    
+    let correctIndex: Int
+    
+    
+    @State private var selectedIndex: Int? = nil
+    
     let areas = try! JSONDecoder().decode(
         [TappableArea].self,
         from: """
@@ -60,40 +66,45 @@ struct WrongView: View {
                 Button {
                     
                 } label: {
-//                    CardDotted(selected: false, correct: false, height: area.height, exerciseNumber: "\(index + 1)")
+                    CardDotted(selected: selectedIndex == index,
+                               correct: index == correctIndex,
+                               height: area.height,
+                               width: area.width,
+                               exerciseNumber: "\(index + 1)")
+                        .frame(width: area.width)
                     
-                    ZStack(alignment: .topLeading) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.cardDotted,
-                                    style:  StrokeStyle(lineWidth: 4,
-                                                        dash: [4],
-                                                        dashPhase: 0))
-                            .overlay(alignment: .topLeading){
-                                
-                                Circle()
-                                    .fill(.cardDotted)
-                                    .frame(width: 24,
-                                           height: 24)
-                                
-                                    .overlay(
-                                        Circle()
-                                            .stroke(.cardDotted,
-                                                    lineWidth: 2)
-                                    )
-                                    .overlay(
-                                        Text("1")
-                                        //                        ./*font(.system(size: 12, weight:bold))*/
-                                            .foregroundStyle(Color.white)
-                                    )
-                                    .offset(x: -8, y: -8)
-                            }
-                        
-                            .frame(width: area.width,
-                                   height: area.height)
-                        
-//                            .shadow(color: .black,
-//                                    radius: 10)
-                    }
+//                    ZStack(alignment: .topLeading) {
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .stroke(Color.cardDotted,
+//                                    style:  StrokeStyle(lineWidth: 4,
+//                                                        dash: [4],
+//                                                        dashPhase: 0))
+//                            .overlay(alignment: .topLeading){
+//                                
+//                                Circle()
+//                                    .fill(.cardDotted)
+//                                    .frame(width: 24,
+//                                           height: 24)
+//                                
+//                                    .overlay(
+//                                        Circle()
+//                                            .stroke(.cardDotted,
+//                                                    lineWidth: 2)
+//                                    )
+//                                    .overlay(
+//                                        Text("1")
+//                                        //                        ./*font(.system(size: 12, weight:bold))*/
+//                                            .foregroundStyle(Color.white)
+//                                    )
+//                                    .offset(x: -8, y: -8)
+//                            }
+//                        
+//                            .frame(width: area.width,
+//                                   height: area.height)
+//                        
+////                            .shadow(color: .black,
+////                                    radius: 10)
+//                    }
                     
                 }
                 .offset(x: area.x, y: area.y)
@@ -104,5 +115,5 @@ struct WrongView: View {
     
 }
 #Preview {
-    WrongView()
+    WrongView(correctIndex: 4)
 }

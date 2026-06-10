@@ -13,6 +13,7 @@ struct CardDotted: View {
     
     let correct: Bool
     let height: CGFloat
+    let width: CGFloat
     @State var exerciseNumber: String
     
     
@@ -74,8 +75,16 @@ struct CardDotted: View {
 
 #Preview {
     VStack(alignment: .leading, spacing: 15) {
-        CardDotted(selected: false, correct : false, height: 62, exerciseNumber: "1")
-        CardDotted( selected: true, correct : false, height: 80, exerciseNumber: "2")
+        CardDotted(selected: false,
+                   correct : false,
+                   height: 62,
+                   width: 54,
+                   exerciseNumber: "1")
+        CardDotted( selected: true,
+                    correct : false,
+                    height: 80,
+                    width: 54,
+                    exerciseNumber: "2")
     }
     //    .frame(width: 300,height: 400)
 }
