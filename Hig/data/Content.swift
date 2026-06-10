@@ -1,51 +1,15 @@
 //
-//  Models.swift
+//  Content 2.swift
 //  Hig
 //
-//  Created by Ana Soares on 08/06/26.
+//  Created by Ana Soares on 10/06/26.
 //
+
 
 import Foundation
 import CloudKit
 import Nuvem
-
-@CKModel
-struct Lessons{
-    @CKField("number")
-    var number: Int
-    @CKField("image")
-    var image: String
-    @CKField("moduleType")
-    var moduleType: String
-    @CKField("challenges")
-    var challenge: [String]?
-    @CKField("contents")
-    var content: [String]?
-    @CKField("titleLesson")
-    var titleLesson: String
-}
-
-@CKModel
-struct Challenge{
-    @CKField("correctSection")
-    var correctSection: Int
-    @CKField("correctFeedback")
-    var correctFeedback: String
-    @CKField("wrongFeedback")
-    var wrongFeedback: String
-    @CKField("firstBallon")
-    var firstBallon: String
-    @CKField("secondBallon")
-    var secondBallon: String?
-    @CKField("imageChallenge")
-    var imageChallenge: String
-    @CKField("titleChallenge")
-    var titleChallenge: String
-    @CKField("titleCorrect")
-    var titleCorrect: String
-    @CKField("titleWrong")
-    var titleWrong: String
-}
+import AppKit
 
 @CKModel
 struct Content{
@@ -53,10 +17,10 @@ struct Content{
     var title: String
     @CKField("description")
     var description: String?
-    @CKField("imageContent")
-    var imageContent: String
-    @CKField("imageMascot")
-    var imageMascot: String
+    @CKAssetField("imageContent")
+    var imageContent: NSImage
+    @CKAssetField("imageMascot")
+    var imageMascot: NSImage
 }
 
 import SwiftUI
@@ -107,8 +71,8 @@ struct ContentsView_Preview: View {
             content: Content(
                 title: "title",
                 description: "description",
-                imageContent: "image Content",
-                imageMascot: "challenge"
+                imageContent: NSImage(named: "challenge")!,
+                imageMascot: NSImage(named: "challenge")!
             ).observable
         )
     }

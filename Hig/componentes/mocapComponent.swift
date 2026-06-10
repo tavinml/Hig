@@ -1,29 +1,75 @@
 //
-//  mocapComponent.swift
-//  hig_testes
+//  Wrong1.swift
+//  Hig
 //
-//  Created by Ana Soares on 06/06/26.
+//  Created by Gustavo Monteiro Lopes on 05/06/26.
 //
 
 import SwiftUI
 
 struct mocapComponent: View {
+    
+    let designWidth: CGFloat = 375
+    let designHeight: CGFloat = 812
+    
     var body: some View {
-            VStack {
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                    .padding(10)
-                    .frame(maxWidth: 300, maxHeight: 700)
-                    .background(Color.gray.opacity(0.1))
+        ZStack {
+            
+            
+            //            GeometryReader { geometry in
+            ViewThatFits {
+                Image("Wrong1")
+                    .resizable()
+                    .scaledToFit()
+                
+                    .frame(width: designWidth, height: designHeight)
+                
+                    .overlay(
+                        GeometryReader{ geometry in
+                            VStack(spacing: 0) {
+                                
+                                Color.clear.frame(height: 52)
+                                
+                                //Ajustar para deixar escalavel
+                                
+                                cardDotted(selected: false, correct: false, height: 52, exerciseNumber: "1")
+                                    .padding(.vertical, 30)
+                                
+                                
+                                cardDotted(selected: true, correct: false, height: 70, exerciseNumber: "2")
+                                    .padding(.vertical, -10)
+                                
+                                
+                                cardDotted(selected: false, correct: false, height: 175, exerciseNumber: "3")
+                                    .padding(.vertical,25)
+                                
+                                cardDotted(selected: true, correct: false, height: 75, exerciseNumber: "4")
+                                    .padding(.vertical,-9)
+                                
+                                Spacer()
+                                
+                                cardDotted(selected: true, correct: true, height: 60, exerciseNumber: "5")
+                                    .padding(.vertical,55)
+                                
+                            }
+                            
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 10)
+                        }
+                    )
+                    .padding()
             }
-            .padding(.top, 20)
-            .padding(.horizontal, 20)
-//            .frame(width: geometry.size.width * 0.6)
-            .frame(maxWidth: .infinity)
-            .frame(maxHeight: .infinity, alignment: .topTrailing)
-            .background(Color.blue.opacity(0.1))
+            //            }
+            //                        .frame(width: 375, height: 812)
+            
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 #Preview {
     mocapComponent()
 }
+
+
+/*geometry.size.height  * (10 / designHeight*/

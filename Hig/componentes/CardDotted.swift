@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CardDotted: View {
+struct cardDotted: View {
     
     @State var selected: Bool
     
@@ -77,8 +77,8 @@ struct CardDotted: View {
 
 #Preview {
     VStack(alignment: .leading, spacing: 15) {
-        CardDotted(selected: false, correct : false, height: 62, exerciseNumber: "1")
-        CardDotted( selected: true, correct : false, height: 80, exerciseNumber: "2")
+        cardDotted(selected: false, correct : false, height: 62, exerciseNumber: "1")
+        cardDotted( selected: true, correct : false, height: 80, exerciseNumber: "2")
     }
 //    .frame(width: 300,height: 400)
 }

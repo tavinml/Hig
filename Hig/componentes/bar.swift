@@ -1,17 +1,6 @@
 import SwiftUI
 
 
-            enum TelaSelecionada: Hashable {
-                        case licoes
-                        case configuracoes
-                        case hierarquia
-                        case alinhamento
-                        case tipografia
-                        case contraste
-                        case informacoes
-                        case liquidGlass
-                        case usabilidade
-                    }
                     struct bar: View {
             @State private var telaAtiva: TelaSelecionada? = .licoes
             var body: some View {
