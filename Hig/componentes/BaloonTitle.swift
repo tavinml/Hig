@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct baloonTitle: View {
+struct BaloonTitle: View {
     var content: Content
     let title: String = "Você sabe o que é hierarquia?"
     let windowWidth: CGFloat 

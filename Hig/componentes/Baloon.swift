@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct baloon: View {
+struct Baloon: View {
     var content: Content
     let baloonContent: String = "Uma hierarquia bem construída organiza o conteúdo, facilita a leitura e melhora a experiência do usuário. Priorize as informações mais relevantes e deixe as secundárias em segundo plano."
     let windowWidth: CGFloat

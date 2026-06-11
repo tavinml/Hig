@@ -8,7 +8,7 @@
 import SwiftUI
 import Nuvem
 
-struct card: View {
+struct Card: View {
     @Bindable var lesson: Lessons.Observable
     
     let num: String = "1"

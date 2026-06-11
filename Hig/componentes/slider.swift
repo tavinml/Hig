@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct slider: View {
+struct Slider: View {
     var total: Int = 4
     var slide: Int = 1
     let windowWidth: CGFloat

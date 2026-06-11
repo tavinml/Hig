@@ -9,41 +9,75 @@ import SwiftUI
 import Nuvem
 
 struct SlideView: View {
-    @State var lessons: [Lessons.Observable] = []
+    let lesson: Lessons.Observable
+    @State var index = 0
+    
+    private var numberslide: Int {
+        return lesson.contents?.count ?? 0
+    }
     
     var body: some View {
         VStack {
-            ForEach(lessons, id: \.titleLesson) { lesson in
-                if let contents = lesson.contents {
-                    ForEach(contents) { content in
-                        slideComponent(content: content)
-                        Button(){
-                            
-                        } label:{
-                            HStack {
-                                Text("Acessar")
-                                Image(systemName: "chevron.right")
-                            }
-                        }
-                    }
-                } else {
-                    Text("TEM NADA")
+            if let contents = lesson.contents {
+                let numSlides = numberslide
+                
+                if index < numberslide {
+                    let content = contents[index]
+                    SlideComponent(content: content)
                 }
+                else{
+                    PracticeView()
+                }
+               
+                Button(action: {
+                    nextSlide(numSlides: numSlides)
+                },label: {
+                    Text("\(index)")
+                    Text("\(numSlides)")
+                    
+                })
+                
             }
         }
-        .task {
-            do {
-                self.lessons = try await Lessons.query(on: .default)
-                    .with(\.$contents)
-                    .all()
-                    .map(\.observable)
-            } catch {
-                print(error)
+    }
+    
+    func nextSlide(numSlides: Int) {
+        if index < numSlides{
+            index += 1
+        }
+    }
+}
+
+struct AllLessonsView: View {
+    @State var lessons: [Lessons.Observable] = []
+        
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(lessons) { lesson in
+                    NavigationLink {
+                        SlideView(lesson: lesson)
+                    } label: {
+                        Text(lesson.titleLesson)
+                        Text("\(lesson.contents?.count)")
+                    }
+
+                }
+            }
+            .task {
+                do {
+                    self.lessons = try await Lessons.query(on: .default)
+                        .with(\.$contents)
+                        .all()
+                        .map(\.observable)
+                } catch {
+                    print(error)
+                }
             }
         }
     }
 }
 #Preview {
-    SlideView()
+    AllLessonsView()
         .frame(width: 300, height: 300)
 }

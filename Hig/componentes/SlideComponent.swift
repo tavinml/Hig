@@ -9,7 +9,7 @@ import SwiftUI
 import AppKit
 import Nuvem
 
-struct slideComponent: View {
+struct SlideComponent: View {
     var content: Content
     var body: some View {
         GeometryReader { geometry in
@@ -21,8 +21,8 @@ struct slideComponent: View {
                         .scaledToFit()
                         .frame(width: windowWidth * 0.35)
                         VStack(alignment: .leading, spacing: windowWidth * 0.02){
-                            baloonTitle(content: content, windowWidth: windowWidth)
-                            baloon(content: content, windowWidth: windowWidth)
+                            BaloonTitle(content: content, windowWidth: windowWidth)
+                            Baloon(content: content, windowWidth: windowWidth)
                         
                     }
                     .frame(width: windowWidth * 0.45, alignment: .leading)
@@ -31,7 +31,7 @@ struct slideComponent: View {
                 .padding(40)
                 VStack{
                     Spacer()
-                    slider(windowWidth: windowWidth)
+                    Slider(windowWidth: windowWidth)
                 }
                 .padding(16)
             }
@@ -40,9 +40,9 @@ struct slideComponent: View {
     }
 }
 
-struct slideComponent_Preview: View {
+struct SlideComponent_Preview: View {
     var body: some View {
-        slideComponent(
+        SlideComponent(
             content: Content(
                 title: "title",
                 description: "description",
@@ -54,5 +54,5 @@ struct slideComponent_Preview: View {
 }
 
 #Preview {
-    slideComponent_Preview()
+    SlideComponent_Preview()
 }

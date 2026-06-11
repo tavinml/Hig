@@ -13,77 +13,93 @@ struct HStackLayoutView: View {
     
     var body: some View {
         NavigationStack {
-                VStack(alignment: .leading) {
-                    GeometryReader { geo in
-                        ScrollView(.vertical) {
-                            ViewThatFits {
-                                if geo.size.width > 1240 {
-                                    VStack(alignment: .leading) {
-                                        Text("Layout e Tipografia")
-                                            .font(.largeTitle)
-                                            .bold()
-                                            .padding(.leading, 15)
-                                        HStack {
-                                            ForEach(lessons){ lesson in
-                                                if(lesson.moduleType == "layout"){
-                                                    card(lesson: lesson)
-                                                        .frame(minWidth: 382)
-                                                        .frame(maxHeight: 233)
-                                                        .padding(15)
-
-                                                }
-                                            }
-
-                                        }
-                                
-                                        Text("Cores")
-                                            .font(.largeTitle)
-                                            .bold()
-                                            .padding(.leading, 15)
-                                        HStack {
-                                            ForEach(lessons){ lesson in
-                                                if(lesson.moduleType == "colors"){
-                                                    card(lesson: lesson)
-                                                        .frame(minWidth: 382)
-                                                        .frame(maxHeight: 233)
-                                                        .padding(15)
-
-                                                }
-                                            }
-                                        }
-                                     
-                                        Text("Materiais")
-                                            .font(.largeTitle)
-                                            .bold()
-                                            .padding(.leading, 15)
-                                        HStack {
-                                            ForEach(lessons){ lesson in
-                                                if(lesson.moduleType == "materials"){
-                                                    card(lesson: lesson)
-                                                        .frame(minWidth: 382)
-                                                        .frame(maxHeight: 233)
-                                                        .padding(15)
-
-                                                }
-                                            }
-                                        }
-                                        
-                                    }
+            VStack(alignment: .leading) {
+                GeometryReader { geo in
+                    ScrollView(.vertical, showsIndicators: false) {
+                        if geo.size.width > 1240 {
+                            VStack(alignment: .leading) {
+                                Text("Layout e Tipografia")
+                                    .font(.largeTitle)
+                                    .bold()
                                     .padding(.leading, 15)
+                                HStack {
+                                    ForEach(lessons){ lesson in
+                                        if(lesson.moduleType == "layout"){
+                                            NavigationLink {
+                                                SlideView(lesson: lesson)
+                                            } label: {
+                                                
+                                                Card(lesson: lesson)
+                                                    .frame(minWidth: 382)
+                                                    .frame(maxHeight: 233)
+                                                    .padding(15)
+                                            }
+                                            .buttonStyle(.borderless)
+                                            
+                                        }
+                                    }
+                                    
                                 }
+                                
+                                Text("Cores")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .padding(.leading, 15)
+                                HStack {
+                                    ForEach(lessons){ lesson in
+                                        if(lesson.moduleType == "colors"){
+                                            NavigationLink {
+                                                SlideView(lesson: lesson)
+                                            } label: {
+                                                
+                                                Card(lesson: lesson)
+                                                    .frame(minWidth: 382)
+                                                    .frame(maxHeight: 233)
+                                                    .padding(15)
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                
+                                Text("Materiais")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .padding(.leading, 15)
+                                HStack {
+                                    ForEach(lessons){ lesson in
+                                        if(lesson.moduleType == "materials"){
+                                            NavigationLink {
+                                                SlideView(lesson: lesson)
+                                            } label: {
+                                                
+                                                Card(lesson: lesson)
+                                                    .frame(minWidth: 382)
+                                                    .frame(maxHeight: 233)
+                                                    .padding(15)
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                
                             }
+                            .padding(.leading, 15)
                         }
                     }
+                    
                 }
-                .task {
-                    do {
-                        self.lessons = try await Lessons.query(on: .default)
-                            .all()
-                            .map(\.observable)
-                    } catch {
-                        print(error)
-                    }
+            }
+            .task {
+                do {
+                    self.lessons = try await Lessons.query(on: .default)
+                        .with(\.$contents)
+                        .all()
+                        .map(\.observable)
+                } catch {
+                    print(error)
                 }
+            }
         }
     }
 }

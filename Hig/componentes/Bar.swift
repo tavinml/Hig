@@ -1,7 +1,7 @@
 import SwiftUI
 
 
-                    struct bar: View {
+                    struct Bar: View {
             @State private var telaAtiva: TelaSelecionada? = .licoes
             var body: some View {
                             NavigationSplitView {
@@ -56,7 +56,7 @@ import SwiftUI
                         HomeView()
                         
                     case .hierarquia:
-                        SlideView()
+                        AllLessonsView()
                         
                     case .configuracoes:
                         PracticeView()
@@ -87,5 +87,5 @@ import SwiftUI
 }
 
 #Preview {
-    bar()
+    Bar()
 }

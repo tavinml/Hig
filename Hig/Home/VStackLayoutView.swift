@@ -20,7 +20,7 @@ struct VStackLayoutView: View {
                         .padding(.leading, 15)
                     ForEach(lessons){ lesson in
                         if(lesson.moduleType == "layout") {
-                            card(lesson: lesson)
+                            Card(lesson: lesson)
                                 .frame(minWidth: 382)
                                 .frame(maxHeight: 233)
                                 .padding(15)
@@ -32,7 +32,7 @@ struct VStackLayoutView: View {
                         .padding(.leading, 15)
                     ForEach(lessons){ lesson in
                         if(lesson.moduleType == "colors") {
-                            card(lesson: lesson)
+                            Card(lesson: lesson)
                                 .frame(minWidth: 382)
                                 .frame(maxHeight: 233)
                                 .padding(15)
@@ -44,7 +44,7 @@ struct VStackLayoutView: View {
                         .padding(.leading, 15)
                     ForEach(lessons){ lesson in
                         if(lesson.moduleType == "materials"){
-                            card(lesson: lesson)
+                            Card(lesson: lesson)
                                 .frame(minWidth: 382)
                                 .frame(maxHeight: 233)
                                 .padding(15)

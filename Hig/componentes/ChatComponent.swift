@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct chatComponent: View {
+struct ChatComponent: View {
 
         var body: some View {
                 HStack(alignment: .top) {
@@ -58,5 +58,5 @@ struct chatComponent: View {
 }
 
 #Preview {
-    chatComponent()
+    ChatComponent()
 }

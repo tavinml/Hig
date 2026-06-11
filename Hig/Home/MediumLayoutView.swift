@@ -25,7 +25,7 @@ struct MediumLayoutView: View {
                                         HStack {
                                                 ForEach(lessons.indices.prefix(2), id: \.self) { index in
                                                     if(lessons[index].moduleType == "layout") {
-                                                        card(lesson: lessons[index])
+                                                        Card(lesson: lessons[index])
                                                             .frame(minWidth: 382, minHeight: 233)
                                                             .padding(15)
                                                     }
@@ -34,7 +34,7 @@ struct MediumLayoutView: View {
 
                                             if lessons.count > 3 {
                                                 if(lessons[3].moduleType == "layout") {
-                                                    card(lesson: lessons[3])
+                                                    Card(lesson: lessons[3])
                                                         .frame(minWidth: 382, minHeight: 233)
                                                         .padding(15)
                                                 }
@@ -47,7 +47,7 @@ struct MediumLayoutView: View {
                                         HStack {
                                             ForEach(lessons){ lesson in
                                                 if(lesson.moduleType == "colors"){
-                                                    card(lesson: lesson)
+                                                    Card(lesson: lesson)
                                                         .frame(minWidth: 382)
                                                         .frame(maxHeight: 233)
                                                         .padding(15)
@@ -63,7 +63,7 @@ struct MediumLayoutView: View {
                                         HStack {
                                             ForEach(lessons){ lesson in
                                                 if(lesson.moduleType == "materials"){
-                                                    card(lesson: lesson)
+                                                    Card(lesson: lesson)
                                                         .frame(minWidth: 382)
                                                         .frame(maxHeight: 233)
                                                         .padding(15)
