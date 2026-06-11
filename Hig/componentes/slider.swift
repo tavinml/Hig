@@ -6,16 +6,20 @@
 //
 import SwiftUI
 
-struct sliderComponent: View {
+struct Slider: View {
+    
+    var content: Content
     var total: Int = 4
     var slide: Int = 1
     let windowWidth: CGFloat
+    var numSlides: Int
+    
     var body: some View {
         HStack(alignment: .center, spacing: windowWidth > 1200 ? 24 : 16) {
             Image(systemName: "chevron.left")
                 .font(windowWidth > 1200 ? .title : .title3)
                 .foregroundStyle(Color.gray)
-            Text("\(slide) de \(total)")
+            Text("\(index) de \(total)")
                 .font(windowWidth > 1200 ? .largeTitle : .title2)
             Image(systemName: "chevron.right")
                 .font(windowWidth > 1200 ? .title : .title3)
@@ -28,6 +32,8 @@ struct sliderComponent: View {
         .clipShape(Capsule())
         .padding(.bottom, windowWidth > 1200 ? 40 : 16)
     }
+    
+    
 }
 //#Preview {
 //    slider()

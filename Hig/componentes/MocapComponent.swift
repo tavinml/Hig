@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct mocapComponent: View {
+struct MocapComponent: View {
     
     let designWidth: CGFloat = 375
     let designHeight: CGFloat = 812
@@ -68,8 +68,8 @@ struct mocapComponent: View {
 }
 
 #Preview {
-    mocapComponent()
+    MocapComponent()
 }
 
 
-/*geometry.size.height  * (10 / designHeight*/
+

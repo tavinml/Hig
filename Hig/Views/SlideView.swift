@@ -6,36 +6,65 @@
 //
 
 import SwiftUI
+import Nuvem
 
 struct SlideView: View {
+    let lesson: Lessons.Observable
+    @State var index = 0
+    
+    private var numberslide: Int {
+        return lesson.contents?.count ?? 0
+    }
+    
     var body: some View {
-        GeometryReader { geometry in
-            let windowWidth = geometry.size.width
-            ZStack{
-                HStack(alignment: .center, spacing: windowWidth * 0.05){
-                    Image("imageChat")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: windowWidth * 0.35)
-                        VStack(alignment: .leading, spacing: windowWidth * 0.02){
-                        baloonTitle(windowWidth: windowWidth)
-                        baloon(windowWidth: windowWidth)
-                        
-                    }
-                    .frame(width: windowWidth * 0.45, alignment: .leading)
+        VStack {
+            if let contents = lesson.contents {
+                let numSlides = numberslide
+                
+                if index < numberslide {
+                    let content = contents[index]
+                    SlideComponent(content: content, numSlides: numSlides)
                 }
-                .frame(maxWidth: 1600)
-                .padding(40)
-                VStack{
-                    Spacer()
-                    sliderComponent(windowWidth: windowWidth)
+                else{
+                    PracticeView()
                 }
-                .padding(16)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
+                
+                Button(action: {
+                    nextSlide(numSlides: numSlides)
+                },label: {
+                    Text("\(index)")
+                    Text("\(numSlides)")
+                    
+                })
+                
             }
         }
+    }
+    
+    func nextSlide(numSlides: Int) {
+        if index < numSlides{
+            index += 1
+        }
+    }
+}
+
+struct Slide_Preview: View {
+    var body: some View {
+        SlideView(
+            lesson: Lessons(
+                number: 1,
+                image: "cardHierarchy",
+                moduleType: "layout",
+                challenges: [Challenge()],
+                contents: [Content()],
+                titleLesson: "Hierarquia"
+            ).observable
+        )
+    }
+}
+
 #Preview {
-    SlideView()
+    Slide_Preview()
+        .frame(width: 300, height: 300)
+
 }

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum Module: String, Codable, CaseIterable {
+enum Module: String, Codable, CaseIterable, Hashable {
     case layout, colors, materials
     
     var colorValue: Color {
@@ -16,6 +16,13 @@ enum Module: String, Codable, CaseIterable {
         case .layout: return .colorLayout
         case .colors: return .colorColors
         case .materials: return .colorMaterials
+        }
+    }
+    var title: String {
+        switch self {
+        case .layout: return "Layout e Tipografia"
+        case .colors: return "Cores"
+        case .materials: return "Materiais"
         }
     }
 }
