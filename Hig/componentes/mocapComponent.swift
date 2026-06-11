@@ -14,6 +14,10 @@ struct mocapComponent: View {
     
     @State var correctsIndex:[Int]
     
+    let challengeState: ChallengeState
+    
+    var onSelect: (Int) -> Void
+    
     
     @State private var selectedIndex: Int? = nil
     
@@ -60,10 +64,8 @@ struct mocapComponent: View {
     var body: some View {
         
         ZStack(alignment: .topLeading) {
-            Image(imageChallenge)
-//                .resizable()
-//                .scaledToFit()
             
+            Image(imageChallenge)
 
             ForEach(areas.enumerated(), id: \.offset) { index, area in
                 Button {
@@ -75,6 +77,11 @@ struct mocapComponent: View {
                                width: area.width,
                                exerciseNumber: "\(index + 1)")
                         .frame(width: area.width)
+                        .onTapGesture{
+                            guard challengeState == .initial else { return }
+                            selectedIndex = index
+                            onSelect(index)
+                        }
                         
                     
 //                    ZStack(alignment: .topLeading) {
@@ -125,9 +132,6 @@ struct mocapComponent: View {
     }
     
 }
-#Preview {
-    mocapComponent(correctIndex: 4, imageChallenge: "Wrong1", correctsIndex: [])
-}
-
-
-/*geometry.size.height  * (10 / designHeight*/
+//#Preview {
+//    mocapComponent(correctIndex: 4, imageChallenge: "Wrong1", correctsIndex: [])
+//}

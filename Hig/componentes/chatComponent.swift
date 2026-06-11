@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct chatComponent: View {
+    
+    var challengeState: ChallengeState
+    var onNext: () -> Void
+    var onRetry: () -> Void
 
         var body: some View {
                 HStack(alignment: .top) {
@@ -57,6 +61,6 @@ struct chatComponent: View {
         }
 }
 
-#Preview {
-    chatComponent()
-}
+//#Preview {
+//    chatComponent(challengeState: ChallengeState.initial)
+//}
