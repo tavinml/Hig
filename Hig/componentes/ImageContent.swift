@@ -1,19 +1,26 @@
-import SwiftUI
+//
+//  ImageContent.swift
+//  Hig
+//
+//  Created by Ana Soares on 11/06/26.
+//
 
-struct baloonTitle: View {
-    let title: String = "Você sabe o que é hierarquia?"
-    let windowWidth: CGFloat 
+import SwiftUI
+import AppKit
+
+struct ImageContent: View {
+    var content: Content
+    let windowWidth: CGFloat
     
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-
+         ZStack(alignment: .bottomLeading) {
+            
             Rectangle()
                 .fill(Color.colorLayout)
                 .frame(width: windowWidth > 1200 ? 40 : 30,
                        height: windowWidth > 1200 ? 40 : 30)
             
-            Text(title)
-                .font(.system(size: windowWidth > 1200 ? 20 : 15))
+             Image(nsImage: content.imageContent ?? content.imageMascot)
                 .padding(windowWidth > 1200 ? 24 : 18)
                 .background(Color.colorLayout)
                 .cornerRadius(windowWidth > 1200 ? 24 : 18)
@@ -21,3 +28,7 @@ struct baloonTitle: View {
         .foregroundStyle(Color.black)
     }
 }
+
+//#Preview {
+//    ImageContent()
+//}

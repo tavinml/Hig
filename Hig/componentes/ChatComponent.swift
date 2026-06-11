@@ -7,9 +7,14 @@
 
 import SwiftUI
 
-struct chatComponent: View {
+struct ChatComponent: View {
 
         var body: some View {
+            VStack(alignment: .center){
+                Text("Layout e Tipografia")
+                    .font(.largeTitle)
+                    .bold()
+                    
                 HStack(alignment: .top) {
                     Image("imageChat")
                         .resizable()
@@ -48,15 +53,15 @@ struct chatComponent: View {
                         .foregroundColor(.white)
                     }
                 }
-                .padding(.top, 20)
-                .padding(.horizontal, 20)
-                .frame(maxWidth: . infinity)
-                .frame(maxHeight: .infinity, alignment: .topTrailing)
-                .background(Color.red.opacity(0.1))
-            
+            }
+            .padding(.top, 20)
+            .padding(.horizontal, 20)
+            .frame(maxWidth: . infinity)
+            .frame(maxHeight: .infinity, alignment: .topTrailing)
+            .background(Color.backgroundChat)
         }
 }
 
 #Preview {
-    chatComponent()
+    ChatComponent()
 }

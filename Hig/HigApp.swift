@@ -12,7 +12,7 @@ struct HigApp: App {
     var body: some Scene {
         WindowGroup {
 
-            bar()
+            Bar()
                 .frame(minWidth: 950, minHeight: 600)
 //            Wrong1()
         }
