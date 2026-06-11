@@ -20,20 +20,36 @@ struct SlideComponent: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: windowWidth * 0.35)
+                        
+                
                         VStack(alignment: .leading, spacing: windowWidth * 0.02){
                             BaloonTitle(content: content, windowWidth: windowWidth)
-                            Baloon(content: content, windowWidth: windowWidth)
-                        
+                            if let description = content.description {
+                                Baloon(content: content, windowWidth: windowWidth)
+                            }
+                            if let imageContent = content.imageContent {
+                                ZStack(alignment: .bottomLeading) {
+                                   
+                                   Rectangle()
+                                       .fill(Color.white)
+                                       .frame(width: windowWidth > 1200 ? 40 : 30,
+                                              height: windowWidth > 1200 ? 40 : 30)
+                                   
+                                    Image(nsImage: content.imageContent ?? content.imageMascot)
+                                        .resizable()
+                                        .scaledToFit()
+                                       .padding(windowWidth > 1200 ? 24 : 18)
+                                       .background(Color.white)
+                                       .cornerRadius(windowWidth > 1200 ? 24 : 18)
+                               }
+                               .foregroundStyle(Color.black)
+                            }
                     }
+                    
                     .frame(width: windowWidth * 0.45, alignment: .leading)
                 }
                 .frame(maxWidth: 1600)
                 .padding(40)
-                VStack{
-                    Spacer()
-                    Slider(windowWidth: windowWidth)
-                }
-                .padding(16)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }

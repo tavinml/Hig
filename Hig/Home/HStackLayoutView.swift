@@ -10,6 +10,7 @@ import Nuvem
 
 struct HStackLayoutView: View {
     @State var lessons: [Lessons.Observable] = []
+    @State var module: Module = .layout
     
     var body: some View {
         NavigationStack {
@@ -18,91 +19,111 @@ struct HStackLayoutView: View {
                     ScrollView(.vertical, showsIndicators: false) {
                         if geo.size.width > 1240 {
                             VStack(alignment: .leading) {
-                                Text("Layout e Tipografia")
-                                    .font(.largeTitle)
-                                    .bold()
-                                    .padding(.leading, 15)
-                                HStack {
-                                    ForEach(lessons){ lesson in
-                                        if(lesson.moduleType == "layout"){
-                                            NavigationLink {
-                                                SlideView(lesson: lesson)
-                                            } label: {
-                                                
-                                                Card(lesson: lesson)
-                                                    .frame(minWidth: 382)
-                                                    .frame(maxHeight: 233)
-                                                    .padding(15)
-                                            }
-                                            .buttonStyle(.borderless)
-                                            
-                                        }
-                                    }
+                                
+                                switch  module{
                                     
-                                }
-                                
-                                Text("Cores")
-                                    .font(.largeTitle)
-                                    .bold()
-                                    .padding(.leading, 15)
-                                HStack {
-                                    ForEach(lessons){ lesson in
-                                        if(lesson.moduleType == "colors"){
-                                            NavigationLink {
-                                                SlideView(lesson: lesson)
-                                            } label: {
-                                                
-                                                Card(lesson: lesson)
-                                                    .frame(minWidth: 382)
-                                                    .frame(maxHeight: 233)
-                                                    .padding(15)
+                                case .layout:
+                                    VStack(alignment: .leading){
+                                        Text(module.title)
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .padding(.leading, 15)
+                                        HStack{
+                                            ForEach(lessons){ lesson in
+                                                let ModuleType = lesson.moduleType
+                                                if ModuleType == "layout"{
+
+                                                    NavigationLink {
+                                                        SlideView(lesson: lesson)
+                                                    } label: {
+                                                        
+                                                        Card(lesson: lesson)
+                                                            .frame(minWidth: 382)
+                                                            .frame(maxHeight: 233)
+                                                            .padding(15)
+                                                    }
+                                                    .buttonStyle(.borderless)
+                                                    
+                                                }
                                             }
-                                            
+                                        }
+                                    }
+                                case .colors:
+                                    VStack(alignment: .leading){
+                                        Text(module.title)
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .padding(.leading, 15)
+                                        HStack{
+                                            ForEach(lessons){ lesson in
+                                                let ModuleType = lesson.moduleType
+                                                if ModuleType == "colors"{
+
+                                                    NavigationLink {
+                                                        SlideView(lesson: lesson)
+                                                    } label: {
+                                                        
+                                                        Card(lesson: lesson)
+                                                            .frame(minWidth: 382)
+                                                            .frame(maxHeight: 233)
+                                                            .padding(15)
+                                                    }
+                                                    .buttonStyle(.borderless)
+                                                    
+                                                }
+                                            }
+                                        }
+                                    }
+                                case .materials:
+                                    VStack(alignment: .leading){
+                                        Text(module.title)
+                                            .font(.largeTitle)
+                                            .bold()
+                                            .padding(.leading, 15)
+                                        HStack{
+                                            ForEach(lessons){ lesson in
+                                                let ModuleType = lesson.moduleType
+                                                if ModuleType == "materials"{
+
+                                                    NavigationLink {
+                                                        SlideView(lesson: lesson)
+                                                    } label: {
+                                                        
+                                                        Card(lesson: lesson)
+                                                            .frame(minWidth: 382)
+                                                            .frame(maxHeight: 233)
+                                                            .padding(15)
+                                                    }
+                                                    .buttonStyle(.borderless)
+                                                    
+                                                }
+                                            }
                                         }
                                     }
                                 }
-                                
-                                Text("Materiais")
-                                    .font(.largeTitle)
-                                    .bold()
-                                    .padding(.leading, 15)
-                                HStack {
-                                    ForEach(lessons){ lesson in
-                                        if(lesson.moduleType == "materials"){
-                                            NavigationLink {
-                                                SlideView(lesson: lesson)
-                                            } label: {
-                                                
-                                                Card(lesson: lesson)
-                                                    .frame(minWidth: 382)
-                                                    .frame(maxHeight: 233)
-                                                    .padding(15)
-                                            }
-                                            
-                                        }
-                                    }
-                                }
-                                
                             }
-                            .padding(.leading, 15)
+                            
+                        }
+                    }
+                    .task {
+                        do {
+                            self.lessons = try await Lessons.query(on: .default)
+                                .with(\.$contents)
+                                .all()
+                                .map(\.observable)
+                        } catch {
+                            print(error)
                         }
                     }
                     
                 }
             }
-            .task {
-                do {
-                    self.lessons = try await Lessons.query(on: .default)
-                        .with(\.$contents)
-                        .all()
-                        .map(\.observable)
-                } catch {
-                    print(error)
-                }
-            }
+            
         }
+        
     }
 }
+
 
 #Preview {
     HStackLayoutView()

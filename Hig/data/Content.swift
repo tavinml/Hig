@@ -18,7 +18,7 @@ struct Content{
     @CKField("description")
     var description: String?
     @CKAssetField("imageContent")
-    var imageContent: NSImage
+    var imageContent: NSImage?
     @CKAssetField("imageMascot")
     var imageMascot: NSImage
 }

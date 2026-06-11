@@ -10,57 +10,82 @@ import Nuvem
 
 struct VStackLayoutView: View {
     @State var lessons: [Lessons.Observable] = []
+    @State var module: Module = .layout
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
-                VStack(alignment: .leading) {
-                    Text("Layout e Tipografia")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.leading, 15)
-                    ForEach(lessons){ lesson in
-                        if(lesson.moduleType == "layout") {
-                            Card(lesson: lesson)
-                                .frame(minWidth: 382)
-                                .frame(maxHeight: 233)
-                                .padding(15)
+                switch module {
+                case .layout:
+                    VStack(alignment: .leading){
+                        Text(module.title)
+                            .font(.largeTitle)
+                            .bold()
+                            .padding(.leading, 15)
+                        ForEach(lessons){ lesson in
+                            if(lesson.moduleType == "layout") {
+                                NavigationLink {
+                                    SlideView(lesson: lesson)
+                                } label: {
+                                    
+                                    Card(lesson: lesson)
+                                        .frame(minWidth: 382)
+                                        .frame(maxHeight: 233)
+                                        .padding(15)
+                                }
+                                .buttonStyle(.borderless)
+                            }
                         }
                     }
-                    Text("Cores")
+                case .colors:
+                    Text(module.title)
                         .font(.largeTitle)
                         .bold()
                         .padding(.leading, 15)
                     ForEach(lessons){ lesson in
                         if(lesson.moduleType == "colors") {
-                            Card(lesson: lesson)
-                                .frame(minWidth: 382)
-                                .frame(maxHeight: 233)
-                                .padding(15)
+                            NavigationLink {
+                                SlideView(lesson: lesson)
+                            } label: {
+                                
+                                Card(lesson: lesson)
+                                    .frame(minWidth: 382)
+                                    .frame(maxHeight: 233)
+                                    .padding(15)
+                            }
+                            .buttonStyle(.borderless)
                         }
                     }
-                    Text("Materiais")
+                case .materials:
+                    Text(module.title)
                         .font(.largeTitle)
                         .bold()
                         .padding(.leading, 15)
                     ForEach(lessons){ lesson in
                         if(lesson.moduleType == "materials"){
-                            Card(lesson: lesson)
-                                .frame(minWidth: 382)
-                                .frame(maxHeight: 233)
-                                .padding(15)
+                            NavigationLink {
+                                SlideView(lesson: lesson)
+                            } label: {
+                                
+                                Card(lesson: lesson)
+                                    .frame(minWidth: 382)
+                                    .frame(maxHeight: 233)
+                                    .padding(15)
+                            }
+                            .buttonStyle(.borderless)
 
                         }
                     }
                 }
-                .padding(.leading, 15)
-                .task {
-                    do {
-                        self.lessons = try await Lessons.query(on: .default)
-                            .all()
-                            .map(\.observable)
-                    } catch {
-                        print(error)
-                    }
+                
+            }
+            .padding(.leading, 15)
+            .task {
+                do {
+                    self.lessons = try await Lessons.query(on: .default)
+                        .all()
+                        .map(\.observable)
+                } catch {
+                    print(error)
                 }
             }
         }

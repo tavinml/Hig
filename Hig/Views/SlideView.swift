@@ -28,7 +28,7 @@ struct SlideView: View {
                 else{
                     PracticeView()
                 }
-               
+                
                 Button(action: {
                     nextSlide(numSlides: numSlides)
                 },label: {
@@ -48,36 +48,23 @@ struct SlideView: View {
     }
 }
 
-struct AllLessonsView: View {
-    @State var lessons: [Lessons.Observable] = []
-        
+struct Slide_Preview: View {
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(lessons) { lesson in
-                    NavigationLink {
-                        SlideView(lesson: lesson)
-                    } label: {
-                        Text(lesson.titleLesson)
-                        Text("\(lesson.contents?.count)")
-                    }
-
-                }
-            }
-            .task {
-                do {
-                    self.lessons = try await Lessons.query(on: .default)
-                        .with(\.$contents)
-                        .all()
-                        .map(\.observable)
-                } catch {
-                    print(error)
-                }
-            }
-        }
+        SlideView(
+            lesson: Lessons(
+                number: 1,
+                image: "cardHierarchy",
+                moduleType: "layout",
+                challenges: [Challenge()],
+                contents: [Content()],
+                titleLesson: "Hierarquia"
+            ).observable
+        )
     }
 }
+
 #Preview {
-    AllLessonsView()
+    Slide_Preview()
         .frame(width: 300, height: 300)
+
 }

@@ -55,23 +55,23 @@ struct Card: View {
     }
 }
 
-//
-//struct card_Preview: View {
-//    var body: some View {
-//        card(
-//            lesson: Lessons(
-//                number: 1,
-//                image: "cardHierarchy",
-//                moduleType: "layout",
-//                challenge: ["challenge"],
-//                content: ["content"],
-//                titleLesson: "Hierarquia"
-//            ).observable
-//        )
-//    }
-//}
-//
-//#Preview {
-//    card_Preview()
-//
-//}
+
+struct Card_Preview: View {
+    var body: some View {
+        Card(
+            lesson: Lessons(
+                number: 1,
+                image: "cardHierarchy",
+                moduleType: "layout",
+                challenges: [Challenge()],
+                contents: [Content()],
+                titleLesson: "Hierarquia"
+            ).observable
+        )
+    }
+}
+
+#Preview {
+    Card_Preview()
+
+}

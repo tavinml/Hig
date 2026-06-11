@@ -72,4 +72,4 @@ struct MocapComponent: View {
 }
 
 
-/*geometry.size.height  * (10 / designHeight*/
+
