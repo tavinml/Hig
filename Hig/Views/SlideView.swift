@@ -23,7 +23,7 @@ struct SlideView: View {
                 
                 if index < numberslide {
                     let content = contents[index]
-                    SlideComponent(content: content)
+                    SlideComponent(content: content, numSlides: numSlides)
                 }
                 else{
                     PracticeView()

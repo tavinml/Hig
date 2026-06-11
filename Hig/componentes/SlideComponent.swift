@@ -11,6 +11,8 @@ import Nuvem
 
 struct SlideComponent: View {
     var content: Content
+    var numSlides: Int
+    
     var body: some View {
         GeometryReader { geometry in
             let windowWidth = geometry.size.width
@@ -50,25 +52,31 @@ struct SlideComponent: View {
                 }
                 .frame(maxWidth: 1600)
                 .padding(40)
+                VStack(){
+                    Spacer()
+                    Slider(content: content, windowWidth: windowWidth, numSlides: numSlides)
+                }
+                .padding(16)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }
 
-struct SlideComponent_Preview: View {
-    var body: some View {
-        SlideComponent(
-            content: Content(
-                title: "title",
-                description: "description",
-                imageContent: NSImage(named: "imageChat")!,
-                imageMascot: NSImage(named: "imageChat")!
-            )
-        )
-    }
-}
-
-#Preview {
-    SlideComponent_Preview()
-}
+//struct SlideComponent_Preview: View {
+//    var body: some View {
+//        SlideComponent(
+//            content: Content(
+//                title: "title",
+//                description: "description",
+//                imageContent: NSImage(named: "imageChat")!,
+//                imageMascot: NSImage(named: "imageChat")!
+//            ),
+//            numSlides: numSlides
+//        )
+//    }
+//}
+//
+//#Preview {
+//    SlideComponent_Preview()
+//}
