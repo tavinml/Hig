@@ -10,7 +10,11 @@ import SwiftUI
 struct chatComponent: View {
 
         var body: some View {
-                HStack(alignment: .top) {
+            
+            VStack(alignment: .leading) {
+                
+                
+                HStack(alignment: .center) {
                     Image("imageChat")
                         .resizable()
                         .scaledToFit()
@@ -20,7 +24,7 @@ struct chatComponent: View {
                         ZStack(alignment: .bottomLeading) {
                             Rectangle()
                                 .frame(width: 55, height: 40)
-
+                            
                             Text("Parabéns! Você acertou.")
                                 .foregroundColor(.black)
                                 .font(.title2)
@@ -43,7 +47,6 @@ struct chatComponent: View {
                                 .padding(.vertical, 12)
                                 .background(.white)
                                 .cornerRadius(38)
-                            
                         }
                         .foregroundColor(.white)
                     }
@@ -52,8 +55,13 @@ struct chatComponent: View {
                 .padding(.horizontal, 20)
                 .frame(maxWidth: . infinity)
                 .frame(maxHeight: .infinity, alignment: .topTrailing)
-                .background(Color.red.opacity(0.1))
-            
+                
+                VStack{
+                    Spacer()
+                    progressBar()
+                }
+            }
+            .background(Color.red.opacity(0.1))
         }
 }
 

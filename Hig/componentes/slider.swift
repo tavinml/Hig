@@ -7,8 +7,8 @@
 import SwiftUI
 
 struct slider: View {
-    var total: Int = 4
-    var slide: Int = 1
+    @State private var total: Int = 4
+    @State private var slide: Int = 1
     let windowWidth: CGFloat
     var body: some View {
         HStack(alignment: .center, spacing: windowWidth > 1200 ? 24 : 16) {
@@ -17,9 +17,18 @@ struct slider: View {
                 .foregroundStyle(Color.gray)
             Text("\(slide) de \(total)")
                 .font(windowWidth > 1200 ? .largeTitle : .title2)
-            Image(systemName: "chevron.right")
-                .font(windowWidth > 1200 ? .title : .title3)
-                .foregroundColor(Color.black)
+            Button(action: {
+                
+            }) {
+                Image(systemName: "chevron.right")
+                    .font(windowWidth > 1200 ? .title : .title3)
+                    .foregroundColor(Color.black)
+            }
+            .buttonStyle(.plain)
+
+//            Image(systemName: "chevron.right")
+//                .font(windowWidth > 1200 ? .title : .title3)
+//                .foregroundColor(Color.black)
         }
         .foregroundStyle(Color.black)
         .padding(.horizontal, windowWidth > 1200 ? 24 : 16)
