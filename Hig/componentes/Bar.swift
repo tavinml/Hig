@@ -11,10 +11,7 @@ struct Bar: View {
                 NavigationLink(value: TelaSelecionada.licoes) {
                     Label("Lições", systemImage: "house")
                 }
-                
-                NavigationLink(value: TelaSelecionada.configuracoes) {
-                    Label("configurações", systemImage: "gear")
-                }
+
                 
                 Section("Layout e Tipografia") {
                     NavigationLink(value: TelaSelecionada.hierarquia) {
@@ -28,23 +25,23 @@ struct Bar: View {
                     }
                 }
                 
-                Section("Cores") {
-                    NavigationLink(value: TelaSelecionada.contraste) {
-                        Label("Contraste", systemImage: "circle.bottomrighthalf.pattern.checkered")
-                    }
-                    NavigationLink(value: TelaSelecionada.informacoes) {
-                        Label("Informações", systemImage: "text.pad.header")
-                    }
-                }
-                
-                Section("Materiais") {
-                    NavigationLink(value: TelaSelecionada.liquidGlass) {
-                        Label("Liquid glass", systemImage: "text.magnifyingglass")
-                    }
-                    NavigationLink(value: TelaSelecionada.usabilidade) {
-                        Label("Usabilidade", systemImage: "hand.rays")
-                    }
-                }
+//                Section("Cores") {
+//                    NavigationLink(value: TelaSelecionada.contraste) {
+//                        Label("Contraste", systemImage: "circle.bottomrighthalf.pattern.checkered")
+//                    }
+//                    NavigationLink(value: TelaSelecionada.informacoes) {
+//                        Label("Informações", systemImage: "text.pad.header")
+//                    }
+//                }
+//                
+//                Section("Materiais") {
+//                    NavigationLink(value: TelaSelecionada.liquidGlass) {
+//                        Label("Liquid glass", systemImage: "text.magnifyingglass")
+//                    }
+//                    NavigationLink(value: TelaSelecionada.usabilidade) {
+//                        Label("Usabilidade", systemImage: "hand.rays")
+//                    }
+//                }
             }
             .listStyle(.sidebar)
             .navigationSplitViewColumnWidth(min: 120, ideal: 140, max: 160)
