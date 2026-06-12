@@ -53,11 +53,18 @@ struct ChatComponent: View {
                         .foregroundColor(.white)
                     }
                 }
+                VStack{
+                    Spacer()
+                    ProgressBar()
+                    
+                }
             }
             .padding(.top, 20)
             .padding(.horizontal, 20)
+            .ignoresSafeArea()
             .frame(maxWidth: . infinity)
             .frame(maxHeight: .infinity, alignment: .topTrailing)
+            
             .background(Color.backgroundChat)
         }
 }

@@ -13,7 +13,7 @@ struct Baloon: View {
                        height: windowWidth > 1200 ? 50 : 40)
             
             Text(content.description ?? baloonContent)
-                .font(.system(size: windowWidth > 1200 ? 20 : 15))
+                .font(.title)
                 .lineSpacing(windowWidth > 1200 ? 8 : 4)
                 .padding(windowWidth > 1200 ? 28 : 18)
                 .background(Color.white)

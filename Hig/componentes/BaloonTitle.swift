@@ -13,7 +13,7 @@ struct BaloonTitle: View {
                        height: windowWidth > 1200 ? 40 : 30)
             
             Text(content.title)
-                .font(.system(size: windowWidth > 1200 ? 20 : 15))
+                .font(.title)
                 .padding(windowWidth > 1200 ? 24 : 18)
                 .background(Color.colorLayout)
                 .cornerRadius(windowWidth > 1200 ? 24 : 18)

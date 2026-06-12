@@ -48,15 +48,15 @@ struct SlideComponent: View {
                             }
                     }
                     
-                    .frame(width: windowWidth * 0.45, alignment: .leading)
+                    .frame(width: windowWidth * 0.40, alignment: .leading)
                 }
                 .frame(maxWidth: 1600)
                 .padding(40)
-                VStack(){
-                    Spacer()
-                    Slider(content: content, windowWidth: windowWidth, numSlides: numSlides)
-                }
-                .padding(16)
+//                VStack(){
+//                    Spacer()
+//                    Slider(content: content, windowWidth: windowWidth, numSlides: numSlides)
+//                }
+//                .padding(16)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
