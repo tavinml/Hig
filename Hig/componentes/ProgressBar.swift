@@ -10,7 +10,7 @@ import SwiftUI
 struct ProgressBar: View {
     @State private var total: Int = 4
     @State private var slide: Int = 1
-    @State private var Next: Bool = false
+    @State private var Next: Bool? = true
 
     
     var body: some View {
@@ -40,44 +40,42 @@ struct ProgressBar: View {
                 else {
                     slide += 0
                 }
-            }) {
-                if Next != true {
-                    HStack(alignment: .center) {
-                        Image(systemName: "play.fill")
-                            .font(Font.title.bold())
-                        Text("Próximo")
-                            .font(Font.title.bold())
+            }) { if Next == true {
+                HStack(alignment: .center) {
+                    Image(systemName: "play.fill")
+                        .font(Font.title.bold())
+                    Text("Próximo")
+                        .font(Font.title.bold())
+                }
+                .padding(.horizontal, 30)
+                .padding(.vertical, 10)
+                .background(Color.white)
+                .foregroundStyle(Color.black)
+                .clipShape(Capsule())
+            }; if Next == false {
+                HStack(alignment: .center) {
+                    Image(systemName: "arrow.clockwise")
+                        .font(Font.title.bold())
+                    Text("Refazer")
+                        .font(Font.title.bold())
 
-                        
-                    }
-                    .padding(.horizontal, 30)
-                    .padding(.vertical, 10)
-                    .background(Color.white)
-                    .foregroundStyle(Color.black)
-                    .clipShape(Capsule())
-                } else {
-                    HStack(alignment: .center) {
-                        Image(systemName: "arrow.clockwise")
-                        Text("Refazer")
-                            .font(Font.title.bold())
-
-                        
-                    }
-                    .padding(.horizontal, 30)
-                    .padding(.vertical, 10)
-                    .background(Color.white)
-                    .foregroundStyle(Color.black)
-                    .clipShape(Capsule())
                     
                 }
-                
+                .padding(.horizontal, 30)
+                .padding(.vertical, 10)
+                .background(Color.white)
+                .foregroundStyle(Color.black)
+                .clipShape(Capsule())
+            } else {
+                EmptyView()
+                }
             }
             .buttonStyle(.plain)
         }
         .padding(24)
         .background(Color(red: 0.11, green: 0.11, blue: 0.12))
         .cornerRadius(26)
-        .padding(40)
+        
     }
 }
 #Preview {
