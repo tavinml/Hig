@@ -16,6 +16,7 @@ struct Slider: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: windowWidth > 1200 ? 24 : 16) {
+
             Image(systemName: "chevron.left")
                 .font(windowWidth > 1200 ? .title : .title3)
                 .foregroundStyle(Color.gray)
