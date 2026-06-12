@@ -12,7 +12,7 @@ struct AllLessonsView: View {
                         SlideView(lesson: lesson)
                     } label: {
                         Text(lesson.titleLesson)
-                        Text("\(lesson.number) de\(lesson.contents?.count)")
+                        Text("\(lesson.number) de\(lesson.contents.count)")
                     }
 
                 }

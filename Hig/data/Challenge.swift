@@ -26,6 +26,19 @@ struct Challenge{
     var imageChat: [NSImage]
     @CKField("titleChallenge")
     var titleChallenge: String
-    @CKField("tappableArea")
+    @CKField("tappableAreas")
     var area: String
+    @CKField("titleChat")
+    var titleChat: String
+}
+
+struct Areas: CKCodable {
+    let values: [TappableArea]
+}
+
+struct TappableArea: Codable {
+    let x: Double
+    let y: Double
+    let width: Double
+    let height: Double
 }
