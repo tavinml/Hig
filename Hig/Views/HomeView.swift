@@ -9,19 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        ViewThatFits(in: .horizontal) {
-            
-            HStackLayoutView()
-                .frame(minWidth: 1240)
-            
-            MediumLayoutView()
-                .frame(minWidth: 800)
-            
-            VStackLayoutView()
-            
-            
-        }
-        .padding()
+        LayoutView()
     }
 }
 

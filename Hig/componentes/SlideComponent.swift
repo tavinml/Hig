@@ -52,11 +52,11 @@ struct SlideComponent: View {
                 }
                 .frame(maxWidth: 1600)
                 .padding(40)
-                VStack(){
-                    Spacer()
-                    Slider(content: content, windowWidth: windowWidth, numSlides: numSlides)
-                }
-                .padding(16)
+//                VStack(){
+//                    Spacer()
+//                    Slider(content: content, windowWidth: windowWidth, numSlides: numSlides)
+//                }
+//                .padding(16)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
