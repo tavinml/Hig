@@ -48,7 +48,7 @@ struct SlideComponent: View {
                             }
                     }
                     
-                    .frame(width: windowWidth * 0.45, alignment: .leading)
+                    .frame(width: windowWidth * 0.40, alignment: .leading)
                 }
                 .frame(maxWidth: 1600)
                 .padding(40)

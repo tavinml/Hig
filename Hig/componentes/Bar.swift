@@ -1,8 +1,9 @@
 import SwiftUI
-
+import Nuvem
 
 struct Bar: View {
     @State private var telaAtiva: TelaSelecionada? = .licoes
+    @State var lessons: [Lessons.Observable] = []
     var body: some View {
         NavigationSplitView {
             
@@ -53,7 +54,7 @@ struct Bar: View {
                 HomeView()
                 
             case .hierarquia:
-                AllLessonsView()
+                SlideView(lesson: lessons[0])
                 
             case .configuracoes:
                 PracticeView()
@@ -78,6 +79,18 @@ struct Bar: View {
                 
             case .none:
                 Text("oiu")
+            }
+        }
+        .task {
+            do {
+                self.lessons = try await Lessons.query(on: .default)
+                    .with(\.$contents)
+                    .sort(\.$number, order: .ascending)
+                    .all()
+                    .map(\.observable)
+                print(lessons.count)
+            } catch {
+                print(error)
             }
         }
     }
