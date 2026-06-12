@@ -56,6 +56,7 @@ struct ChatComponent: View {
                 VStack{
                     Spacer()
                     ProgressBar()
+                        .padding(.bottom, 40)
                     
                 }
             }
