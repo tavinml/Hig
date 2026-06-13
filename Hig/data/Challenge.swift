@@ -27,7 +27,7 @@ struct Challenge{
     @CKField("titleChallenge")
     var titleChallenge: String
     @CKField("tappableAreas")
-    var area: String
+    var area: Areas
     @CKField("titleChat")
     var titleChat: String
 }
