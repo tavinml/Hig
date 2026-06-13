@@ -11,12 +11,12 @@ struct ChatComponent: View {
 
         var body: some View {
             VStack(alignment: .center){
-                Text("Layout e Tipografia")
+                Text("Layout e Tipografia") //Titulo
                     .font(.largeTitle)
                     .bold()
                     
                 HStack(alignment: .top) {
-                    Image("imageChat")
+                    Image("imageChat") //Imagem do mascote que ficara do lado dos baloes
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 150, maxHeight: 150)
@@ -55,7 +55,7 @@ struct ChatComponent: View {
                 }
                 VStack{
                     Spacer()
-                    ProgressBar()
+//                    ProgressBar()
                         .padding(.bottom, 40)
                     
                 }
