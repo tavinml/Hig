@@ -19,9 +19,9 @@ struct Lessons{
     @CKField("moduleType")
     var moduleType: String
     @CKReferenceListField("challenge")
-    var challenges: [Challenge]?
+    var challenges: [Challenge]
     @CKReferenceListField("content")
-    var contents: [Content]?
+    var contents: [Content]
     @CKField("titleLesson")
     var titleLesson: String
 }
