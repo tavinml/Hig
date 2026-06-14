@@ -18,6 +18,10 @@ struct SlideView: View {
         return lesson.contents.count
     }
     
+    private var LastSlide: Bool {
+        index == numberslide - 1
+    }
+    
     var body: some View {
         
             Group {
@@ -34,9 +38,7 @@ struct SlideView: View {
                             let content = contents[index]
                             SlideComponent(content: content, numSlides: numSlides)
                         }
-                        else{
-                            PracticeView(lesson: lesson)
-                        }
+                        
                         HStack(alignment: .center, spacing: windowWidth > 1200 ? 24 : 16) {
                             Button(action: {
                                 if index != 0 {
@@ -54,24 +56,54 @@ struct SlideView: View {
                                 }
                             })
                             .buttonStyle(.borderless)
-                            if index < numSlides - 1 {
+                            
+                            if LastSlide {
+                                Button(action: {
+                                    showPractice.toggle()
+                                } , label: {
+                                    Text("Começar a pratica")
+                                        .font(windowWidth > 1200 ? .largeTitle : .title3)
+                                        .foregroundColor(.colorLayout)
+                                        .bold()
+                                })
+                                .buttonStyle(.borderless)
+                            } else{
                                 Text("\(index + 1) de \(numSlides)")
-                                    .font(windowWidth > 1200 ? .largeTitle : .title2)
-                            }else{
-                                Text("Começar a Praticar")
-                                    .font(windowWidth > 1200 ? .largeTitle : .title2)
+                                    .font(windowWidth > 1200 ? .largeTitle : .title3)
                             }
                             
-                            Button(action: {
-                                if index < numSlides{
+                            if !LastSlide {
+                                Button(action: {
                                     index += 1
-                                }
-                            }, label: {
+                                }, label: {
+                                    Image(systemName: "chevron.right")
+                                        .font(windowWidth > 1200 ? .largeTitle : .title3)
+                                        
+                                })
+                                .buttonStyle(.borderless)
+                            } else {
                                 Image(systemName: "chevron.right")
-                                    .font(windowWidth > 1200 ? .title : .title3)
-                                    .foregroundColor(Color.black)
-                            })
-                            .buttonStyle(.borderless)
+                                    .font(windowWidth > 1200 ? .largeTitle : .title3)
+                            }
+                            
+//                            if index < numSlides - 1 {
+//                                Text("\(index + 1) de \(numSlides)")
+//                                    .font(windowWidth > 1200 ? .largeTitle : .title2)
+//                            }else{
+//                                Text("Começar a Praticar")
+//                                    .font(windowWidth > 1200 ? .largeTitle : .title2)
+//                            }
+                            
+//                            Button(action: {
+//                                if index < numSlides{
+//                                    index += 1
+//                                }
+//                            }, label: {
+//                                Image(systemName: "chevron.right")
+//                                    .font(windowWidth > 1200 ? .title : .title3)
+//                                    .foregroundColor(Color.black)
+//                            })
+//                            .buttonStyle(.borderless)
                             
                         }
                         .foregroundStyle(Color.black)
@@ -189,3 +221,6 @@ struct Slide_Preview: View {
         .frame(width: 300, height: 300)
 
 }
+
+
+
