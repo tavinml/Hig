@@ -8,68 +8,100 @@
 import SwiftUI
 
 struct ChatComponent: View {
-
-        var body: some View {
-            VStack(alignment: .center){
-                Text("Layout e Tipografia") //Titulo
-                    .font(.largeTitle)
-                    .bold()
-                    
-                HStack(alignment: .top) {
-                    Image("imageChat") //Imagem do mascote que ficara do lado dos baloes
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 150, maxHeight: 150)
-                        .padding(.horizontal, 20)
-                    VStack(alignment: .trailing) {
-                        ZStack(alignment: .bottomLeading) {
-                            Rectangle()
-                                .frame(width: 55, height: 40)
-
-                            Text("Parabéns! Você acertou.")
-                                .foregroundColor(.black)
-                                .font(.title2)
-                                .frame(maxWidth: 330, maxHeight: 70, alignment: .leading)
-                                .padding(.horizontal, 20)
-                                .background(.colorLayout)
-                                .cornerRadius(38)
-                            
-                        }
-                        .foregroundColor(.colorLayout)
-                        .padding(.vertical, 20)
-                        ZStack(alignment: .bottomLeading) {
-                            Rectangle()
-                                .frame(width: 55, height: 50)
-                            Text("Ainda não é esse o elemento. Procure por algo que deveria chamar mais atenção, mas não está sendo destacado corretamente.")
-                                .foregroundColor(.black)
-                                .font(.title2)
-                                .frame(maxWidth: 440, minHeight: 76, alignment: .leading)
-                                .padding(.horizontal, 20)
-                                .padding(.vertical, 12)
-                                .background(.white)
-                                .cornerRadius(38)
-                            
-                        }
-                        .foregroundColor(.white)
-                    }
-                }
-                VStack{
-                    Spacer()
-//                    ProgressBar()
-                        .padding(.bottom, 40)
-                    
-                }
-            }
-            .padding(.top, 20)
-            .padding(.horizontal, 20)
-            .ignoresSafeArea()
-            .frame(maxWidth: . infinity)
-            .frame(maxHeight: .infinity, alignment: .topTrailing)
-            
-            .background(Color.backgroundChat)
+    
+    let challenge: Challenge
+    let challengeState: ChallengeState
+    let currntIndex: Int
+    let total: Int
+    let onRetry: () -> Void
+    let onNext: () -> Void
+    
+    private var chatImage: NSImage? {
+        switch challengeState {
+        case .initial:
+            return challenge.imageChat.indices
+                .contains(0) ? challenge
+                .imageChat[0] : nil
+        case .wrong:
+            return challenge.imageChat.indices
+                .contains(0) ? challenge
+                .imageChat[0] : nil
+        case .correct:
+            return challenge.imageChat.indices
+                .contains(1) ? challenge
+                .imageChat[1] : nil
         }
+        
+        
+    }
+    
+    private var changeText: String {
+        switch challengeState {
+        case .initial:
+            return challenge.descriptionChallenge
+        case .wrong:
+            return challenge.wrongFeedback
+        case .correct:
+            return challenge.correctFeedback
+        }
+    }
+    
+    private var changeColorBaloon: Color {
+        switch challengeState {
+        case .initial:
+            return .white
+        case .wrong:
+            return .white
+        case .correct:
+            return .colorLayout
+        }
+    }
+
+    var body: some View {
+        VStack(alignment: .center){
+            Text(challenge.titleChat) //Titulo
+                .font(.largeTitle)
+                .bold()
+            
+            HStack(alignment: .top) {
+                
+                if let image =  chatImage {
+                    Image(
+                        nsImage: image
+                    ) //Imagem do mascote que ficara do lado dos baloes
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 150, maxHeight: 150)
+                    .padding(.horizontal, 20)
+                }
+                
+                Text(changeText)
+                    .font(.title2)
+                    .background(changeColorBaloon)
+            }
+        }
+        VStack{
+            Spacer()
+            ProgressBar(current: currntIndex + 1,
+                        total: total,
+                        challengeState: challengeState,
+                        onNext: onNext,
+                        onRetry: onRetry)
+            .padding(.bottom, 40)
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .ignoresSafeArea()
+        .frame(maxWidth: . infinity)
+        .frame(maxHeight: .infinity, alignment: .topTrailing)
+            
+        .background(Color.backgroundChat)
+    }
 }
 
-#Preview {
-    ChatComponent()
-}
+//#Preview {
+//    ChatComponent(challenge: Challenge(),
+//                  challengeState: .initial,
+//                  currntIndex: 0,
+//                  total: 4)
+//}
