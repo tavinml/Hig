@@ -33,7 +33,7 @@ struct SlideComponent: View {
                                 ZStack(alignment: .bottomLeading) {
                                    
                                    Rectangle()
-                                       .fill(Color.white)
+                                        .fill(Color.backgroundBaloon)
                                        .frame(width: windowWidth > 1200 ? 40 : 30,
                                               height: windowWidth > 1200 ? 40 : 30)
                                    
@@ -41,7 +41,7 @@ struct SlideComponent: View {
                                         .resizable()
                                         .scaledToFit()
                                        .padding(windowWidth > 1200 ? 24 : 18)
-                                       .background(Color.white)
+                                       .background(Color.backgroundBaloon)
                                        .cornerRadius(windowWidth > 1200 ? 24 : 18)
                                }
                                .foregroundStyle(Color.black)

@@ -8,17 +8,19 @@ struct Baloon: View {
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Rectangle()
-                .fill(Color.white)
+                .fill(Color.backgroundBaloon)
                 .frame(width: windowWidth > 1200 ? 70 : 50,
                        height: windowWidth > 1200 ? 50 : 40)
             
             Text(content.description ?? baloonContent)
+                .foregroundColor(Color.black)
                 .font(.title)
                 .lineSpacing(windowWidth > 1200 ? 8 : 4)
                 .padding(windowWidth > 1200 ? 28 : 18)
-                .background(Color.white)
+                .background(Color.backgroundBaloon)
                 .cornerRadius(windowWidth > 1200 ? 24 : 18)
         }
-        .foregroundStyle(Color.black)
+        
+        
     }
 }
