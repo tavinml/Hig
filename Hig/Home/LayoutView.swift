@@ -1,9 +1,3 @@
-//
-//  SwiftUIView.swift
-//  Hig
-//
-//  Created by Ana Soares on 12/06/26.
-//
 
 import SwiftUI
 import Nuvem
@@ -11,45 +5,47 @@ import Nuvem
 struct LayoutView: View {
     
     @State var lessons: [Lessons.Observable] = []
-    @State var module: Module = .layout
     
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading){
-                    Text(module.title)
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.leading, 15)
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 380), spacing: 10)], spacing: 10) {
-                        ForEach(lessons) { lesson in
-                            let ModuleType = lesson.moduleType
-                            if ModuleType == "layout"{
-
-                                NavigationLink {
-                                    SlideView(lesson: lesson)
-                                } label: {
-                                    Card(lesson: lesson)
-                                        .frame(minWidth: 382)
-                                        .frame(height: 233)
-                                        .padding(15)
+                VStack(alignment: .leading) {
+                    ForEach(Module.allCases, id: \.self) { module in
+                        let moduleLessons = lessons.filter { $0.moduleType == module.rawValue }
+                        
+                        if !moduleLessons.isEmpty {
+                            Text(module.title)
+                                .font(.largeTitle)
+                                .bold()
+                                .padding(.leading, 34)
+                                .padding(.top, 5)
+                            
+                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 382), spacing: 0)], spacing: 0) {
+                                ForEach(moduleLessons) { lesson in
+                                    NavigationLink {
+                                        SlideView(lesson: lesson)
+                                    } label: {
+                                        Card(lesson: lesson)
+                                            .frame(minWidth: 382)
+                                            .frame(height: 233)
+                                            .padding(10)
+                                    }
+                                    .buttonStyle(.borderless)
                                 }
-                                .buttonStyle(.borderless)
-                                
                             }
+                            .padding()
                         }
                     }
-                    .padding()
                 }
             }
             .task {
                 do {
                     self.lessons = try await Lessons.query(on: .default)
                         .with(\.$contents)
+                        .with(\.$challenges)
                         .sort(\.$number, order: .ascending)
                         .all()
                         .map(\.observable)
-                    print(lessons.count)
                 } catch {
                     print(error)
                 }

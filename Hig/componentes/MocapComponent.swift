@@ -1,75 +1,110 @@
 //
-//  Wrong1.swift
+//  MocapComponent.swift
 //  Hig
-//
-//  Created by Gustavo Monteiro Lopes on 05/06/26.
 //
 
 import SwiftUI
 
 struct MocapComponent: View {
+
+    let challenge: Challenge
+    let challengeState: ChallengeState
+    let selectedArea: Int?
+    let correctsIndex: [Int]
+    let onSelected: (Int) -> Void
     
-    let designWidth: CGFloat = 375
-    let designHeight: CGFloat = 812
-    
+    @Binding var finished: Bool
+   
+
     var body: some View {
-        ZStack {
-            
-            
-            //            GeometryReader { geometry in
-            ViewThatFits {
-                Image("Wrong1")
-                    .resizable()
-                    .scaledToFit()
-                
-                    .frame(width: designWidth, height: designHeight)
-                
-                    .overlay(
-                        GeometryReader{ geometry in
-                            VStack(spacing: 0) {
-                                
-                                Color.clear.frame(height: 52)
-                                
-                                //Ajustar para deixar escalavel
-                                
-                                cardDotted(selected: false, correct: false, height: 52, exerciseNumber: "1")
-                                    .padding(.vertical, 30)
-                                
-                                
-                                cardDotted(selected: true, correct: false, height: 70, exerciseNumber: "2")
-                                    .padding(.vertical, -10)
-                                
-                                
-                                cardDotted(selected: false, correct: false, height: 175, exerciseNumber: "3")
-                                    .padding(.vertical,25)
-                                
-                                cardDotted(selected: true, correct: false, height: 75, exerciseNumber: "4")
-                                    .padding(.vertical,-9)
-                                
-                                Spacer()
-                                
-                                cardDotted(selected: true, correct: true, height: 60, exerciseNumber: "5")
-                                    .padding(.vertical,55)
-                                
-                            }
-                            
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 10)
+        GeometryReader { geometry in
+
+            // onde a imagem esta dentro
+            let imageRect = renderedRect(
+                imageSize: challenge.imageChallenge.size,
+                frameSize: geometry.size
+            )
+
+            ZStack(alignment: .topLeading) {
+                if finished  && challenge.finishedImage != nil{
+                    Image(nsImage: challenge.finishedImage ?? challenge.imageChallenge)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                } else {
+                    Image(nsImage: challenge.imageChallenge)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                }
+               
+
+                //Listando as areas e os challengers
+                ForEach(Array(challenge.area.values.enumerated()), id: \.offset) { index, area in
+                    let alreadyFound = correctsIndex.contains(index) //verifica se uma area especifica ja foi encontrada
+
+                    cardDotted(
+                        selected: alreadyFound || selectedArea == index,
+                        correct:  alreadyFound || index == challenge.correctSection,
+                        height:   area.height * imageRect.height,
+                        exerciseNumber: "\(index + 1)",
+                        onTap: {
+                            //aqui ele guarda o estado das areas que ja foram tocadas
+                            guard challengeState == .initial else { return }
+                            guard !alreadyFound else { return }
+                            onSelected(index)
                         }
                     )
-                    .padding()
+                    .frame(width: area.width * imageRect.width)
+                    .position(
+                        // minX/minY = onde a imagem começa dentro do frame
+                        x: imageRect.minX + (area.x + area.width  / 2) * imageRect.width,
+                        y: imageRect.minY + (area.y + area.height / 2) * imageRect.height
+                    )
+                }
             }
-            //            }
-            //                        .frame(width: 375, height: 812)
-            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    //respeitar o scale to fit para que os cardDotteds nao fiquem sabendo
+    private func renderedRect(imageSize: CGSize, frameSize: CGSize) -> CGRect {
+        guard imageSize.width > 0, imageSize.height > 0 else {
+            return CGRect(origin: .zero, size: frameSize)
+        }
+
+        let imageAspect = imageSize.width / imageSize.height
+        let frameAspect = frameSize.width  / frameSize.height
+
+        let renderedWidth:  CGFloat
+        let renderedHeight: CGFloat
+
+        if imageAspect > frameAspect {
+            //imagem mais larga que o frame → limitada pela largura
+            renderedWidth  = frameSize.width
+            renderedHeight = frameSize.width / imageAspect
+        } else {
+            //imagem mais alta que o frame → limitada pela altura
+            renderedHeight = frameSize.height
+            renderedWidth  = frameSize.height * imageAspect
+        }
+
+        // offset = espaço vazio nas bordas
+        let offsetX = (frameSize.width  - renderedWidth)  / 2
+        let offsetY = (frameSize.height - renderedHeight) / 2
+
+        return CGRect(x: offsetX, y: offsetY,
+                      width: renderedWidth, height: renderedHeight)
     }
 }
 
 #Preview {
-    MocapComponent()
-}
-
-
-
+    MocapComponent(
+        challenge: Challenge(),
+        challengeState: .initial,
+        selectedArea: nil,
+        correctsIndex: [],
+        onSelected: { _ in },
+        finished: .constant(false)
+    )
+}    

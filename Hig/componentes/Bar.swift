@@ -10,7 +10,7 @@ struct Bar: View {
             List(selection: $telaAtiva) {
                 
                 NavigationLink(value: TelaSelecionada.licoes) {
-                    Label("Lições", systemImage: "house")
+                    Label("Lições", systemImage: "books.vertical")
                 }
 
                 
@@ -52,18 +52,19 @@ struct Bar: View {
                 
             case .licoes:
                 HomeView()
+//                DebugChallengeView()
                 
             case .hierarquia:
                 SlideView(lesson: lessons[0])
                 
             case .configuracoes:
-                PracticeView()
+                PracticeView(lesson: lessons[0])
                 
             case .alinhamento:
-                Text("Tela de alinha")
+                SlideView(lesson: lessons[1])
                 
             case .tipografia:
-                Text("Tela de tipo")
+                SlideView(lesson: lessons[2])
                 
             case .contraste:
                 Text("Tela de contra")
@@ -85,6 +86,7 @@ struct Bar: View {
             do {
                 self.lessons = try await Lessons.query(on: .default)
                     .with(\.$contents)
+                    .with(\.$challenges)
                     .sort(\.$number, order: .ascending)
                     .all()
                     .map(\.observable)
