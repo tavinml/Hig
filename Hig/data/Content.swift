@@ -13,9 +13,9 @@ import AppKit
 
 @CKModel
 struct Content{
-    @CKField("title")
+    @CKField("title", default: "")
     var title: String
-    @CKField("description")
+    @CKField("description", default: "")
     var description: String?
     @CKAssetField("imageContent")
     var imageContent: NSImage?

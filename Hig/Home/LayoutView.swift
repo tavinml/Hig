@@ -42,6 +42,7 @@ struct LayoutView: View {
                 do {
                     self.lessons = try await Lessons.query(on: .default)
                         .with(\.$contents)
+                        .with(\.$challenges)
                         .sort(\.$number, order: .ascending)
                         .all()
                         .map(\.observable)
