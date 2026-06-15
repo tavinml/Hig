@@ -24,7 +24,7 @@ struct PracticeView: View {
     }
     
     var body: some View {
-//        Group {
+        Group {
             if challenges.isEmpty {
                 ProgressView("carregando desafios")
             } else if finished {
@@ -42,7 +42,7 @@ struct PracticeView: View {
                         .id(currentChallengeIndex)
                         .frame(width: geometry.size.width * 0.6)
                         
-                        ChatComponent(challenge: Challenge(),
+                        ChatComponent(challenge: challenges[currentChallengeIndex],
                                       challengeState: challengeState,
                                       currntIndex: currentChallengeIndex,
                                       total: challenges.count,
@@ -52,7 +52,7 @@ struct PracticeView: View {
                     }
                 }
             }
-//        }
+        }
 
 //        GeometryReader { geometry in
 //            HStack {
@@ -92,10 +92,5 @@ struct PracticeView: View {
 
 //#Preview {
 //    PracticeView(
-//        lesson: Lessons(
-//        number: 1,
-//        image: "cardHierarchy",
-//        modu
-//        )
-//    )
+//        lesson: <#Lessons.Observable#>)
 //}

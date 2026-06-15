@@ -35,26 +35,34 @@ struct ChatComponent: View {
         
     }
     
-    private var changeText: String {
-        switch challengeState {
-        case .initial:
-            return challenge.descriptionChallenge
-        case .wrong:
-            return challenge.wrongFeedback
-        case .correct:
-            return challenge.correctFeedback
+    private func titleChange(text: String, icon: String?) -> some View {
+        HStack(spacing: 6) {
+            if let icon {
+                Image(systemName: icon)
+                    .foregroundStyle(challengeState == .wrong ? Color.red : Color.green)
+            }
+            
+            Text(text)
+                .font(.body.bold())
+                .foregroundColor(.black)
+            
         }
+        .frame(maxWidth: 440, alignment: .leading)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 12)
+        .background(.colorLayout)
+        .cornerRadius(38)
     }
     
-    private var changeColorBaloon: Color {
-        switch challengeState {
-        case .initial:
-            return .white
-        case .wrong:
-            return .white
-        case .correct:
-            return .colorLayout
-        }
+    private func change(_ text: String) -> some View {
+        Text(text)
+            .font(.body)
+            .foregroundStyle(.black)
+            .frame(maxWidth: 440, alignment: .leading)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 12)
+            .background(.colorLayout)
+            .cornerRadius(38)
     }
 
     var body: some View {
@@ -75,12 +83,47 @@ struct ChatComponent: View {
                     .padding(.horizontal, 20)
                 }
                 
-                Text(changeText)
-                    .font(.title2)
-                    .background(changeColorBaloon)
+                VStack(alignment: .trailing, spacing: 8){
+                    switch challengeState {
+                    case .initial:
+                        titleChange(text: challenge.descriptionChallenge.descriptionFirst,
+                                    icon: nil)
+                        
+                        change(challenge.descriptionChallenge.descriptionFirst)
+                        
+                        if !challenge.descriptionChallenge.descriptionSecond.isEmpty {
+                            change(challenge.descriptionChallenge.descriptionSecond)
+                        }
+                        
+                    case .wrong:
+                        titleChange(text: challenge.wrongFeedback.wrongTitle,
+                                    icon: "xmark.circle.fill")
+                        
+                        change(challenge.wrongFeedback.wrongFirst)
+                        
+                        if !challenge.wrongFeedback.wrongSecond.isEmpty {
+                            change(challenge.wrongFeedback.wrongSecond)
+                        }
+                    case .correct:
+                        titleChange(text: challenge.correctFeedback.correctTitle,
+                                    icon: "checkmark.circle.fill")
+                        
+                        change(challenge.correctFeedback.correctFirst)
+                        
+                        if !challenge.correctFeedback.correctSecond.isEmpty {
+                            change(challenge.correctFeedback.correctSecond)
+                        }
+
+                    }
+                }
+                
+    
+                
+//                Text(changeText)
+//                    .font(.title2)
+//                    .background(changeColorBaloon)
+//                    .frame(maxWidth: 440, alignment: .leading)
             }
-        }
-        VStack{
             Spacer()
             ProgressBar(current: currntIndex + 1,
                         total: total,
@@ -99,9 +142,6 @@ struct ChatComponent: View {
     }
 }
 
-//#Preview {
-//    ChatComponent(challenge: Challenge(),
-//                  challengeState: .initial,
-//                  currntIndex: 0,
-//                  total: 4)
-//}
+#Preview {
+    ChatComponent(challenge: Challenge(), challengeState: .initial, currntIndex: 4, total: 5, onRetry: {}, onNext: {})
+}

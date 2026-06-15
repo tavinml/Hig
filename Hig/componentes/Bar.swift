@@ -52,6 +52,7 @@ struct Bar: View {
                 
             case .licoes:
                 HomeView()
+//                DebugChallengeView()
                 
             case .hierarquia:
                 SlideView(lesson: lessons[0])
