@@ -121,7 +121,28 @@ struct SlideView: View {
         //                    })
                         
                     }
+                    
+                    Button(action: {
+                        if index < numSlides - 1{
+                            index += 1
+                        }
+                    }, label: {
+                        Image(systemName: "chevron.right")
+                            .font(windowWidth > 1200 ? .title : .title2)
+                            .foregroundColor(Color.black)
+                    })
+                    .buttonStyle(.borderless)
+                    
                 }
+                .foregroundStyle(Color.black)
+                .padding(.horizontal, windowWidth > 1200 ? 22 : 16)
+                .padding(.vertical, windowWidth > 1200 ? 16 : 10)
+                .background(Color.colorSlider)
+                .clipShape(Capsule())
+                .padding(.bottom, windowWidth > 1200 ? 30 : 18)
+
+                    
+
             }
         }
         

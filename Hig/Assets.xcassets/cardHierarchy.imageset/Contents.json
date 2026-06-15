@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "MascoteCard.svg",
+      "filename" : "Hierarquia - Mascote.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "MascoteCard 1.svg",
+      "filename" : "Hierarquia - Mascote 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "MascoteCard 2.svg",
+      "filename" : "Hierarquia - Mascote 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

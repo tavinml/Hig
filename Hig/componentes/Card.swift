@@ -19,10 +19,11 @@ struct Card: View {
     }
     
     var body: some View {
-                
-            HStack {
-                VStack(alignment: .leading, spacing: 10) {
-                    Spacer(minLength: 20)
+        GeometryReader { geo in
+            let windowWidth = geo.size.width
+            ZStack{
+                VStack(alignment: .leading, spacing: windowWidth * 0.02) {
+                    Spacer(minLength: 10)
                     
                     Text("Lição \(lesson.number):")
                         .font(.title2)
@@ -31,27 +32,29 @@ struct Card: View {
                     Text(lesson.titleLesson)
                         .font(.largeTitle.bold())
                         .foregroundStyle(Color.black)
-                        .fixedSize(horizontal: false, vertical: true)
+//                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .padding(.leading, 30)
+                .padding(.trailing, windowWidth > 1200 ? 15 : 10)
                 .padding(.bottom, 40)
+                .offset(x:windowWidth > 1200 ? -100 : -90, y: 10)
+    
                 
                 Spacer()
-                
-//                Image(systemName: "Mascote1")
-//                    .resizable()
+
                 Image(lesson.image)
                     .resizable()
                     .scaledToFit()
                     .padding(.bottom, -10)
                     .frame(maxWidth: 250)
-                                
+                    .offset(x: 80, y: 0)
             }
-        .frame(minWidth: 382, idealWidth: 382)
-        .frame(maxHeight: 233)
-        .padding(10)
-        .background(backgroundColor)
-        .cornerRadius(26)
+            .frame(minWidth: 382)
+            .frame(width: windowWidth * 0.85)
+            .padding(10)
+            .background(backgroundColor)
+            .cornerRadius(26)
+        }
+        
     }
 }
 

@@ -1,3 +1,4 @@
+
 import SwiftUI
 import Nuvem
 
@@ -10,7 +11,5 @@ struct AllLessonsView: View {
         }
     }
 }
-#Preview {
-    AllLessonsView()
-        .frame(width: 300, height: 300)
-}
+
+
