@@ -10,7 +10,7 @@ struct Bar: View {
             List(selection: $telaAtiva) {
                 
                 NavigationLink(value: TelaSelecionada.licoes) {
-                    Label("Lições", systemImage: "house")
+                    Label("Lições", systemImage: "books.vertical")
                 }
 
                 
