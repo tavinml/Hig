@@ -12,24 +12,36 @@ struct MocapComponent: View {
     let selectedArea: Int?
     let correctsIndex: [Int]
     let onSelected: (Int) -> Void
+    
+    @Binding var finished: Bool
+   
 
     var body: some View {
         GeometryReader { geometry in
 
-            // Onde a imagem realmente está dentro do frame
+            // onde a imagem esta dentro
             let imageRect = renderedRect(
                 imageSize: challenge.imageChallenge.size,
                 frameSize: geometry.size
             )
 
             ZStack(alignment: .topLeading) {
-                Image(nsImage: challenge.imageChallenge)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                if finished  && challenge.finishedImage != nil{
+                    Image(nsImage: challenge.finishedImage ?? challenge.imageChallenge)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                } else {
+                    Image(nsImage: challenge.imageChallenge)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                }
+               
 
+                //Listando as areas e os challengers
                 ForEach(Array(challenge.area.values.enumerated()), id: \.offset) { index, area in
-                    let alreadyFound = correctsIndex.contains(index)
+                    let alreadyFound = correctsIndex.contains(index) //verifica se uma area especifica ja foi encontrada
 
                     cardDotted(
                         selected: alreadyFound || selectedArea == index,
@@ -37,6 +49,7 @@ struct MocapComponent: View {
                         height:   area.height * imageRect.height,
                         exerciseNumber: "\(index + 1)",
                         onTap: {
+                            //aqui ele guarda o estado das areas que ja foram tocadas
                             guard challengeState == .initial else { return }
                             guard !alreadyFound else { return }
                             onSelected(index)
@@ -54,7 +67,7 @@ struct MocapComponent: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    /// Calcula o CGRect da imagem real dentro do frame, respeitando scaledToFit
+    //respeitar o scale to fit para que os cardDotteds nao fiquem sabendo
     private func renderedRect(imageSize: CGSize, frameSize: CGSize) -> CGRect {
         guard imageSize.width > 0, imageSize.height > 0 else {
             return CGRect(origin: .zero, size: frameSize)
@@ -67,11 +80,11 @@ struct MocapComponent: View {
         let renderedHeight: CGFloat
 
         if imageAspect > frameAspect {
-            // imagem mais larga que o frame → limitada pela largura
+            //imagem mais larga que o frame → limitada pela largura
             renderedWidth  = frameSize.width
             renderedHeight = frameSize.width / imageAspect
         } else {
-            // imagem mais alta que o frame → limitada pela altura
+            //imagem mais alta que o frame → limitada pela altura
             renderedHeight = frameSize.height
             renderedWidth  = frameSize.height * imageAspect
         }
@@ -91,6 +104,7 @@ struct MocapComponent: View {
         challengeState: .initial,
         selectedArea: nil,
         correctsIndex: [],
-        onSelected: { _ in }
+        onSelected: { _ in },
+        finished: .constant(false)
     )
 }    

@@ -18,8 +18,8 @@ struct Challenge{
     var correctFeedback: CorrectFeedack
     @CKField("wrongFeedback", default: WrongFeedack(wrongTitle: "", wrongFirst: "", wrongSecond: ""))
     var wrongFeedback: WrongFeedack
-    @CKField("descriptionChallenge", default: DescriptionChallenge(descriptionTitle: "", descriptionFirst: "", descriptionSecond: ""))
-    var descriptionChallenge: DescriptionChallenge
+    @CKField("descriptionChallenge", default: []/* DescriptionChallenge(descriptionTitle: "", descriptionFirst: "", descriptionSecond: "")*/)
+    var descriptionChallenge: [String]
     @CKAssetField("imageChallenge")
     var imageChallenge: NSImage
     @CKAssetListField("imageChat")
@@ -30,6 +30,8 @@ struct Challenge{
     var area: Areas
     @CKField("titleChat")
     var titleChat: String
+    @CKAssetField("finishedImage")
+    var finishedImage: NSImage?
 }
 
 struct Areas: CKCodable {

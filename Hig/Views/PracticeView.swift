@@ -17,28 +17,32 @@ struct PracticeView: View {
     @State private var selectedArea: Int? = nil
     @State private var foundCorrects: [Int] = []
     @State private var completedChallenges: [Int] = []
-    @State private var finished: Bool = false
+    @State var finished: Bool = false
     
     private var challenges: [Challenge] {
         lesson.challenges
     }
     
     var body: some View {
+        
+        //add as views
         Group {
             if challenges.isEmpty {
                 ProgressView("carregando desafios")
-            } else if finished {
-                VStack{
-                    Text("parabens")
-                }
+//            } else if finished {
+//                VStack{
+//                    Text("parabens")
+//                }
             } else {
                 GeometryReader { geometry in
                     HStack {
+                        //p
                         MocapComponent(challenge: challenges[currentChallengeIndex],
                                        challengeState: challengeState,
                                        selectedArea: selectedArea,
                                        correctsIndex: foundCorrects,
-                                       onSelected: handleSelected)
+                                       onSelected: handleSelected,
+                                       finished: $finished)
                         .id(currentChallengeIndex)
                         .frame(width: geometry.size.width * 0.6)
                         
@@ -47,7 +51,8 @@ struct PracticeView: View {
                                       currntIndex: currentChallengeIndex,
                                       total: challenges.count,
                                       onRetry: handleRetry,
-                                      onNext: handleNext)
+                                      onNext: handleNext,
+                                      finished: $finished)
                         .frame(width: geometry.size.width * 0.4)
                     }
                 }

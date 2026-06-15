@@ -19,6 +19,8 @@ struct ProgressBar: View {
     var challengeState: ChallengeState
     var onNext: () -> Void = {}
     var onRetry: () -> Void = {}
+    
+    @Binding var finished: Bool
 
     
     var body: some View {
@@ -67,20 +69,45 @@ struct ProgressBar: View {
                 .buttonStyle(.plain)
                 
             case .correct:
-                Button(action: onNext) {
-                    HStack(alignment: .center) {
-                        Image(systemName: "play.fill")
-                            .font(Font.title.bold())
-                        Text("Próximo")
-                            .font(Font.title.bold())
+                
+                if finished {
+                    NavigationStack {
+                        NavigationLink(destination: {
+                            AllLessonsView()
+                        },label:{
+                            HStack(alignment: .center) {
+                                Image(systemName: "play.fill")
+                                    .font(Font.title.bold())
+                                Text("CONCLUIR LIÇÃO")
+                                    .font(Font.title.bold())
+                            }
+                            .padding(.horizontal, 30)
+                            .padding(.vertical, 10)
+                            .background(Color.white)
+                            .foregroundStyle(Color.black)
+                            .clipShape(Capsule())
+                                
+                        })
+                        .buttonStyle(.borderless)
                     }
-                    .padding(.horizontal, 30)
-                    .padding(.vertical, 10)
-                    .background(Color.white)
-                    .foregroundStyle(Color.black)
-                    .clipShape(Capsule())
+                    
+                } else {
+                    Button(action: onNext) {
+                        HStack(alignment: .center) {
+                            Image(systemName: "play.fill")
+                                .font(Font.title.bold())
+                            Text("Próximo")
+                                .font(Font.title.bold())
+                        }
+                        .padding(.horizontal, 30)
+                        .padding(.vertical, 10)
+                        .background(Color.white)
+                        .foregroundStyle(Color.black)
+                        .clipShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
+                
             }
             
 //            Button (action: {
@@ -131,13 +158,16 @@ struct ProgressBar: View {
     VStack {
         ProgressBar(current: 1,
                     total: 3,
-                    challengeState: .initial)
+                    challengeState: .initial,
+                    finished: .constant(false))
         ProgressBar(current: 2,
                     total: 3,
-                    challengeState: .initial)
+                    challengeState: .initial,
+                    finished: .constant(false))
         ProgressBar(current: 3,
                     total: 3,
-                    challengeState: .initial)
+                    challengeState: .initial,
+                    finished: .constant(true))
     }
     .padding()
 }

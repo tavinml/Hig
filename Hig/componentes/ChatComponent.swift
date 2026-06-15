@@ -16,12 +16,16 @@ struct ChatComponent: View {
     let onRetry: () -> Void
     let onNext: () -> Void
     
+   @Binding var finished: Bool
+    
+    
+    // Faz a mudança do chatImage de acordo com o estado
     private var chatImage: NSImage? {
         switch challengeState {
         case .initial:
             return challenge.imageChat.indices
-                .contains(0) ? challenge
-                .imageChat[0] : nil
+                .contains(2) ? challenge
+                .imageChat[2] : nil
         case .wrong:
             return challenge.imageChat.indices
                 .contains(0) ? challenge
@@ -35,6 +39,7 @@ struct ChatComponent: View {
         
     }
     
+    //Balao roxo
     private func titleChange(text: String, icon: String?) -> some View {
         HStack(spacing: 6) {
             if let icon {
@@ -53,7 +58,7 @@ struct ChatComponent: View {
         .background(.colorLayout)
         .cornerRadius(38)
     }
-    
+    //Balao branco
     private func change(_ text: String) -> some View {
         Text(text)
             .font(.body)
@@ -61,9 +66,11 @@ struct ChatComponent: View {
             .frame(maxWidth: 440, alignment: .leading)
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
-            .background(.colorLayout)
+            .background(.white)
             .cornerRadius(38)
     }
+    
+    
 
     var body: some View {
         VStack(alignment: .center){
@@ -85,16 +92,21 @@ struct ChatComponent: View {
                 
                 VStack(alignment: .trailing, spacing: 8){
                     switch challengeState {
+                        //Passo os valores de acordo com o array do CloudKit
                     case .initial:
-                        titleChange(text: challenge.descriptionChallenge.descriptionFirst,
+                        
+                        
+                        titleChange(text: challenge.titleChallenge,
                                     icon: nil)
-                        
-                        change(challenge.descriptionChallenge.descriptionFirst)
-                        
-                        if !challenge.descriptionChallenge.descriptionSecond.isEmpty {
-                            change(challenge.descriptionChallenge.descriptionSecond)
+                        ForEach(challenge.descriptionChallenge, id: \.self){ description in
+                            
+                            //nem todos vao ter um segundo balao, faço isso pra quando ele ta diferente de vazio
+                            if !challenge.descriptionChallenge.isEmpty {
+                                change(description)
+                            }
                         }
                         
+//                        
                     case .wrong:
                         titleChange(text: challenge.wrongFeedback.wrongTitle,
                                     icon: "xmark.circle.fill")
@@ -129,7 +141,8 @@ struct ChatComponent: View {
                         total: total,
                         challengeState: challengeState,
                         onNext: onNext,
-                        onRetry: onRetry)
+                        onRetry: onRetry,
+                        finished: $finished)
             .padding(.bottom, 40)
         }
         .padding(.top, 20)
@@ -143,5 +156,5 @@ struct ChatComponent: View {
 }
 
 #Preview {
-    ChatComponent(challenge: Challenge(), challengeState: .initial, currntIndex: 4, total: 5, onRetry: {}, onNext: {})
+    ChatComponent(challenge: Challenge(), challengeState: .initial, currntIndex: 4, total: 5, onRetry: {}, onNext: {}, finished: .constant(false))
 }
