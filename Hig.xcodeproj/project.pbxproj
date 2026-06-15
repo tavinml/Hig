@@ -92,11 +92,11 @@
 				};
 			};
 			buildConfigurationList = 144437E12FCDA4D200B0E75F /* Build configuration list for PBXProject "Hig" */;
-			developmentRegion = en;
+			developmentRegion = "pt-BR";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 144437DD2FCDA4D200B0E75F;
 			minimizedProjectReferenceProxies = 1;
