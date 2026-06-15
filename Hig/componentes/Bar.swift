@@ -63,7 +63,7 @@ struct Bar: View {
                 SlideView(lesson: lessons[1])
                 
             case .tipografia:
-                Text("Tela de tipo")
+                SlideView(lesson: lessons[2])
                 
             case .contraste:
                 Text("Tela de contra")

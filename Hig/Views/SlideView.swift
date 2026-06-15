@@ -56,7 +56,7 @@ struct SlideView: View {
                     }
                     
                     Button(action: {
-                        if index < numSlides{
+                        if index < numSlides - 1{
                             index += 1
                         }
                     }, label: {
