@@ -1,26 +1,48 @@
+
 import SwiftUI
 import Nuvem
 
-struct AllLessonsView: View {
+struct TesteView: View {
+    
     @State var lessons: [Lessons.Observable] = []
-    @State var num: Int = 1
+    
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(lessons) { lesson in
-                    NavigationLink {
-                        SlideView(lesson: lesson)
-                    } label: {
-                        Text(lesson.titleLesson)
-                        Text("\(lesson.number) de\(lesson.contents?.count)")
+            ScrollView {
+                VStack(alignment: .leading) {
+                    ForEach(Module.allCases, id: \.self) { module in
+                        let moduleLessons = lessons.filter { $0.moduleType == module.rawValue }
+                        
+                        if !moduleLessons.isEmpty {
+                            Text(module.title)
+                                .font(.largeTitle)
+                                .bold()
+                                .padding(.leading, 34)
+                                .padding(.top, 5)
+                            
+                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 382), spacing: 5)], spacing: 5) {
+                                ForEach(moduleLessons) { lesson in
+                                    NavigationLink {
+                                        SlideView(lesson: lesson)
+                                    } label: {
+                                        Card(lesson: lesson)
+                                            .frame(minWidth: 382)
+                                            .frame(height: 233)
+                                            .padding(10)
+                                    }
+                                    .buttonStyle(.borderless)
+                                }
+                            }
+                            .padding()
+                        }
                     }
-
                 }
             }
             .task {
                 do {
                     self.lessons = try await Lessons.query(on: .default)
                         .with(\.$contents)
+                        .sort(\.$number, order: .ascending)
                         .all()
                         .map(\.observable)
                 } catch {
@@ -29,8 +51,4 @@ struct AllLessonsView: View {
             }
         }
     }
-}
-#Preview {
-    AllLessonsView()
-        .frame(width: 300, height: 300)
 }

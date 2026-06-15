@@ -60,7 +60,7 @@ struct Bar: View {
                 PracticeView()
                 
             case .alinhamento:
-                Text("Tela de alinha")
+                SlideView(lesson: lessons[1])
                 
             case .tipografia:
                 Text("Tela de tipo")

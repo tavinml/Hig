@@ -16,7 +16,7 @@ struct Baloon: View {
                 .font(.title)
                 .lineSpacing(windowWidth > 1200 ? 8 : 4)
                 .padding(windowWidth > 1200 ? 28 : 18)
-                .background(Color.white)
+                .background(Color.backgroundChatLesson)
                 .cornerRadius(windowWidth > 1200 ? 24 : 18)
         }
         .foregroundStyle(Color.black)
