@@ -27,7 +27,7 @@ struct ProgressBar: View {
         VStack(alignment: .leading, spacing: 20) {
                 Text("Desafio \(current)/\(total)") // contador dos desafios concluidos
                 .font(.largeTitle.bold())
-                .foregroundColor(.white)
+                .foregroundColor(.componetesProgressBar)
             
             // usado para calcular o valor da barra de progresso de acordo com a quantidade toal de desafios
             GeometryReader { geometry in
@@ -62,7 +62,7 @@ struct ProgressBar: View {
                     }
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)
-                    .background(Color.white)
+                    .background(Color.colorSlider)
                     .foregroundStyle(Color.black)
                     .clipShape(Capsule())
                 }
@@ -83,7 +83,7 @@ struct ProgressBar: View {
                             }
                             .padding(.horizontal, 30)
                             .padding(.vertical, 10)
-                            .background(Color.white)
+                            .background(Color.colorSlider)
                             .foregroundStyle(Color.black)
                             .clipShape(Capsule())
                                 
@@ -101,7 +101,7 @@ struct ProgressBar: View {
                         }
                         .padding(.horizontal, 30)
                         .padding(.vertical, 10)
-                        .background(Color.white)
+                        .background(Color.colorSlider)
                         .foregroundStyle(Color.black)
                         .clipShape(Capsule())
                     }
@@ -135,7 +135,7 @@ struct ProgressBar: View {
 //                    Text("Refazer")
 //                        .font(Font.title.bold())
 //
-//                    
+//
 //                }
 //                .padding(.horizontal, 30)
 //                .padding(.vertical, 10)
@@ -149,7 +149,7 @@ struct ProgressBar: View {
 //            .buttonStyle(.plain)
         }
         .padding(24)
-        .background(Color(red: 0.11, green: 0.11, blue: 0.12))
+        .background(Color.backgroundProgressBar)
         .cornerRadius(26)
         
     }

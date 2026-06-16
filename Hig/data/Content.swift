@@ -5,7 +5,6 @@
 //  Created by Ana Soares on 10/06/26.
 //
 
-
 import Foundation
 import CloudKit
 import Nuvem
@@ -21,10 +20,11 @@ struct Content{
     var imageContent: NSImage?
     @CKAssetField("imageMascot")
     var imageMascot: NSImage
+    @CKField("descriptionImage", default: "")
+    var descriptionImage: String?
 }
 
 import SwiftUI
-
 struct TestView: View {
     @State var contents: [Content.Observable] = []
     var body: some View {
@@ -72,7 +72,8 @@ struct ContentsView_Preview: View {
                 title: "title",
                 description: "description",
                 imageContent: NSImage(named: "challenge")!,
-                imageMascot: NSImage(named: "challenge")!
+                imageMascot: NSImage(named: "challenge")!,
+                descriptionImage: "description",
             ).observable
         )
     }
