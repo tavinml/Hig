@@ -48,19 +48,28 @@ struct ChatComponent: View {
                     .foregroundStyle(challengeState == .wrong ? Color.red : Color.green)
             }
             
-            Text(text)
-                .font(.body.bold())
-                .foregroundColor(.black)
+            ZStack(alignment: .bottomLeading){
+                Rectangle()
+                    .fill(Color.colorLayout)
+                    .frame(width: 30, height: 20)
+                
+                Text(text)
+                    .font(.body.bold())
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                    .background(.colorLayout)
+                    .cornerRadius(24)
+            }
             
         }
         .frame(maxWidth: 440, alignment: .leading)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 12)
-        .background(.colorLayout)
-        .cornerRadius(38)
+        
     }
     //Balao branco
     private func change(_ text: String) -> some View {
+        
+        
         Text(text)
             .font(.body)
             .foregroundStyle(.black)
