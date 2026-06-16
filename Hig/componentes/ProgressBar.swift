@@ -26,7 +26,7 @@ struct ProgressBar: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-                Text("Desafio \(completed)/\(total)") // contador dos desafios concluidos
+                Text("Desafio \(current)/\(total)") // contador dos desafios concluidos
                 .font(.largeTitle.bold())
                 .foregroundColor(.white)
             
@@ -87,6 +87,7 @@ struct ProgressBar: View {
                             .background(Color.white)
                             .foregroundStyle(Color.black)
                             .clipShape(Capsule())
+//                            .animation(.spring(duration: 1, bounce: 0.9), value: completed)
                                 
                         })
                         .buttonStyle(.borderless)

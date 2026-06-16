@@ -63,7 +63,7 @@ struct SlideView: View {
                                 } , label: {
                                     Text("Começar a pratica")
                                         .font(windowWidth > 1200 ? .largeTitle : .title3)
-                                        .foregroundColor(.colorLayout)
+                                        .foregroundColor(.black)
                                         .bold()
                                 })
                                 .buttonStyle(.borderless)

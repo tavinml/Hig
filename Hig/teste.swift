@@ -7,7 +7,9 @@ struct AllLessonsView: View {
     @State var num: Int = 1
     var body: some View {
         NavigationStack {
-            Text("coisa linda")
+                VStack {
+                ProgressView("Em andamento...")
+            }
         }
     }
 }
