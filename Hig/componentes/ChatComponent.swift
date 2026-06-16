@@ -11,6 +11,7 @@ struct ChatComponent: View {
     
     let challenge: Challenge
     let challengeState: ChallengeState
+    let completedChallenges: Int
     let currntIndex: Int
     let total: Int
     let onRetry: () -> Void
@@ -139,6 +140,7 @@ struct ChatComponent: View {
             Spacer()
             ProgressBar(current: currntIndex + 1,
                         total: total,
+                        completed: completedChallenges,
                         challengeState: challengeState,
                         onNext: onNext,
                         onRetry: onRetry,
@@ -155,6 +157,6 @@ struct ChatComponent: View {
     }
 }
 
-#Preview {
-    ChatComponent(challenge: Challenge(), challengeState: .initial, currntIndex: 4, total: 5, onRetry: {}, onNext: {}, finished: .constant(false))
-}
+//#Preview {
+//    ChatComponent(challenge: Challenge(), challengeState: .initial, currntIndex: 4, total: 5, onRetry: {}, onNext: {}, finished: .constant(false))
+//}

@@ -48,6 +48,7 @@ struct PracticeView: View {
                         
                         ChatComponent(challenge: challenges[currentChallengeIndex],
                                       challengeState: challengeState,
+                                      completedChallenges: completedChallenges.count,
                                       currntIndex: currentChallengeIndex,
                                       total: challenges.count,
                                       onRetry: handleRetry,
