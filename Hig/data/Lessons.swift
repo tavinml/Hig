@@ -12,17 +12,17 @@ import AppKit
 
 @CKModel
 struct Lessons{
-    @CKField("number")
+    @CKField("number", default: 0)
     var number: Int
-    @CKField("image")
+    @CKField("image", default: "")
     var image: String
-    @CKField("moduleType")
+    @CKField("moduleType", default: "")
     var moduleType: String
     @CKReferenceListField("challenge")
-    var challenges: [Challenge]?
+    var challenges: [Challenge]
     @CKReferenceListField("content")
-    var contents: [Content]?
-    @CKField("titleLesson")
+    var contents: [Content]
+    @CKField("titleLesson", default: "")
     var titleLesson: String
 }
 

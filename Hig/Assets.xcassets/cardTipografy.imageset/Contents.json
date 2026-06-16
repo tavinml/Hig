@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Group 26 (1) 1-4.png",
+      "filename" : "Tipografia - Mascote.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Tipografia - Mascote 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Tipografia - Mascote 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

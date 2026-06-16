@@ -15,6 +15,7 @@ struct HigApp: App {
             Bar()
                 .frame(minWidth: 950, minHeight: 600)
 //            Wrong1()
+
         }
         .windowResizability(.contentMinSize)
     }

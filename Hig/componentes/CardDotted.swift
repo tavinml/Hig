@@ -9,12 +9,11 @@ import SwiftUI
 
 struct cardDotted: View {
     
-    @State var selected: Bool
-    
+    let selected: Bool
     let correct: Bool
     let height: CGFloat
-    @State var exerciseNumber: String
-    
+    let exerciseNumber: String
+    var onTap: () -> Void  = {}
     
     private var currentColor: Color {
         if selected {
@@ -25,11 +24,7 @@ struct cardDotted: View {
     }
     
     private var icon: String {
-        if correct {
-           return  "checkmark.circle"
-        } else {
-            return "xmark.circle"
-        }
+       correct ? "checkmark.circle.fill" : "xmark.circle.fill"
     }
     
     var body: some View {
@@ -41,14 +36,7 @@ struct cardDotted: View {
            
                 .frame(maxWidth: .infinity )
                 .frame(height: height)
-//                .overlay(
-//                    Text(exerciseNumber)
-//                        .frame(width: 30)
-//                        .background(Color.red.opacity(0.5))
-//                        .position(x: 0, y: 30)
-//                )
-//                .frame(width: .infinity, height: height)
-//                .background(Color.blue.opacity(0.5))
+
         .overlay(alignment: .topLeading){
             Circle()
                 .fill(currentColor)
@@ -59,16 +47,22 @@ struct cardDotted: View {
                     )
                 .overlay(
                     Text(exerciseNumber)
-//                        ./*font(.system(size: 12, weight:bold))*/
                         .foregroundStyle(Color.white)
                 )
                 .offset(x: -8, y: -8)
         }
+//        .overlay(alignment: .topLeading){
+//            if selected {
+//                Image(systemName:icon)
+//                    .font(.title)
+//                    .foregroundStyle(currentColor)
+//                    .background(Circle().fill(Color.white))
+//                    .offset(x: -8, y: -8)
+//            }
+//        }
         
         .contentShape(RoundedRectangle(cornerRadius: 26))
-        .onTapGesture {
-            selected.toggle()
-        }
+        .onTapGesture(perform: onTap)
         .animation(.default, value: selected)
         
     }
@@ -77,8 +71,8 @@ struct cardDotted: View {
 
 #Preview {
     VStack(alignment: .leading, spacing: 15) {
-        cardDotted(selected: false, correct : false, height: 62, exerciseNumber: "1")
+        cardDotted(selected: true, correct : true, height: 62, exerciseNumber: "1")
         cardDotted( selected: true, correct : false, height: 80, exerciseNumber: "2")
     }
-//    .frame(width: 300,height: 400)
+
 }

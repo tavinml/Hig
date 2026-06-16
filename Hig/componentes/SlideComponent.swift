@@ -21,7 +21,7 @@ struct SlideComponent: View {
                     Image(nsImage: content.imageMascot)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: windowWidth * 0.35)
+                        .frame(width: windowWidth * 0.30)
                         
                 
                         VStack(alignment: .leading, spacing: windowWidth * 0.02){
@@ -33,7 +33,7 @@ struct SlideComponent: View {
                                 ZStack(alignment: .bottomLeading) {
                                    
                                    Rectangle()
-                                       .fill(Color.white)
+                                        .fill(Color.backgroundBaloon)
                                        .frame(width: windowWidth > 1200 ? 40 : 30,
                                               height: windowWidth > 1200 ? 40 : 30)
                                    
@@ -41,7 +41,7 @@ struct SlideComponent: View {
                                         .resizable()
                                         .scaledToFit()
                                        .padding(windowWidth > 1200 ? 24 : 18)
-                                       .background(Color.white)
+                                       .background(Color.backgroundBaloon)
                                        .cornerRadius(windowWidth > 1200 ? 24 : 18)
                                }
                                .foregroundStyle(Color.black)
@@ -52,11 +52,6 @@ struct SlideComponent: View {
                 }
                 .frame(maxWidth: 1600)
                 .padding(40)
-//                VStack(){
-//                    Spacer()
-//                    Slider(content: content, windowWidth: windowWidth, numSlides: numSlides)
-//                }
-//                .padding(16)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
