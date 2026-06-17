@@ -19,7 +19,7 @@ struct ChatBaloonTitle: View {
             Rectangle()
                 .fill(.colorLayout)
                 .frame(width: windowWidth > 1200 ? 40 : 30,
-                       height: windowWidth > 1200 ? 40 : 30)
+                       height: windowWidth > 1200 ? 35 : 30)
             
             HStack(spacing: 6) {
                 if let icon {
@@ -28,18 +28,18 @@ struct ChatBaloonTitle: View {
                 }
                 
                 Text(text)
-                    .font(.title)
+                    .font(windowWidth > 1200 ? .title : .title2)
                     .foregroundStyle(Color.black)
-                    .padding(windowWidth > 1200 ? 24 : 18)
+                    .padding(windowWidth > 1200 ? 4 : 2)
                     .background(Color.colorLayout)
                     .cornerRadius(windowWidth > 1200 ? 24 : 18)
-                
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                    .background(.colorLayout)
+                    .cornerRadius(24)
             }
             .frame(maxWidth: 440, alignment: .leading)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 12)
-            .background(.colorLayout)
-            .cornerRadius(24)
+           
         }
     }
 }

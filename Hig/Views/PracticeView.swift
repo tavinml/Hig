@@ -53,6 +53,7 @@ struct PracticeView: View {
                                       total: challenges.count,
                                       onRetry: handleRetry,
                                       onNext: handleNext,
+                                      windowWidth: geometry.size.width,
                                       finished: $finished)
                         .frame(width: geometry.size.width * 0.4)
                     }

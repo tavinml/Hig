@@ -16,6 +16,8 @@ struct ChatComponent: View {
     let total: Int
     let onRetry: () -> Void
     let onNext: () -> Void
+    let windowWidth: CGFloat
+
     
    @Binding var finished: Bool
     
@@ -77,11 +79,13 @@ struct ChatComponent: View {
     
 
     var body: some View {
-        GeometryReader { geometry in
-            let windowWidth = geometry.size.width
-            VStack(alignment: .center){
+//        GeometryReader { geometry in
+//            let windowWidth = geometry.size.width
+        VStack(alignment: .center){
+            Spacer(minLength: 5)
+            VStack(alignment: .center, spacing: windowWidth > 1200 ? 50 : 30){
                 Text(challenge.titleChat) //Titulo
-                    .font(.largeTitle)
+                    .font(windowWidth > 1200 ? .largeTitle : .title)
                     .bold()
                 
                 HStack(alignment: .top) {
@@ -96,7 +100,7 @@ struct ChatComponent: View {
                         .padding(.horizontal, 20)
                     }
                     
-                    VStack(alignment: .trailing, spacing: 8){
+                    VStack(alignment: .trailing, spacing: 24){
                         switch challengeState {
                             //Passo os valores de acordo com o array do CloudKit
                         case .initial:
@@ -111,7 +115,7 @@ struct ChatComponent: View {
                                 }
                             }
                             
-                            //                        
+                            //
                         case .wrong:
                             
                             ChatBaloonTitle(text: challenge.wrongFeedback.wrongTitle,
@@ -138,6 +142,7 @@ struct ChatComponent: View {
                     
                     
                     
+                    
                     //                Text(changeText)
                     //                    .font(.title2)
                     //                    .background(changeColorBaloon)
@@ -158,9 +163,11 @@ struct ChatComponent: View {
             .ignoresSafeArea()
             .frame(maxWidth: . infinity)
             .frame(maxHeight: .infinity, alignment: .topTrailing)
+        }
+           
             
             .background(Color.backgroundChat)
-        }
+//        }
     }
 }
 

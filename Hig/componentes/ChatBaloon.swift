@@ -18,24 +18,25 @@ struct ChatBaloon: View {
         ZStack(alignment: .bottomLeading){
             Rectangle()
                 .fill(.white)
-                .frame(width: windowWidth > 1200 ? 70 : 50,
-                       height: windowWidth > 1200 ? 50 : 40)
+                .frame(width: windowWidth > 1200 ? 40 : 30,
+                       height: windowWidth > 1200 ? 35 : 30)
+                
             
             HStack(spacing: 6) {
                 Text(text)
                     .foregroundColor(Color.black)
-                    .font(.title)
+                    .font(windowWidth > 1200 ? .title : .title2)
                     .lineSpacing(windowWidth > 1200 ? 8 : 4)
-                    .padding(windowWidth > 1200 ? 28 : 18)
+                    .padding(windowWidth > 1200 ? 4 :2)
                     .background(Color.backgroundBaloon)
                     .cornerRadius(windowWidth > 1200 ? 24 : 18)
+                   .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                    .background(.white)
+                    .cornerRadius(24)
                 
             }
             .frame(maxWidth: 440, alignment: .leading)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 12)
-            .background(.white)
-            .cornerRadius(24)
         }
         
 //        Text(text)
