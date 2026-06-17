@@ -5,7 +5,6 @@
 //  Created by Ana Soares on 10/06/26.
 //
 
-
 import Foundation
 import CloudKit
 import Nuvem
@@ -26,7 +25,6 @@ struct Content{
 }
 
 import SwiftUI
-
 struct TestView: View {
     @State var contents: [Content.Observable] = []
     var body: some View {
