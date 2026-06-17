@@ -21,18 +21,15 @@ struct SlideComponent: View {
                     Image(nsImage: content.imageMascot)
                         .resizable()
                         .scaledToFit()
-                        .accessibilityHidden(true)
                         .frame(width: windowWidth * 0.30)
                         
                 
                         VStack(alignment: .leading, spacing: windowWidth * 0.02){
                             BaloonTitle(content: content, windowWidth: windowWidth)
-
                             if let description = content.description {
                                 Baloon(content: content, windowWidth: windowWidth)
                             }
-                            if let imageContent = content.imageContent
-                                {
+                            if let imageContent = content.imageContent {
                                 ZStack(alignment: .bottomLeading) {
                                    
                                    Rectangle()
@@ -41,10 +38,8 @@ struct SlideComponent: View {
                                               height: windowWidth > 1200 ? 40 : 30)
                                    
                                     Image(nsImage: content.imageContent ?? content.imageMascot)
-                                        
                                         .resizable()
                                         .scaledToFit()
-                                        .accessibilityLabel(Text("\(content.descriptionImage)"))
                                        .padding(windowWidth > 1200 ? 24 : 18)
                                        .background(Color.backgroundBaloon)
                                        .cornerRadius(windowWidth > 1200 ? 24 : 18)
@@ -52,8 +47,8 @@ struct SlideComponent: View {
                                .foregroundStyle(Color.black)
                             }
                     }
+                    
                     .frame(width: windowWidth * 0.40, alignment: .leading)
-                
                 }
                 .frame(maxWidth: 1600)
                 .padding(40)
