@@ -73,7 +73,7 @@ struct ContentsView_Preview: View {
                 description: "description",
                 imageContent: NSImage(named: "challenge")!,
                 imageMascot: NSImage(named: "challenge")!,
-                descriptionImage: "description",
+                descriptionImage: ""
             ).observable
         )
     }
