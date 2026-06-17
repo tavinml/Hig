@@ -11,13 +11,10 @@ struct ChatComponent: View {
     
     let challenge: Challenge
     let challengeState: ChallengeState
-    let completedChallenges: Int
     let currntIndex: Int
     let total: Int
     let onRetry: () -> Void
     let onNext: () -> Void
-    let windowWidth: CGFloat
-
     
    @Binding var finished: Bool
     
@@ -50,16 +47,22 @@ struct ChatComponent: View {
                     .foregroundStyle(challengeState == .wrong ? Color.red : Color.green)
             }
             
-            Text(text)
-                .font(.body.bold())
-                .foregroundColor(.black)
+            ZStack(alignment: .bottomLeading){
+                Rectangle()
+                    .fill(Color.colorLayout)
+                    .frame(width: 30, height: 20)
+                
+                Text(text)
+                    .font(.body.bold())
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+                    .background(.colorLayout)
+                    .cornerRadius(24)
+            }
             
         }
         .frame(maxWidth: 440, alignment: .leading)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 12)
-        .background(.colorLayout)
-        .cornerRadius(24)
         
     }
     //Balao branco
@@ -73,104 +76,94 @@ struct ChatComponent: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
             .background(.white)
-            .cornerRadius(24)
+            .cornerRadius(38)
     }
     
     
 
     var body: some View {
-//        GeometryReader { geometry in
-//            let windowWidth = geometry.size.width
         VStack(alignment: .center){
-            Spacer(minLength: 5)
-            VStack(alignment: .center, spacing: windowWidth > 1200 ? 50 : 30){
-                Text(challenge.titleChat) //Titulo
-                    .font(windowWidth > 1200 ? .largeTitle : .title)
-                    .bold()
-                
-                HStack(alignment: .top) {
-                    
-                    if let image =  chatImage {
-                        Image(
-                            nsImage: image
-                        ) //Imagem do mascote que ficara do lado dos baloes
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 150, maxHeight: 150)
-                        .padding(.horizontal, 20)
-                    }
-                    
-                    VStack(alignment: .trailing, spacing: 24){
-                        switch challengeState {
-                            //Passo os valores de acordo com o array do CloudKit
-                        case .initial:
-                            
-                            ChatBaloonTitle(text: challenge.titleChallenge, icon: nil, iconColor: .clear, windowWidth: windowWidth)
-                            
-                            ForEach(challenge.descriptionChallenge, id: \.self){ description in
-                                
-                                //nem todos vao ter um segundo balao, faço isso pra quando ele ta diferente de vazio
-                                if !challenge.descriptionChallenge.isEmpty {
-                                    ChatBaloon(text: description, windowWidth: windowWidth)
-                                }
-                            }
-                            
-                            //
-                        case .wrong:
-                            
-                            ChatBaloonTitle(text: challenge.wrongFeedback.wrongTitle,
-                                            icon: "xmark.circle.fill",
-                                            iconColor: .red,
-                                            windowWidth: windowWidth)
-                            
-                            ChatBaloon(text: challenge.wrongFeedback.wrongFirst, windowWidth: windowWidth)
-                            
-                            if !challenge.wrongFeedback.wrongSecond.isEmpty {
-                                ChatBaloon(text: challenge.wrongFeedback.wrongSecond, windowWidth: windowWidth)
-                            }
-                        case .correct:
-                            ChatBaloonTitle(text: challenge.correctFeedback.correctTitle, icon: "checkmark.circle.fill", iconColor: .green,windowWidth: windowWidth)
-                            
-                            ChatBaloon(text: challenge.correctFeedback.correctFirst, windowWidth: windowWidth)
-                            
-                            if !challenge.correctFeedback.correctSecond.isEmpty {
-                                ChatBaloon(text: challenge.correctFeedback.correctSecond, windowWidth: windowWidth)
-                            }
-                            
-                        }
-                    }
-                    
-                    
-                    
-                    
-                    //                Text(changeText)
-                    //                    .font(.title2)
-                    //                    .background(changeColorBaloon)
-                    //                    .frame(maxWidth: 440, alignment: .leading)
-                }
-                Spacer()
-                ProgressBar(current: currntIndex + 1,
-                            total: total,
-                            completed: completedChallenges,
-                            challengeState: challengeState,
-                            onNext: onNext,
-                            onRetry: onRetry,
-                            finished: $finished)
-                .padding(.bottom, 40)
-            }
-            .padding(.top, 20)
-            .padding(.horizontal, 20)
-            .ignoresSafeArea()
-            .frame(maxWidth: . infinity)
-            .frame(maxHeight: .infinity, alignment: .topTrailing)
-        }
-           
+            Text(challenge.titleChat) //Titulo
+                .font(.largeTitle)
+                .bold()
             
-            .background(Color.backgroundChat)
-//        }
+            HStack(alignment: .top) {
+                
+                if let image =  chatImage {
+                    Image(
+                        nsImage: image
+                    ) //Imagem do mascote que ficara do lado dos baloes
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 150, maxHeight: 150)
+                    .padding(.horizontal, 20)
+                }
+                
+                VStack(alignment: .trailing, spacing: 8){
+                    switch challengeState {
+                        //Passo os valores de acordo com o array do CloudKit
+                    case .initial:
+                        
+                        
+                        titleChange(text: challenge.titleChallenge,
+                                    icon: nil)
+                        ForEach(challenge.descriptionChallenge, id: \.self){ description in
+                            
+                            //nem todos vao ter um segundo balao, faço isso pra quando ele ta diferente de vazio
+                            if !challenge.descriptionChallenge.isEmpty {
+                                change(description)
+                            }
+                        }
+                        
+//                        
+                    case .wrong:
+                        titleChange(text: challenge.wrongFeedback.wrongTitle,
+                                    icon: "xmark.circle.fill")
+                        
+                        change(challenge.wrongFeedback.wrongFirst)
+                        
+                        if !challenge.wrongFeedback.wrongSecond.isEmpty {
+                            change(challenge.wrongFeedback.wrongSecond)
+                        }
+                    case .correct:
+                        titleChange(text: challenge.correctFeedback.correctTitle,
+                                    icon: "checkmark.circle.fill")
+                        
+                        change(challenge.correctFeedback.correctFirst)
+                        
+                        if !challenge.correctFeedback.correctSecond.isEmpty {
+                            change(challenge.correctFeedback.correctSecond)
+                        }
+
+                    }
+                }
+                
+    
+                
+//                Text(changeText)
+//                    .font(.title2)
+//                    .background(changeColorBaloon)
+//                    .frame(maxWidth: 440, alignment: .leading)
+            }
+            Spacer()
+            ProgressBar(current: currntIndex + 1,
+                        total: total,
+                        challengeState: challengeState,
+                        onNext: onNext,
+                        onRetry: onRetry,
+                        finished: $finished)
+            .padding(.bottom, 40)
+        }
+        .padding(.top, 20)
+        .padding(.horizontal, 20)
+        .ignoresSafeArea()
+        .frame(maxWidth: . infinity)
+        .frame(maxHeight: .infinity, alignment: .topTrailing)
+            
+        .background(Color.backgroundChat)
     }
 }
 
-//#Preview {
-//    ChatComponent(challenge: Challenge(), challengeState: .initial, currntIndex: 4, total: 5, onRetry: {}, onNext: {}, finished: .constant(false))
-//}
+#Preview {
+    ChatComponent(challenge: Challenge(), challengeState: .initial, currntIndex: 4, total: 5, onRetry: {}, onNext: {}, finished: .constant(false))
+}

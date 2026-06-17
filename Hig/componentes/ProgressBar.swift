@@ -16,7 +16,6 @@ struct ProgressBar: View {
     
     var current: Int
     var total: Int
-    let completed: Int
     var challengeState: ChallengeState
     var onNext: () -> Void = {}
     var onRetry: () -> Void = {}
@@ -28,11 +27,11 @@ struct ProgressBar: View {
         VStack(alignment: .leading, spacing: 20) {
                 Text("Desafio \(current)/\(total)") // contador dos desafios concluidos
                 .font(.largeTitle.bold())
-                .foregroundColor(.componetesProgressBar)
+                .foregroundColor(.white)
             
             // usado para calcular o valor da barra de progresso de acordo com a quantidade toal de desafios
             GeometryReader { geometry in
-                let progressPercentage = CGFloat(completed) / CGFloat(total)
+                let progressPercentage = CGFloat(current) / CGFloat(total)
                 let calculatedWidth = geometry.size.width * progressPercentage
                 
                 ZStack(alignment: .leading) {
@@ -63,7 +62,7 @@ struct ProgressBar: View {
                     }
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)
-                    .background(Color.colorSlider)
+                    .background(Color.white)
                     .foregroundStyle(Color.black)
                     .clipShape(Capsule())
                 }
@@ -84,10 +83,9 @@ struct ProgressBar: View {
                             }
                             .padding(.horizontal, 30)
                             .padding(.vertical, 10)
-                            .background(Color.colorSlider)
+                            .background(Color.white)
                             .foregroundStyle(Color.black)
                             .clipShape(Capsule())
-//                            .animation(.spring(duration: 1, bounce: 0.9), value: completed)
                                 
                         })
                         .buttonStyle(.borderless)
@@ -103,7 +101,7 @@ struct ProgressBar: View {
                         }
                         .padding(.horizontal, 30)
                         .padding(.vertical, 10)
-                        .background(Color.colorSlider)
+                        .background(Color.white)
                         .foregroundStyle(Color.black)
                         .clipShape(Capsule())
                     }
@@ -137,7 +135,7 @@ struct ProgressBar: View {
 //                    Text("Refazer")
 //                        .font(Font.title.bold())
 //
-//
+//                    
 //                }
 //                .padding(.horizontal, 30)
 //                .padding(.vertical, 10)
@@ -151,25 +149,25 @@ struct ProgressBar: View {
 //            .buttonStyle(.plain)
         }
         .padding(24)
-        .background(Color.backgroundProgressBar)
+        .background(Color(red: 0.11, green: 0.11, blue: 0.12))
         .cornerRadius(26)
         
     }
 }
-//#Preview {
-//    VStack {
-//        ProgressBar(current: 1,
-//                    total: 3,
-//                    challengeState: .initial,
-//                    finished: .constant(false))
-//        ProgressBar(current: 2,
-//                    total: 3,
-//                    challengeState: .initial,
-//                    finished: .constant(false))
-//        ProgressBar(current: 3,
-//                    total: 3,
-//                    challengeState: .initial,
-//                    finished: .constant(true))
-//    }
-//    .padding()
-//}
+#Preview {
+    VStack {
+        ProgressBar(current: 1,
+                    total: 3,
+                    challengeState: .initial,
+                    finished: .constant(false))
+        ProgressBar(current: 2,
+                    total: 3,
+                    challengeState: .initial,
+                    finished: .constant(false))
+        ProgressBar(current: 3,
+                    total: 3,
+                    challengeState: .initial,
+                    finished: .constant(true))
+    }
+    .padding()
+}
