@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "cardAlignment.svg",
+      "filename" : "mascote.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Régua 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Régua 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
