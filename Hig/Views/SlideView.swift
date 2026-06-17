@@ -55,15 +55,11 @@ struct SlideView: View {
                                 label: {
                                     if index == 0 {
                                         Image(systemName: "chevron.left")
-                                            .font(
-                                                windowWidth > 1200 ? .title : .title3
-                                            )
+                                            .font(windowWidth > 1200 ? .title : .title3)
                                             .foregroundColor(Color.gray)
                                     }else{
                                         Image(systemName: "chevron.left")
-                                            .font(
-                                                windowWidth > 1200 ? .title : .title3
-                                            )
+                                            .font(windowWidth > 1200 ? .title : .title3)
                                             .foregroundColor(Color.black)
                                     }
                                 })
@@ -76,9 +72,7 @@ struct SlideView: View {
                                     },
                                     label: {
                                         Text("Começar a pratica")
-                                            .font(
-                                                windowWidth > 1200 ? .largeTitle : .title3
-                                            )
+                                            .font(windowWidth > 1200 ? .largeTitle : .title3)
                                             .foregroundColor(.black)
                                             .bold()
                                     })
@@ -97,17 +91,22 @@ struct SlideView: View {
                                     },
                                     label: {
                                         Image(systemName: "chevron.right")
-                                            .font(
-                                                windowWidth > 1200 ? .largeTitle : .title3
-                                            )
+                                            .font(windowWidth > 1200 ? .largeTitle : .title3)
                                         
                                     })
-                                .buttonStyle(.borderless)
+                                    .buttonStyle(.borderless)
                             } else {
-                                Image(systemName: "chevron.right")
-                                    .font(
-                                        windowWidth > 1200 ? .largeTitle : .title3
-                                    )
+                                Button(
+                                    action: {
+                                        showPractice.toggle()
+
+                                    },
+                                    label: {
+                                        Image(systemName: "chevron.right")
+                                            .font(windowWidth > 1200 ? .largeTitle : .title3)
+                                        
+                                    })
+                                    .buttonStyle(.borderless)
                             }
                             
                         }

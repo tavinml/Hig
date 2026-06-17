@@ -21,6 +21,8 @@ struct Content{
     var imageContent: NSImage?
     @CKAssetField("imageMascot")
     var imageMascot: NSImage
+    @CKField("descriptionImage", default: "")
+    var descriptionImage: String?
 }
 
 import SwiftUI
@@ -72,7 +74,8 @@ struct ContentsView_Preview: View {
                 title: "title",
                 description: "description",
                 imageContent: NSImage(named: "challenge")!,
-                imageMascot: NSImage(named: "challenge")!
+                imageMascot: NSImage(named: "challenge")!,
+                descriptionImage: ""
             ).observable
         )
     }
