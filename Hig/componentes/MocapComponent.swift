@@ -26,7 +26,7 @@ struct MocapComponent: View {
             )
 
             ZStack(alignment: .topLeading) {
-                if finished  && challenge.finishedImage != nil{
+                if challengeState == .correct  && challenge.finishedImage != nil{
                     Image(nsImage: challenge.finishedImage ?? challenge.imageChallenge)
                         .resizable()
                         .scaledToFit()

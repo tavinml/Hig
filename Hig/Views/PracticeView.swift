@@ -48,10 +48,12 @@ struct PracticeView: View {
                         
                         ChatComponent(challenge: challenges[currentChallengeIndex],
                                       challengeState: challengeState,
+                                      completedChallenges: completedChallenges.count,
                                       currntIndex: currentChallengeIndex,
                                       total: challenges.count,
                                       onRetry: handleRetry,
                                       onNext: handleNext,
+                                      windowWidth: geometry.size.width,
                                       finished: $finished)
                         .frame(width: geometry.size.width * 0.4)
                     }

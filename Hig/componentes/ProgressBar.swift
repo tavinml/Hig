@@ -16,6 +16,7 @@ struct ProgressBar: View {
     
     var current: Int
     var total: Int
+    let completed: Int
     var challengeState: ChallengeState
     var onNext: () -> Void = {}
     var onRetry: () -> Void = {}
@@ -31,7 +32,7 @@ struct ProgressBar: View {
             
             // usado para calcular o valor da barra de progresso de acordo com a quantidade toal de desafios
             GeometryReader { geometry in
-                let progressPercentage = CGFloat(current) / CGFloat(total)
+                let progressPercentage = CGFloat(completed) / CGFloat(total)
                 let calculatedWidth = geometry.size.width * progressPercentage
                 
                 ZStack(alignment: .leading) {
@@ -86,6 +87,7 @@ struct ProgressBar: View {
                             .background(Color.colorSlider)
                             .foregroundStyle(Color.black)
                             .clipShape(Capsule())
+//                            .animation(.spring(duration: 1, bounce: 0.9), value: completed)
                                 
                         })
                         .buttonStyle(.borderless)
@@ -154,20 +156,20 @@ struct ProgressBar: View {
         
     }
 }
-#Preview {
-    VStack {
-        ProgressBar(current: 1,
-                    total: 3,
-                    challengeState: .initial,
-                    finished: .constant(false))
-        ProgressBar(current: 2,
-                    total: 3,
-                    challengeState: .initial,
-                    finished: .constant(false))
-        ProgressBar(current: 3,
-                    total: 3,
-                    challengeState: .initial,
-                    finished: .constant(true))
-    }
-    .padding()
-}
+//#Preview {
+//    VStack {
+//        ProgressBar(current: 1,
+//                    total: 3,
+//                    challengeState: .initial,
+//                    finished: .constant(false))
+//        ProgressBar(current: 2,
+//                    total: 3,
+//                    challengeState: .initial,
+//                    finished: .constant(false))
+//        ProgressBar(current: 3,
+//                    total: 3,
+//                    challengeState: .initial,
+//                    finished: .constant(true))
+//    }
+//    .padding()
+//}
