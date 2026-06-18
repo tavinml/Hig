@@ -40,7 +40,7 @@ struct cardDotted: View {
         .overlay(alignment: .topLeading){
             Circle()
                 .fill(currentColor)
-                .frame(width: 24,height: 24)
+                .frame(width: 22,height: 22)
                 .overlay(
                     Circle()
                         .stroke(currentColor, lineWidth: 2)
