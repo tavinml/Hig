@@ -32,6 +32,8 @@ struct Challenge{
     var titleChat: String
     @CKAssetField("finishedImage")
     var finishedImage: NSImage?
+    @CKField("finishedAreas", default: Areas(values: []))
+    var finishedArea: Areas
 }
 
 struct Areas: CKCodable {

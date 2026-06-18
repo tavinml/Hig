@@ -79,7 +79,7 @@ struct ProgressBar: View {
                             HStack(alignment: .center) {
                                 Image(systemName: "play.fill")
                                     .font(Font.title.bold())
-                                Text("CONCLUIR LIÇÃO")
+                                Text("Concluir seção")
                                     .font(Font.title.bold())
                             }
                             .padding(.horizontal, 30)

@@ -14,6 +14,18 @@ struct MocapComponent: View {
     let onSelected: (Int) -> Void
     
     @Binding var finished: Bool
+    
+    private var ShowFinished: Bool {
+        challengeState == .correct && challenge.finishedImage != nil
+    }
+    
+    private var ShowImage: NSImage{
+        ShowFinished ? (challenge.finishedImage ?? challenge.imageChallenge) : challenge.imageChallenge
+    }
+    
+    private var showAreas : Areas {
+        ShowFinished ? challenge.finishedArea  : challenge.area
+    }
    
 
     var body: some View {
@@ -21,26 +33,31 @@ struct MocapComponent: View {
 
             // onde a imagem esta dentro
             let imageRect = renderedRect(
-                imageSize: challenge.imageChallenge.size,
+                imageSize: ShowImage.size,
                 frameSize: geometry.size
             )
 
             ZStack(alignment: .topLeading) {
-                if challengeState == .correct  && challenge.finishedImage != nil{
-                    Image(nsImage: challenge.finishedImage ?? challenge.imageChallenge)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                } else {
-                    Image(nsImage: challenge.imageChallenge)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                }
+                
+                Image(nsImage: ShowImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+//                if challengeState == .correct  && challenge.finishedImage != nil{
+//                    Image(nsImage: challenge.finishedImage ?? challenge.imageChallenge)
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: geometry.size.width, height: geometry.size.height)
+//                } else {
+//                    Image(nsImage: challenge.imageChallenge)
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: geometry.size.width, height: geometry.size.height)
+//                }
                
 
                 //Listando as areas e os challengers
-                ForEach(Array(challenge.area.values.enumerated()), id: \.offset) { index, area in
+                ForEach(Array(showAreas.values.enumerated()), id: \.offset) { index, area in
                     let alreadyFound = correctsIndex.contains(index) //verifica se uma area especifica ja foi encontrada
 
                     cardDotted(
