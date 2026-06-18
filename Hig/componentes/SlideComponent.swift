@@ -40,7 +40,7 @@ struct SlideComponent: View {
                                        .frame(width: windowWidth > 1200 ? 40 : 30,
                                               height: windowWidth > 1200 ? 40 : 30)
                                    
-                                    Image(nsImage: content.imageContent ?? content.imageMascot)
+                                    Image(nsImage: imageContent)
                                         
                                         .resizable()
                                         .scaledToFit()

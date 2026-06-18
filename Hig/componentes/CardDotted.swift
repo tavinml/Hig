@@ -51,16 +51,6 @@ struct cardDotted: View {
                 )
                 .offset(x: -8, y: -8)
         }
-//        .overlay(alignment: .topLeading){
-//            if selected {
-//                Image(systemName:icon)
-//                    .font(.title)
-//                    .foregroundStyle(currentColor)
-//                    .background(Circle().fill(Color.white))
-//                    .offset(x: -8, y: -8)
-//            }
-//        }
-        
         .contentShape(RoundedRectangle(cornerRadius: 26))
         .onTapGesture(perform: onTap)
         .animation(.default, value: selected)

@@ -55,11 +55,11 @@ struct SlideView: View {
                                 label: {
                                     if index == 0 {
                                         Image(systemName: "chevron.left")
-                                            .font(windowWidth > 1200 ? .title : .title3)
+                                            .font(windowWidth > 1200 ? .title : .title)
                                             .foregroundColor(Color.gray)
                                     }else{
                                         Image(systemName: "chevron.left")
-                                            .font(windowWidth > 1200 ? .title : .title3)
+                                            .font(windowWidth > 1200 ? .title : .title)
                                             .foregroundColor(Color.black)
                                     }
                                 })
@@ -72,16 +72,14 @@ struct SlideView: View {
                                     },
                                     label: {
                                         Text("Começar a pratica")
-                                            .font(windowWidth > 1200 ? .largeTitle : .title3)
+                                            .font(windowWidth > 1200 ? .title : .title)
                                             .foregroundColor(.black)
                                             .bold()
                                     })
                                 .buttonStyle(.borderless)
                             } else{
                                 Text("\(index + 1) de \(numSlides)")
-                                    .font(
-                                        windowWidth > 1200 ? .largeTitle : .title3
-                                    )
+                                    .font(windowWidth > 1200 ? .title : .title)
                             }
                             
                             if !LastSlide {
@@ -91,42 +89,32 @@ struct SlideView: View {
                                     },
                                     label: {
                                         Image(systemName: "chevron.right")
-                                            .font(windowWidth > 1200 ? .largeTitle : .title3)
-                                        
+                                            .font(windowWidth > 1200 ? .title : .title)
                                     })
                                     .buttonStyle(.borderless)
                             } else {
                                 Button(
                                     action: {
                                         showPractice.toggle()
-
                                     },
                                     label: {
                                         Image(systemName: "chevron.right")
-                                            .font(windowWidth > 1200 ? .largeTitle : .title3)
+                                            .font(windowWidth > 1200 ? .title : .title)
                                         
                                     })
                                     .buttonStyle(.borderless)
                             }
-                            
                         }
                         .foregroundStyle(Color.black)
-                        .padding(.horizontal, windowWidth > 1200 ? 22 : 16)
-                        .padding(.vertical, windowWidth > 1200 ? 16 : 10)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
                         .background(Color.colorSlider)
                         .clipShape(Capsule())
-                        .padding(.bottom, windowWidth > 1200 ? 30 : 18)
-
-                        
+                        .padding(.bottom, 30)
                     }
-
-                    
                 }
-
             }
         }
-
-        
     }
     
     func nextSlide(numSlides: Int) {

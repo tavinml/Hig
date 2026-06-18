@@ -18,6 +18,7 @@ struct PracticeView: View {
     @State private var foundCorrects: [Int] = []
     @State private var completedChallenges: [Int] = []
     @State var finished: Bool = false
+    @State var isOverlay: Bool = false
     
     private var challenges: [Challenge] {
         lesson.challenges
@@ -25,14 +26,9 @@ struct PracticeView: View {
     
     var body: some View {
         
-        //add as views
         Group {
             if challenges.isEmpty {
                 ProgressView("carregando desafios")
-//            } else if finished {
-//                VStack{
-//                    Text("parabens")
-//                }
             } else {
                 GeometryReader { geometry in
                     HStack {
@@ -54,21 +50,17 @@ struct PracticeView: View {
                                       onRetry: handleRetry,
                                       onNext: handleNext,
                                       windowWidth: geometry.size.width,
-                                      finished: $finished)
+                                      finished: $finished,
+                                      isOverlay: $isOverlay)
                         .frame(width: geometry.size.width * 0.4)
+                        
                     }
+                    .blur(radius: isOverlay ? 5 : 0)
+                    .overlay(loadingOverlay, alignment: .center)
+                    
                 }
             }
         }
-
-//        GeometryReader { geometry in
-//            HStack {
-//                MocapComponent()
-//                    .frame(width: geometry.size.width * 0.6)
-//                ChatComponent()
-//                    .frame(width: geometry.size.width * 0.4)
-//            }
-//        }
     }
     
     private func handleSelected(_ areaId: Int){
@@ -93,6 +85,11 @@ struct PracticeView: View {
             challengeState = .initial
         } else {
             finished = true
+        }
+    }
+    @ViewBuilder private var loadingOverlay: some View {
+        if isOverlay {
+            PopupFinished()
         }
     }
 }
