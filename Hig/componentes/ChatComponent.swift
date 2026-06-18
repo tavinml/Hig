@@ -20,6 +20,7 @@ struct ChatComponent: View {
 
     
    @Binding var finished: Bool
+    @Binding var isOverlay: Bool
     
     
     // Faz a mudança do chatImage de acordo com o estado
@@ -75,12 +76,8 @@ struct ChatComponent: View {
             .background(.white)
             .cornerRadius(24)
     }
-    
-    
 
     var body: some View {
-//        GeometryReader { geometry in
-//            let windowWidth = geometry.size.width
         VStack(alignment: .center){
             Spacer(minLength: 5)
             VStack(alignment: .center, spacing: windowWidth > 1200 ? 50 : 30){
@@ -139,14 +136,6 @@ struct ChatComponent: View {
                             
                         }
                     }
-                    
-                    
-                    
-                    
-                    //                Text(changeText)
-                    //                    .font(.title2)
-                    //                    .background(changeColorBaloon)
-                    //                    .frame(maxWidth: 440, alignment: .leading)
                 }
                 Spacer()
                 ProgressBar(current: currntIndex + 1,
@@ -155,6 +144,8 @@ struct ChatComponent: View {
                             challengeState: challengeState,
                             onNext: onNext,
                             onRetry: onRetry,
+                            windowWidth: windowWidth,
+                            isOverlay: $isOverlay,
                             finished: $finished)
                 .padding(.bottom, 40)
             }

@@ -9,21 +9,26 @@ import SwiftUI
 
 struct LessonButton: View {
     var body: some View {
-        HStack(alignment: .center, spacing: 30) {
-            Image(systemName: "books.vertical")
-                .foregroundColor(.black)
-                .font(Font.title.bold())
-               
-            
-            Text("Lições")
-                .foregroundColor(.black)
-                .font(Font.title.bold())
+        NavigationStack {
+            NavigationLink(destination: LayoutView()) {
+                HStack(alignment: .center, spacing: 30) {
+                    Image(systemName: "books.vertical")
+                        .foregroundColor(.black)
+                        .font(Font.title.bold())
+                    
+                    
+                    Text("Lições")
+                        .foregroundColor(.black)
+                        .font(Font.title.bold())
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .frame(maxWidth: 215, maxHeight: 50)
+                .background(.colorLessonButton)
+                .cornerRadius(296)
+            }
+            .buttonStyle(.borderless)
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 15)
-        .frame(maxWidth: 265, maxHeight: 62)
-        .background(.colorLessonButton)
-        .cornerRadius(296)
     }
 }
 

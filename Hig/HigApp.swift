@@ -13,7 +13,7 @@ struct HigApp: App {
         WindowGroup {
 //            PopupFinished()
             Bar()
-                .frame(minWidth: 950, minHeight: 600)
+                .frame(minWidth: 950, minHeight: 700)
 
 
         }
