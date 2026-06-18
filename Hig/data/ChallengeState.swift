@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum ChallengeState {
     case initial
     case wrong
