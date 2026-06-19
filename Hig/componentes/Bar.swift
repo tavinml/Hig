@@ -67,14 +67,16 @@ struct Bar: View {
             case .hierarquia:
                 SlideView(lesson: model.lessons[0])
                 
-            case .configuracoes:
-                PracticeView(lesson: model.lessons[0])
-                
             case .alinhamento:
                 SlideView(lesson: model.lessons[1])
                 
             case .tipografia:
                 SlideView(lesson: model.lessons[2])
+                
+                
+            case .configuracoes:
+                PracticeView(lesson: model.lessons[0])
+                
                 
             case .contraste:
                 Text("Tela de contra")
