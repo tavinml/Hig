@@ -27,7 +27,6 @@ struct MocapComponent: View {
         ShowFinished ? challenge.finishedArea  : challenge.area
     }
    
-
     var body: some View {
         GeometryReader { geometry in
 

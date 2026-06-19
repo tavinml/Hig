@@ -28,32 +28,39 @@ struct cardDotted: View {
     }
     
     var body: some View {
-            RoundedRectangle(cornerRadius: 10)
-            .stroke(currentColor,
-                        style:  StrokeStyle(lineWidth: 4,
-                                            dash: [4],
-                                            dashPhase: 0))
-           
-                .frame(maxWidth: .infinity )
-                .frame(height: height)
+        
+        Button {
+                     onTap()
+                   } label: {
+                       RoundedRectangle(cornerRadius: 10)
+                       .stroke(currentColor,
+                                   style:  StrokeStyle(lineWidth: 4,
+                                                       dash: [4],
+                                                       dashPhase: 0))
+                      
+                           .frame(maxWidth: .infinity )
+                           .frame(height: height)
 
-        .overlay(alignment: .topLeading){
-            Circle()
-                .fill(currentColor)
-                .frame(width: 22,height: 22)
-                .overlay(
-                    Circle()
-                        .stroke(currentColor, lineWidth: 2)
-                    )
-                .overlay(
-                    Text(exerciseNumber)
-                        .foregroundStyle(Color.white)
-                )
-                .offset(x: -8, y: -8)
-        }
-        .contentShape(RoundedRectangle(cornerRadius: 26))
-        .onTapGesture(perform: onTap)
-        .animation(.default, value: selected)
+                   .overlay(alignment: .topLeading){
+                       Circle()
+                           .fill(currentColor)
+                           .frame(width: 22,height: 22)
+                           .overlay(
+                               Circle()
+                                   .stroke(currentColor, lineWidth: 2)
+                               )
+                           .overlay(
+                               Text(exerciseNumber)
+                                   .foregroundStyle(Color.white)
+                           )
+                           .offset(x: -8, y: -8)
+                   }
+                   .contentShape(RoundedRectangle(cornerRadius: 26))
+                   .onTapGesture(perform: onTap)
+                   .animation(.default, value: selected)
+                   }
+        
+            
         
     }
 }
