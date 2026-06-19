@@ -23,6 +23,7 @@ struct ChatComponent: View {
     @Binding var isOverlay: Bool
     
     
+    
     // Faz a mudança do chatImage de acordo com o estado
     private var chatImage: NSImage? {
         switch challengeState {

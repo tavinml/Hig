@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PopupFinished: View {
+    
+    
     var body: some View {
         VStack{
             VStack(alignment: .center, spacing: 30){
@@ -26,7 +28,7 @@ struct PopupFinished: View {
                 
                 HStack {
                     LessonButton()
-                    NextLessonButton()
+//                    NextLessonButton()
                         
                 }
             }
@@ -38,8 +40,8 @@ struct PopupFinished: View {
     }
 }
 
-#Preview {
-    PopupFinished()
-        .frame(width: 500, height: 400
-        )
-}
+//#Preview {
+//    PopupFinished()
+//        .frame(width: 500, height: 400
+//        )
+//}
