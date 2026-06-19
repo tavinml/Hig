@@ -58,6 +58,7 @@ struct Bar: View {
             .navigationSplitViewColumnWidth(min: 120, ideal: 140, max: 160)
             
         } detail: {
+            
             switch telaAtiva {
                 
             case .licoes:
