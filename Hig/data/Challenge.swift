@@ -45,6 +45,7 @@ struct TappableArea: Codable {
     let y: Double
     let width: Double
     let height: Double
+//    let description: String
 }
 
 struct WrongFeedack: CKCodable {

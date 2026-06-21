@@ -59,6 +59,7 @@ struct cardDotted: View {
                    .onTapGesture(perform: onTap)
                    .animation(.default, value: selected)
                    }
+                   .buttonStyle(.borderless)
         
             
         
