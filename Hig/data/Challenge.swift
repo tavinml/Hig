@@ -45,6 +45,7 @@ struct TappableArea: Codable {
     let y: Double
     let width: Double
     let height: Double
+//    let description: String
 }
 
 struct WrongFeedack: CKCodable {
@@ -58,9 +59,15 @@ struct CorrectFeedack: CKCodable {
     let correctFirst: String
     let correctSecond: String
 }
-
-struct DescriptionChallenge: CKCodable {
-    let descriptionTitle: String
-    let descriptionFirst: String
-    let descriptionSecond: String
-}
+//
+//struct AttemptFeedack: CKCodable {
+//    let AttemptTitle: String
+//    let AttemptFirst: String
+//    let AttemptSecond: String
+//}
+//
+//struct DescriptionChallenge: CKCodable {
+//    let descriptionTitle: String
+//    let descriptionFirst: String
+//    let descriptionSecond: String
+//}
