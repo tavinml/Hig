@@ -76,7 +76,7 @@ struct ProgressBar: View {
                             HStack(alignment: .center) {
                                 Image(systemName: "play.fill")
                                     .font(windowWidth > 1400 ? .title.bold() : .title2.bold())
-                                Text("CONCLUIR LIÇÃO")
+                                Text("Concluir Lição")
                                     .font(windowWidth > 1400 ? .title.bold() : .title2.bold())
                             }
                             .padding(.horizontal, windowWidth > 1400 ? 30 : 20)
@@ -113,12 +113,6 @@ struct ProgressBar: View {
         .background(Color.backgroundProgressBar)
         .cornerRadius(26)
         
-    }
-    
-    @ViewBuilder private var loadingOverlay: some View {
-        if isOverlay {
-            PopupFinished()
-        }
     }
 }
 //#Preview {

@@ -11,57 +11,65 @@ import Nuvem
 struct PracticeView: View {
     
     let lesson: Lessons.Observable
+    @Environment(AppModel.self) var model
     
-    @State private var currentChallengeIndex = 0
+    @State var currentChallengeIndex = 0
     @State private var challengeState: ChallengeState = .initial
     @State private var selectedArea: Int? = nil
     @State private var foundCorrects: [Int] = []
     @State private var completedChallenges: [Int] = []
+    
     @State var finished: Bool = false
     @State var isOverlay: Bool = false
+//    @State var isNextChallenge: Bool = false
     
+    
+    var numberChallenges: Int {
+        return lesson.challenges.count
+    }
     private var challenges: [Challenge] {
         lesson.challenges
     }
     
     var body: some View {
         
-        Group {
-            if challenges.isEmpty {
-                ProgressView("carregando desafios")
-            } else {
-                GeometryReader { geometry in
-                    HStack {
-                        //p
-                        MocapComponent(challenge: challenges[currentChallengeIndex],
-                                       challengeState: challengeState,
-                                       selectedArea: selectedArea,
-                                       correctsIndex: foundCorrects,
-                                       onSelected: handleSelected,
-                                       finished: $finished)
-                        .id(currentChallengeIndex)
-                        .frame(width: geometry.size.width * 0.6)
-                        
-                        ChatComponent(challenge: challenges[currentChallengeIndex],
-                                      challengeState: challengeState,
-                                      completedChallenges: completedChallenges.count,
-                                      currntIndex: currentChallengeIndex,
-                                      total: challenges.count,
-                                      onRetry: handleRetry,
-                                      onNext: handleNext,
-                                      windowWidth: geometry.size.width,
-                                      finished: $finished,
-                                      isOverlay: $isOverlay)
-                        .frame(width: geometry.size.width * 0.4)
-                        
-                    }
-                    .blur(radius: isOverlay ? 5 : 0)
-                    .overlay(loadingOverlay, alignment: .center)
+        GeometryReader { geometry in
+            let numChallenges = numberChallenges
+            if currentChallengeIndex < numChallenges{
+                HStack {
+                    
+                    MocapComponent(challenge: challenges[currentChallengeIndex],
+                                   challengeState: challengeState,
+                                   selectedArea: selectedArea,
+                                   correctsIndex: foundCorrects,
+                                   onSelected: handleSelected,
+                                   finished: $finished)
+                    .id(currentChallengeIndex)
+                    .frame(width: geometry.size.width * 0.6)
+                    
+                    ChatComponent(challenge: challenges[currentChallengeIndex],
+                                  challengeState: challengeState,
+                                  completedChallenges: completedChallenges.count,
+                                  currntIndex: currentChallengeIndex,
+                                  total: challenges.count,
+                                  onRetry: handleRetry,
+                                  onNext: handleNext,
+                                  windowWidth: geometry.size.width,
+                                  finished: $finished,
+                                  isOverlay: $isOverlay)
+                    .frame(width: geometry.size.width * 0.4)
                     
                 }
+                .blur(radius: isOverlay ? 5 : 0)
+                .overlay(loadingOverlay, alignment: .center)
             }
         }
     }
+    
+//    private func nextChallenge() {
+//        currentChallengeIndex += 1
+//        isNextChallenge.toggle()
+//    }
     
     private func handleSelected(_ areaId: Int){
         selectedArea = areaId
