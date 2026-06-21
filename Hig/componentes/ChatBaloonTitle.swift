@@ -33,6 +33,7 @@ struct ChatBaloonTitle: View {
                 Text(text)
                     .font(windowWidth > 1400 ? .title : .title2)
                     .foregroundStyle(Color.black)
+                    .bold()
 
             }
             .padding(windowWidth > 1400 ? 4 : 2)
