@@ -18,6 +18,7 @@ struct PracticeView: View {
     @State private var selectedArea: Int? = nil
     @State private var foundCorrects: [Int] = []
     @State private var completedChallenges: [Int] = []
+    @State private var wrongAttemptCount: Int = 0
     
     @State var finished: Bool = false
     @State var isOverlay: Bool = false
@@ -55,6 +56,7 @@ struct PracticeView: View {
                                   onRetry: handleRetry,
                                   onNext: handleNext,
                                   windowWidth: geometry.size.width,
+                                  wrongAttemptCount: wrongAttemptCount,
                                   finished: $finished,
                                   isOverlay: $isOverlay)
                     .frame(width: geometry.size.width * 0.4)
@@ -74,12 +76,29 @@ struct PracticeView: View {
     private func handleSelected(_ areaId: Int){
         selectedArea = areaId
         let correctIndex = challenges[currentChallengeIndex].correctSection
-        challengeState = (areaId == correctIndex) ? .correct : .wrong
+        if areaId == correctIndex {
+            challengeState = .correct
+            if completedChallenges.count == challenges.count  {
+                finished = true
+            }
+        } else {
+            wrongAttemptCount += 1
+            challengeState = .wrong
+        }
     }
     
     private func handleRetry(){
         selectedArea = nil
-        challengeState = .initial
+        challengeState = .attempt
+        
+//        if wrongAttemptCount >= 0 {
+//            challengeState = .wrong
+//            
+//        } else {
+//            challengeState = .attempt
+//        }
+        
+//        challengeState = .initial
     }
     
     private func handleNext(){
@@ -91,6 +110,7 @@ struct PracticeView: View {
             currentChallengeIndex = next
             selectedArea = nil
             challengeState = .initial
+            
         } else {
             finished = true
         }

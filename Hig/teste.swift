@@ -9,6 +9,7 @@ struct AllLessonsView: View {
         NavigationStack {
                 VStack {
                 ProgressView("Em andamento...")
+
             }
         }
     }

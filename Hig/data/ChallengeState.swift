@@ -11,4 +11,5 @@ enum ChallengeState {
     case initial
     case wrong
     case correct
+    case attempt
 }

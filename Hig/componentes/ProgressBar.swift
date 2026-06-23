@@ -46,7 +46,7 @@ struct ProgressBar: View {
             .frame(height: windowWidth > 1400 ? 24 : 16)
             
             switch challengeState {
-            case .initial:
+            case .initial, .attempt:
                 EmptyView()
             case .wrong:
                 Button(action: onRetry){

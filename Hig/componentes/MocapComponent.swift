@@ -66,7 +66,7 @@ struct MocapComponent: View {
                         exerciseNumber: "\(index + 1)",
                         onTap: {
                             //aqui ele guarda o estado das areas que ja foram tocadas
-                            guard challengeState == .initial else { return }
+                            guard challengeState == .initial || challengeState == .attempt else { return }
                             guard !alreadyFound else { return }
                             onSelected(index)
                         }

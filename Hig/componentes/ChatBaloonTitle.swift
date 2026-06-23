@@ -14,10 +14,12 @@ struct ChatBaloonTitle: View {
     let iconColor: Color
     let windowWidth: CGFloat
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         ZStack(alignment: .bottomLeading){
             Rectangle()
-                .fill(.colorLayout)
+                .fill(.colorBaloonTitle)
                 .frame(width: windowWidth > 1400 ? 40 : 30,
                        height: windowWidth > 1400 ? 30 : 28)
             
@@ -32,14 +34,14 @@ struct ChatBaloonTitle: View {
                 
                 Text(text)
                     .font(windowWidth > 1400 ? .title : .title2)
-                    .foregroundStyle(Color.black)
-                    .bold()
+                    .foregroundStyle(colorScheme == .dark ? .white : .black)
+//                    .bold()
 
             }
             .padding(windowWidth > 1400 ? 4 : 2)
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
-            .background(.colorLayout)
+            .background(.colorBaloonTitle)
             .cornerRadius(24)
             .frame(maxWidth: 440, alignment: .leading)
             

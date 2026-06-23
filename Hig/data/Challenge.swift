@@ -16,7 +16,7 @@ struct Challenge{
     var correctSection: Int
     @CKField("correctFeedback", default: CorrectFeedack(correctTitle: "", correctFirst: "", correctSecond: ""))
     var correctFeedback: CorrectFeedack
-    @CKField("wrongFeedback", default: WrongFeedack(wrongTitle: "", wrongFirst: "", wrongSecond: ""))
+    @CKField("wrongFeedback", default: WrongFeedack(wrongTitle: "", wrongFirst: "", wrongSecond: "", wrongAttemptTitle: "", wrongAttemptFirst: "", wrongAttemptSecond: ""))
     var wrongFeedback: WrongFeedack
     @CKField("descriptionChallenge", default: []/* DescriptionChallenge(descriptionTitle: "", descriptionFirst: "", descriptionSecond: "")*/)
     var descriptionChallenge: [String]
@@ -34,6 +34,8 @@ struct Challenge{
     var finishedImage: NSImage?
     @CKField("finishedAreas", default: Areas(values: []))
     var finishedArea: Areas
+//    @CKField("attemptFeedack", default: AttemptFeedack(attemptTitle: "", attemptFirst: "", attemptSecond: ""))
+//    var attemptFeedack: AttemptFeedack
 }
 
 struct Areas: CKCodable {
@@ -52,6 +54,9 @@ struct WrongFeedack: CKCodable {
     let wrongTitle: String
     let wrongFirst: String
     let wrongSecond: String
+    let wrongAttemptTitle: String
+    let wrongAttemptFirst: String
+    let wrongAttemptSecond: String
 }
 
 struct CorrectFeedack: CKCodable {
@@ -59,15 +64,15 @@ struct CorrectFeedack: CKCodable {
     let correctFirst: String
     let correctSecond: String
 }
-//
+
 //struct AttemptFeedack: CKCodable {
-//    let AttemptTitle: String
-//    let AttemptFirst: String
-//    let AttemptSecond: String
+//    let attemptTitle: String
+//    let attemptFirst: String
+//    let attemptSecond: String
 //}
-//
-//struct DescriptionChallenge: CKCodable {
-//    let descriptionTitle: String
-//    let descriptionFirst: String
-//    let descriptionSecond: String
-//}
+
+struct DescriptionChallenge: CKCodable {
+    let descriptionTitle: String
+    let descriptionFirst: String
+    let descriptionSecond: String
+}

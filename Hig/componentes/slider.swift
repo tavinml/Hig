@@ -26,10 +26,10 @@ struct Slider: View {
                 .font(windowWidth > 1200 ? .title : .title3)
                 .foregroundColor(Color.black)
         }
-        .foregroundStyle(Color.black)
+        .foregroundStyle(Color.white)
         .padding(.horizontal, windowWidth > 1200 ? 24 : 16)
         .padding(.vertical, windowWidth > 1200 ? 16 : 10)
-        .background(Color.white)
+        .background(.colorBaloon.opacity(0.16))
         .clipShape(Capsule())
         .padding(.bottom, windowWidth > 1200 ? 40 : 16)
     }
