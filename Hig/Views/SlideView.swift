@@ -73,7 +73,7 @@ struct SlideView: View {
                                         showPractice.toggle()
                                     },
                                     label: {
-                                        Text("Começar a pratica")
+                                        Text("Começar a prática")
                                             .font(windowWidth > 1200 ? .title : .title)
                                             .foregroundColor(colorScheme == .dark ? .white : .black)
                                     })

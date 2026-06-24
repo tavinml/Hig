@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PopupFinished: View {
     
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         VStack{
@@ -35,8 +36,13 @@ struct PopupFinished: View {
             .frame(maxWidth: 538, maxHeight: 489)
         }
         .frame(maxWidth: 708, maxHeight: 550)
-        .background(.backgroundChat)
+        .background(.backgroundPopUp)
+//        .border(Color.black, width: 0.5)
         .cornerRadius(10)
+        .shadow(color: .black.opacity(0.5)/*.shadowPopUp*/,
+                radius: 50,
+                x: 0,
+                y: 0)
     }
 }
 

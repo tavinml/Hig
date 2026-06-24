@@ -24,7 +24,7 @@ struct LessonButton: View {
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
                 .frame(maxWidth: 215, maxHeight: 50)
-                .background(.colorLessonButton)
+                .background(.buttonPopUp)
                 .cornerRadius(296)
             }
             .buttonStyle(.borderless)
