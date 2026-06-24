@@ -34,11 +34,11 @@ struct ProgressBar: View {
                 
                 ZStack(alignment: .leading) {
                     Capsule()
-                        .foregroundColor(Color.gray.opacity(0.3))
+                        .foregroundColor(.sliderProgress/*r.gray.opacity(0.3)*/)
                         .frame(width: geometry.size.width)
                         .frame(height: 24)
                     Capsule()
-                        .foregroundColor(.colorLayout)
+                        .foregroundColor(.sliderFill)
                         .frame(width: calculatedWidth, height: 24)
                 }
                 .frame(height: windowWidth > 1400 ? 24 : 16)
@@ -46,7 +46,7 @@ struct ProgressBar: View {
             .frame(height: windowWidth > 1400 ? 24 : 16)
             
             switch challengeState {
-            case .initial:
+            case .initial, .attempt:
                 EmptyView()
             case .wrong:
                 Button(action: onRetry){
@@ -60,7 +60,7 @@ struct ProgressBar: View {
                     }
                     .padding(.horizontal, windowWidth > 1400 ? 30 : 20)
                     .padding(.vertical, windowWidth > 1400 ? 10 : 8)
-                    .background(Color.colorSlider)
+                    .background(.buttons)
                     .foregroundStyle(Color.black)
                     .clipShape(Capsule())
                 }
@@ -81,7 +81,7 @@ struct ProgressBar: View {
                             }
                             .padding(.horizontal, windowWidth > 1400 ? 30 : 20)
                             .padding(.vertical, windowWidth > 1400 ? 10 : 8)
-                            .background(Color.colorSlider)
+                            .background(.buttons)
                             .foregroundStyle(Color.black)
                             .clipShape(Capsule())
                         })
@@ -99,7 +99,7 @@ struct ProgressBar: View {
                         }
                         .padding(.horizontal, windowWidth > 1400 ? 30 : 20)
                         .padding(.vertical, windowWidth > 1400 ? 10 : 8)
-                        .background(Color.colorSlider)
+                        .background(.buttons)
                         .foregroundStyle(Color.black)
                         .clipShape(Capsule())
                     }
@@ -110,7 +110,7 @@ struct ProgressBar: View {
 
         }
         .padding(24)
-        .background(Color.backgroundProgressBar)
+        .background(.backgroundProgressBar)
         .cornerRadius(26)
         
     }

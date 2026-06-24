@@ -14,6 +14,8 @@ struct SlideView: View {
     
     @State private var showPractice: Bool = false
     
+    @Environment(\.colorScheme) var colorScheme
+    
     private var numberslide: Int {
         return lesson.contents.count
     }
@@ -60,7 +62,7 @@ struct SlideView: View {
                                     }else{
                                         Image(systemName: "chevron.left")
                                             .font(windowWidth > 1200 ? .title : .title)
-                                            .foregroundColor(Color.black)
+                                            .foregroundColor(colorScheme == .dark ? .white : .black)
                                     }
                                 })
                             .buttonStyle(.borderless)
@@ -71,10 +73,9 @@ struct SlideView: View {
                                         showPractice.toggle()
                                     },
                                     label: {
-                                        Text("Começar a pratica")
+                                        Text("Começar a prática")
                                             .font(windowWidth > 1200 ? .title : .title)
-                                            .foregroundColor(.black)
-                                            .bold()
+                                            .foregroundColor(colorScheme == .dark ? .white : .black)
                                     })
                                 .buttonStyle(.borderless)
                             } else{
@@ -105,10 +106,10 @@ struct SlideView: View {
                                     .buttonStyle(.borderless)
                             }
                         }
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 10)
-                        .background(Color.colorSlider)
+                        .background(Color.sliderColor1)
                         .clipShape(Capsule())
                         .padding(.bottom, 30)
                     }

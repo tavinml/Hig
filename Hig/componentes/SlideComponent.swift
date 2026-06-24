@@ -23,6 +23,7 @@ struct SlideComponent: View {
                         .scaledToFit()
                         .accessibilityHidden(true)
                         .frame(width: windowWidth * 0.30)
+                     
                         
                 
                         VStack(alignment: .leading, spacing: windowWidth * 0.02){
@@ -36,7 +37,7 @@ struct SlideComponent: View {
                                 ZStack(alignment: .bottomLeading) {
                                    
                                    Rectangle()
-                                        .fill(Color.backgroundBaloon)
+                                        .fill(.colorBackgroundBaloon)
                                        .frame(width: windowWidth > 1200 ? 40 : 30,
                                               height: windowWidth > 1200 ? 40 : 30)
                                    
@@ -46,10 +47,10 @@ struct SlideComponent: View {
                                         .scaledToFit()
                                         .accessibilityLabel(Text("\(content.descriptionImage)"))
                                        .padding(windowWidth > 1200 ? 24 : 18)
-                                       .background(Color.backgroundBaloon)
+                                       .background(.colorBackgroundBaloon)
                                        .cornerRadius(windowWidth > 1200 ? 24 : 18)
                                }
-                               .foregroundStyle(Color.black)
+                                .foregroundStyle(.colorBackgroundBaloon)
                             }
                     }
                     .frame(width: windowWidth * 0.40, alignment: .leading)

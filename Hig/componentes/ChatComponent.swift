@@ -17,6 +17,7 @@ struct ChatComponent: View {
     let onRetry: () -> Void
     let onNext: () -> Void
     let windowWidth: CGFloat
+    let wrongAttemptCount: Int
 
     
    @Binding var finished: Bool
@@ -32,13 +33,17 @@ struct ChatComponent: View {
                 .contains(2) ? challenge
                 .imageChat[2] : nil
         case .wrong:
-            return challenge.imageChat.indices
-                .contains(0) ? challenge
-                .imageChat[0] : nil
+                return challenge.imageChat.indices
+                    .contains(0) ? challenge
+                    .imageChat[0] : nil
         case .correct:
             return challenge.imageChat.indices
                 .contains(1) ? challenge
                 .imageChat[1] : nil
+        case .attempt:
+            return challenge.imageChat.indices
+                .contains(3) ? challenge
+                .imageChat[3] : nil
         }
         
         
@@ -116,6 +121,32 @@ struct ChatComponent: View {
                             //
                         case .wrong:
                             
+//                            if wrongAttemptCount <= 1{
+//                                ChatBaloonTitle(text: challenge.wrongFeedback.wrongAttemptTitle,
+//                                                icon: nil,
+//                                                iconColor: .clear,
+//                                                windowWidth: windowWidth)
+//                                
+//                                ChatBaloon(text: challenge.wrongFeedback.wrongAttemptFirst, windowWidth: windowWidth)
+//                                
+//                                if !challenge.wrongFeedback.wrongAttemptSecond.isEmpty {
+//                                    ChatBaloon(text: challenge.wrongFeedback.wrongAttemptSecond, windowWidth: windowWidth)
+//                                }
+//                                
+//                            }
+//                            else {
+//                                ChatBaloonTitle(text: challenge.wrongFeedback.wrongTitle,
+//                                                icon: "xmark.circle.fill",
+//                                                iconColor: .red,
+//                                                windowWidth: windowWidth)
+//                                
+//                                ChatBaloon(text: challenge.wrongFeedback.wrongFirst, windowWidth: windowWidth)
+//                                
+//                                if !challenge.wrongFeedback.wrongSecond.isEmpty {
+//                                    ChatBaloon(text: challenge.wrongFeedback.wrongSecond, windowWidth: windowWidth)
+//                                }
+//                            }
+                            
                             ChatBaloonTitle(text: challenge.wrongFeedback.wrongTitle,
                                             icon: "xmark.circle.fill",
                                             iconColor: .red,
@@ -135,6 +166,18 @@ struct ChatComponent: View {
                                 ChatBaloon(text: challenge.correctFeedback.correctSecond, windowWidth: windowWidth)
                             }
                             
+                        case .attempt:
+                            ChatBaloonTitle(text: challenge.wrongFeedback.wrongAttemptTitle,
+                                            icon: nil,
+                                            iconColor: .clear,
+                                            windowWidth: windowWidth)
+                            
+                            ChatBaloon(text: challenge.wrongFeedback.wrongAttemptFirst, windowWidth: windowWidth)
+                            
+                            if !challenge.wrongFeedback.wrongAttemptSecond.isEmpty {
+                                ChatBaloon(text: challenge.wrongFeedback.wrongAttemptSecond, windowWidth: windowWidth)
+                            }
+                    
                         }
                     }
                 }

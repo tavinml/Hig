@@ -18,6 +18,8 @@ struct Card: View {
         Module(rawValue: lesson.moduleType)?.colorValue ?? .clear
     }
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         GeometryReader { geo in
             let windowWidth = geo.size.width
@@ -27,11 +29,11 @@ struct Card: View {
                     
                     Text("Lição \(lesson.number):")
                         .font(.title2)
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                     
                     Text(lesson.titleLesson)
                         .font(.largeTitle.bold())
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
 //                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.trailing, windowWidth > 1200 ? 15 : 10)

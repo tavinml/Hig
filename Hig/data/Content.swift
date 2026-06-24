@@ -24,6 +24,8 @@ struct Content{
     var descriptionImage: String?
 }
 
+
+
 import SwiftUI
 struct TestView: View {
     @State var contents: [Content.Observable] = []
