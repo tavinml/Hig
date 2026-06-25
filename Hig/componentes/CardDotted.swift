@@ -17,7 +17,7 @@ struct cardDotted: View {
     
     private var currentColor: Color {
         if selected {
-            return correct ? Color.green : Color.red
+            return correct ? .correctSection : .wrongSection
         } else {
             return .cardDotted
         }

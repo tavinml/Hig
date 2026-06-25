@@ -108,13 +108,17 @@ struct ChatComponent: View {
                             //Passo os valores de acordo com o array do CloudKit
                         case .initial:
                             
-                            ChatBaloonTitle(text: challenge.titleChallenge, icon: nil, iconColor: .clear, windowWidth: windowWidth)
+                            ChatBaloonTitle(text: challenge.titleChallenge,
+                                            icon: nil,
+                                            iconColor: .clear,
+                                            windowWidth: windowWidth)
                             
                             ForEach(challenge.descriptionChallenge, id: \.self){ description in
                                 
                                 //nem todos vao ter um segundo balao, faço isso pra quando ele ta diferente de vazio
                                 if !challenge.descriptionChallenge.isEmpty {
-                                    ChatBaloon(text: description, windowWidth: windowWidth)
+                                    ChatBaloon(text: description,
+                                               windowWidth: windowWidth)
                                 }
                             }
                             
@@ -149,21 +153,28 @@ struct ChatComponent: View {
                             
                             ChatBaloonTitle(text: challenge.wrongFeedback.wrongTitle,
                                             icon: "xmark.circle.fill",
-                                            iconColor: .red,
+                                            iconColor: .wrongFeedback,
                                             windowWidth: windowWidth)
                             
-                            ChatBaloon(text: challenge.wrongFeedback.wrongFirst, windowWidth: windowWidth)
+                            ChatBaloon(text: challenge.wrongFeedback.wrongFirst,
+                                       windowWidth: windowWidth)
                             
                             if !challenge.wrongFeedback.wrongSecond.isEmpty {
-                                ChatBaloon(text: challenge.wrongFeedback.wrongSecond, windowWidth: windowWidth)
+                                ChatBaloon(text: challenge.wrongFeedback.wrongSecond,
+                                           windowWidth: windowWidth)
                             }
                         case .correct:
-                            ChatBaloonTitle(text: challenge.correctFeedback.correctTitle, icon: "checkmark.circle.fill", iconColor: .green,windowWidth: windowWidth)
+                            ChatBaloonTitle(text: challenge.correctFeedback.correctTitle,
+                                            icon: "checkmark.circle.fill",
+                                            iconColor: .correctFeedback,
+                                            windowWidth: windowWidth)
                             
-                            ChatBaloon(text: challenge.correctFeedback.correctFirst, windowWidth: windowWidth)
+                            ChatBaloon(text: challenge.correctFeedback.correctFirst,
+                                       windowWidth: windowWidth)
                             
                             if !challenge.correctFeedback.correctSecond.isEmpty {
-                                ChatBaloon(text: challenge.correctFeedback.correctSecond, windowWidth: windowWidth)
+                                ChatBaloon(text: challenge.correctFeedback.correctSecond,
+                                           windowWidth: windowWidth)
                             }
                             
                         case .attempt:
@@ -172,10 +183,12 @@ struct ChatComponent: View {
                                             iconColor: .clear,
                                             windowWidth: windowWidth)
                             
-                            ChatBaloon(text: challenge.wrongFeedback.wrongAttemptFirst, windowWidth: windowWidth)
+                            ChatBaloon(text: challenge.wrongFeedback.wrongAttemptFirst,
+                                       windowWidth: windowWidth)
                             
                             if !challenge.wrongFeedback.wrongAttemptSecond.isEmpty {
-                                ChatBaloon(text: challenge.wrongFeedback.wrongAttemptSecond, windowWidth: windowWidth)
+                                ChatBaloon(text: challenge.wrongFeedback.wrongAttemptSecond,
+                                           windowWidth: windowWidth)
                             }
                     
                         }
